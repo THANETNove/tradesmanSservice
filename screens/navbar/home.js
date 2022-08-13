@@ -72,7 +72,7 @@ class Home extends Component {
 
   setLogin(e) {
 
-    if (this.state.login !== null) {
+    if (this.props.posts.login !== null) {
       this.props.navigation.navigate("Tradesman");
       this.props.dispatch({
         type: 'ADD_TECHNICAN',
