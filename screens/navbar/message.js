@@ -194,9 +194,9 @@ class Message extends Component {
             {this.props.posts.login != null ? (
               this.props.posts.login.status_user === "ลูกค้าทั่วไป" ? 
                 <>
-                <TouchableOpacity onPress={() => this.set_State(this.props.posts.login)}>
+                {/* <TouchableOpacity onPress={() => this.set_State(this.props.posts.login)}>
                     <Fontisto name="spinner-refresh" style={styles.icons} />
-                </TouchableOpacity>
+                </TouchableOpacity> */}
                 {
                     this.user(message, messageGrou, urlImg)
                 }
