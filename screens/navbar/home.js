@@ -29,9 +29,9 @@ class Home extends Component {
   }
   componentDidUpdate(prevProps, prevState) {
     const { login,startApp } = this.props.posts;
-/*     if (prevProps.login !== login && this.state.login  !== null) {
+    if (prevProps.login !== login && this.state.login  !== null) {
       this.getTechnician_type();
-    } */
+    }
     
 
     if (startApp !== this.state.startApp) {
@@ -346,6 +346,9 @@ const styles = StyleSheet.create({
 
   },
   boxhead: {
+    
+    display: "flex",
+    justifyContent: "center",
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginBottom: 20,

@@ -225,7 +225,7 @@ container: {
   },
   box2: {
     height: 45 ,
-    width: 300,
+    width: "90%",
     backgroundColor: '#e8e9e9',
     shadowColor: "#000",
     shadowOpacity: 0.3,

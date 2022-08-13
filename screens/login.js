@@ -193,7 +193,7 @@ class Login extends Component {
                 <FontAwesome name="user" style={styles.icons3} />
                 <TextInput keyboardType='numeric'
                   style={{ flex: 1, paddingLeft: 12, fontSize: 20 }}
-                  placeholder="Name"
+                  placeholder="PhoneNumber"
                   underlineColorAndroid="transparent"
                   onChange={(e) =>
                     this.handleOnPress(e.nativeEvent.text, "username")
@@ -356,8 +356,9 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   button2: {
-    marginTop: -16,
-    marginLeft: 180,
+    marginTop: 0,
+    alignSelf: 'flex-end',
+    marginRight: '10%'
   },
   icons: {
     marginTop: 25,

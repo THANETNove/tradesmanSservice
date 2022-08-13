@@ -644,7 +644,7 @@ const styles = StyleSheet.create({
   zIndex: 1,
   },
   backgroun: {
-    width: 360,
+    width: "100%",
     height: 220,
   },
   boxhead: {
@@ -652,6 +652,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     marginTop: 10,
     marginBottom: 20,
+    width: "100%"
   },
   image: {
     width: 100,
@@ -693,7 +694,7 @@ const styles = StyleSheet.create({
     marginTop: -10,
   },
   box1: {
-    width: 110,
+    width: "30%",
     height: 150,
     marginTop: 5,
     marginLeft: 7,
@@ -704,6 +705,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     elevation: 2,
     marginBottom: 4,
+    
   },
   box: {
     width: 160,
@@ -718,6 +720,7 @@ const styles = StyleSheet.create({
     elevation: 2,
     marginLeft: "auto",
     marginRight: "auto",
+    
   },
   box2: {
     height: 25,

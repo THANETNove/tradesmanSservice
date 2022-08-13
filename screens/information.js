@@ -118,7 +118,7 @@ class Information extends Component {
                 source={require("../assets/images/BB-2.png")}
               />
             </View>
-
+          <View style={styles.centerImg}></View>
             <View style={styles.box6}>
               <TouchableOpacity onPress={() => this.pickImage()}>
                 {imgProfile === null ? (
@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
   },
   box3: {
     height: 50,
-    width: 320,
+    width: "90%",
     backgroundColor: "#e8e9e9",
     shadowColor: "#000",
     shadowOpacity: 0.3,
@@ -223,8 +223,10 @@ const styles = StyleSheet.create({
     marginRight: "auto",
     borderRadius: 25,
   },
+
   box6: {
-    height: 140,
+  
+   /*  height: 140,
     width: 140,
     backgroundColor: "#37C1FB",
     shadowColor: "#000",
@@ -235,11 +237,19 @@ const styles = StyleSheet.create({
     marginTop: 80,
     marginLeft: 110,
     borderWidth: 3,
-    borderColor: "#fff",
-    position: "absolute",
+    borderColor: "#fff", */
+/*     position: "absolute", */
+    marginTop: -90,
     zIndex: 1,
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    
+    
   },
   imgPro: {
+    textAlign: "center",
     height: 135,
     width: 135,
     backgroundColor: "#37C1FB",

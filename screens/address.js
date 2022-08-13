@@ -245,7 +245,7 @@ const styles = StyleSheet.create({
   },
   map: {
     width: "auto",
-    height: 200,
+    height: 300,
   },
   icons: {
     fontSize: 25,
@@ -297,8 +297,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   box1: {
-    height: 200,
-    width: 300,
+    height: 300,
+    width: "90%",
     backgroundColor: "#fff",
     shadowColor: "#000",
     shadowOpacity: 0.3,
@@ -365,7 +365,7 @@ const styles = StyleSheet.create({
   },
   box7: {
     height: 40,
-    width: 300,
+    width: "90%",
     backgroundColor: "#e8e9e9",
     shadowColor: "#000",
     shadowOpacity: 0.3,

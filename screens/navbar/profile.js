@@ -219,7 +219,7 @@ class Profile_tradesman extends Component {
 
     return (
       <>
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView >
           <ScrollView>
             <View style={styles.box}>
               <View style={styles.box1}>
@@ -368,13 +368,14 @@ class Profile_tradesman extends Component {
         </View> */}
          <SafeAreaView style={styles.container}>
           <ScrollView>
+
             <View style={styles.box}>
-            <View style={styles.box1}>
-                <View style={styles.box6}>
-                <Image style={styles.image3} source={require('../../assets/images/AAA.png')}/>
+              <View style={styles.box1}>
+                  <View style={styles.box6}>
+                  <Image style={styles.image3} source={require('../../assets/images/AAA.png')}/>
+                  </View>
+                  <Text style={styles.text}>TECHNICIAN ONLINE</Text>
                 </View>
-                <Text style={styles.text}>TECHNICIAN ONLINE</Text>
-              </View>
             </View>
 
             <View style={styles.top}>
@@ -477,7 +478,7 @@ const styles = StyleSheet.create({
   },
   box: {
     height: 260,
-    width: 360,
+    width: "100%",
     backgroundColor: "#37C1FB",
     shadowColor: "#000",
     shadowOpacity: 0.27,
@@ -487,22 +488,31 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 60,
 
   },
+  centerProfile: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 20,
+  },
+ 
   box1: {
     height: 250,
-    width: 270,
+    width: "90%",
     backgroundColor: "#fff",
     shadowColor: "#000",
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
     elevation: 6,
     borderRadius: 20,
-    marginLeft: 45,
+    marginLeft: "5%",
     marginRight: 45,
     marginTop: 25,
+    
   },
   box2: {
     height: 60,
-    width: 300,
+    width: "90%",
     backgroundColor: "#fff",
     shadowColor: "#000",
     shadowOpacity: 0.27,
@@ -516,14 +526,14 @@ const styles = StyleSheet.create({
   },
   box3: {
     height: 60,
-    width: 300,
+    width: "90%",
     backgroundColor: "#fff",
     shadowColor: "#000",
     shadowOpacity: 0.27,
     shadowRadius: 4.65,
     elevation: 3,
     borderRadius: 10,
-    marginLeft: 28,
+    marginLeft: "5%",
     marginRight: 20,
     marginTop: 10,
     marginBottom: 4,
