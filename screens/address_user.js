@@ -222,9 +222,11 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
 
   useEffect(() => {
     if (location.longitude === null) {
+      console.log("asdasdad");
       getLocation();
       map();
     }
+    console.log("555555");
 /*     if (statusAddress === null) {
       getAddress_user(idPhone);
     } */
@@ -345,7 +347,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                {location.longitude === null ? null : <>{map()}</>}
+                {location.longitude === null ? null : null }
               </View>
               <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
@@ -582,6 +584,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   /*   console.log(useSelector((state) => ({ ...state })));
    */
 
+  console.log("AAAA");
   return (
     <>
       {statusAddress === null

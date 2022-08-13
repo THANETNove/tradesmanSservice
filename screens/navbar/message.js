@@ -187,7 +187,6 @@ class Message extends Component {
   render() {
     const { starusLogin, message, messageGrou, urlImg } = this.state;
 
-
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>

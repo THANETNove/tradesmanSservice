@@ -143,7 +143,6 @@ class Chat extends Component {
   render() {
     const { messageUser, message, starusLogin ,urlImg,id_click} = this.state;
 
-
     return (
       <>
         <SafeAreaView style={styles.container}>
