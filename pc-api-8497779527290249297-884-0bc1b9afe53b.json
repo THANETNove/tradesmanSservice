@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pc-api-8497779527290249297-884",
+  "private_key_id": "0bc1b9afe53bf074bb25bf2fcd84c3577bc06a9e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDVwCdjs59EsxWT\nEXie4UIqXlU0d8nbwupm1MXAMeUEi8zrCNWmwxP1x+YjDlSWl1TF+TIQIYLArBIr\nyGwYEJTsWl5sY31oUXkFd61LpjfO1x2cG+ZxXQBvP3TfWUEYPWnqlrnITDThtS9c\n/IB2QMFbQJ1H5zB8Q7/2UzecleA+d/ZcIMttdSxRy5m0uyAH7uzAMq2nNTGzde9r\nrYLwQjUohWaE/7tf8WLq9HOPgZfJlUFxBV7fNIy8hI1oZYfXaj84Yd2WUoPXcV29\ndXGiAM7hFuTP5ApFsuu0hAsRLs2yRT0jgFofKtKFPGRH5RGjHcTFn11WFKTVcWHw\nLS8YDH4vAgMBAAECggEACkfDnTf2YQd78ibU9k8/L2p6Dpv0SW2GeIujNysvKJjQ\nsj0qiWq4ewmyN91olBWTLjJeBgiWkU21UgXBrSafAv8Vq4Dddzbz6x9mZk0IQhp2\nghuVab5fVvpmVJemWdQaU/4L0WZY5MIiFQbP5uAWbJ0e82ZbHp7jjKVT92P99QMZ\nfWKdgqrKNhZkBwuADfTGHyF6IWfhC+khURdoYfIzbhKXE6oRHGzgvAmZEdQVGUVw\nN0cT4rmAw1B5SiwLpmecaFR3sZMNpOzh5J2prb2MjUJXJfTAVldFlrIJYBZR9cFe\nHfmBld6JT4DCPxF9jMp0q36Ey4ohhJgtz5FYCjWOAQKBgQD28ppUjIV7UuAu/lBM\nxB+fYWASv9y5/tr+6HJxnjdf7ORahyTdpUyPv8NNkAVPPZL2nSC+uO9v/RX7Idju\nqc/dMLq0r25Kmv5WRC9F4IqhlaCBj+CH7KjX2mcDgQ4YrGZDvIMaCqt5JtOvbhOQ\nGR/FOneBQVTLsatC8xrmhc5KUQKBgQDdlgY6rEhPdmyLaHxxCPDCAfEKbQezLKGp\ngoWrM0te9Pex0ZROQfRTGCjvynAGfNvWI96FXQ+MwzreFLw06xBoiDtMzAdfkqkN\n2Xj9WOpLmtJLL3QNysbVpDcDffWoWMSrfHYjir3KlXgohQxCAOUwcOgpO9JHszrh\nSIK4sFOgfwKBgQDhnOX45uUwtZfR91CfwfLuJwWiO53KZBfqGa4tNZJ71i8Osjex\nNEsNbfJd0322VpgFLarz9Hv0wbGqXdMWwRgCinmZiEloadCCOgtCeRHO7KfWlv9Y\nz5O2mXfSEL8zNZa8vea9DRB6QEnYFeZTmVCYXYE/GtQAwVKpePeTsp208QKBgFeC\nWi9tvpjzMebUeuDBISPdVG5DpNjT9XxWOafk+A0mPXQSSrmlPnJahkA8+IT3ZnJp\ndAXDPNLgfy0Zj0Ju2uoNcy3fHcJWz0DS8/9J0C3PlOFweirAPEo/MiLE6fF0LSd0\nXcunjVCmOu/1q2OdquW4kVdHcsIyPDygQE/kAwLNAoGBALs8LVPWpfvW1VuTe8Ks\n117Q7iC2WlyLTiT/kJzjETXzrcnry7xOjN29nSfHFts9+otUeI8WpDWr6SGSEV9L\nZGJ5bSCCGsIwqVTNIJsq57ESX/X5V3I1Exv2LohgLtIa2WMPcM2p1HrBHs22z2O3\na5Fcqz3a3OlvslyCh40CRinV\n-----END PRIVATE KEY-----\n",
+  "client_email": "id-techician-online@pc-api-8497779527290249297-884.iam.gserviceaccount.com",
+  "client_id": "117816199758483994172",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/id-techician-online%40pc-api-8497779527290249297-884.iam.gserviceaccount.com"
+}

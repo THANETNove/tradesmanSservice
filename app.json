@@ -2,7 +2,7 @@
   "expo": {
     "name": "techician online",
     "slug": "onthTechicianOnline",
-    "version": "4.0.0",
+    "version": "3.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -26,7 +26,8 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.ththanet.techicianOnline"
+      "package": "com.ththanet.techicianOnline",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"

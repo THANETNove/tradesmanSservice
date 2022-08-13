@@ -14,6 +14,10 @@
   },
   "submit": {
     "production": {
+      "android": {
+        "serviceAccountKeyPath": "./pc-api-8497779527290249297-884-0bc1b9afe53b.json",
+        "track": "internal"
+      },
       "ios": {
         "appleId": "lollipopwar-love@hotmail.co.th",
         "ascAppId": "1637943361",
