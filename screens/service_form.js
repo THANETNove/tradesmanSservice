@@ -406,7 +406,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                {location.longitude === null ? null : null/* <>{map()}</> */}
+                {location.longitude === null ? null :  map()}
               </View>
               <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
@@ -491,8 +491,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               <View style={styles.box1}>
                 {statusAddress.location !== undefined ? (
                   <>
-                  {null}
-                   {/*  <MapView
+                    <MapView
                       style={styles.map}
                       initialRegion={{
                         latitude: statusAddress.location.latitude,
@@ -511,7 +510,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                           <Text>ตำเเหน่งของคุณ</Text>
                         </Callout>
                       </Marker>
-                    </MapView> */}
+                    </MapView>
                   </>
                 ) : null}
               </View>
@@ -688,7 +687,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                {location.longitude === null ? null :null /* <>{map()}</> */}
+                {location.longitude === null ? null : map()}
               </View>
               <TouchableOpacity style={styles.button} onPress={() => update()}>
                 <Text style={styles.text}>บันทึก</Text>

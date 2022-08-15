@@ -46,7 +46,10 @@ function App() {
         title: 'Address',
       }} />
       <HomeStack.Screen name="Payment" component={Payment} />
-      <HomeStack.Screen name="Privacypolicy" component={Privacypolicy} />
+      <HomeStack.Screen name="Privacypolicy" component={Privacypolicy} 
+      options={{
+        title: 'Privacy Policy',
+      }} />
 
     </HomeStack.Navigator>
   );
