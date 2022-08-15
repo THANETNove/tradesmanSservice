@@ -14,6 +14,7 @@ import {
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
+import { MaterialIcons } from '@expo/vector-icons'; 
 import { Ionicons } from "@expo/vector-icons";
 import { Entypo } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
@@ -287,6 +288,12 @@ class Profile_tradesman extends Component {
                 </Text>
               </View>
               <View style={styles.box3}>
+                <MaterialIcons name="privacy-tip" style={styles.icons3} />
+                <Text style={styles.text2}
+                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"privacy policy"}
+                </Text>
+              </View>
+              <View style={styles.box3}>
                 <MaterialCommunityIcons name="logout" style={styles.icons5} />
                 <Text
                   style={styles.text2}
@@ -380,18 +387,18 @@ class Profile_tradesman extends Component {
 
             <View style={styles.top}>
               <View style={styles.box3}>
-                <FontAwesome5 name="user-alt" style={styles.icons3} />
+                <FontAwesome name="user" style={styles.icons3} />
                 <Text style={styles.text2}>{"โปรไฟล์"}
                 </Text>
               </View>
               <View style={styles.box3}>
-                <FontAwesome5 name="user-alt" style={styles.icons3} />
+                <MaterialIcons name="login" style={styles.icons3} />
                 <Text style={styles.text2}
                   onPress={() => this.props.navigation.navigate("Login")}>{"เข้าสู่ระบบ"}
                 </Text>
               </View>
               <View style={styles.box3}>
-                <FontAwesome5 name="user-alt" style={styles.icons3} />
+                <MaterialIcons name="privacy-tip" style={styles.icons3} />
                 <Text style={styles.text2}
                   onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"privacy policy"}
                 </Text>
