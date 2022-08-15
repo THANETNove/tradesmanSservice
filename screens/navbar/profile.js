@@ -12,11 +12,7 @@ import {
   TouchableOpacity,
   TouchableHighlight
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
-import { FontAwesome5 } from "@expo/vector-icons";
-import { MaterialIcons } from '@expo/vector-icons'; 
-import { Ionicons } from "@expo/vector-icons";
-import { Entypo } from '@expo/vector-icons';
+import {Ionicons, FontAwesome,FontAwesome5,MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
@@ -220,8 +216,7 @@ class Profile_tradesman extends Component {
 
     return (
       <>
-        <SafeAreaView >
-          <ScrollView>
+          <ScrollView s>
             <View style={styles.box}>
               <View style={styles.box1}>
                 <View style={styles.box6}>
@@ -280,7 +275,7 @@ class Profile_tradesman extends Component {
                   onPress={() => this.props.navigation.navigate("Payment")}>{"ชำระเงิน"}
                 </Text>
               </View>
-              <View style={styles.box2}>
+              <View style={styles.box3}>
                 <Ionicons name="card" style={styles.icons5} />
                 <Text
                   style={styles.text2}
@@ -354,8 +349,7 @@ class Profile_tradesman extends Component {
               </Pressable>
             </View>
           </Modal>
-        </SafeAreaView>
-      </>
+        </>
     )
   }
 
