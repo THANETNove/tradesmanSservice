@@ -15,24 +15,33 @@ import chat from '../chat';
 const HomeStack = createNativeStackNavigator();
 
 function App() {
-    return (
+  return (
 
-        <HomeStack.Navigator>
-             <HomeStack.Screen name="Home" component={Home} />
-             <HomeStack.Screen name="Tradesman" component={Tradesman} />
-             <HomeStack.Screen name="Profile" component={Profile} />
-             <HomeStack.Screen name="Profile_tras_user" component={profile_tras_user} />
-             <HomeStack.Screen name="workings_tras_user" component={workings_tras_user} />
-             <HomeStack.Screen name="address" component={address} />
-             <HomeStack.Screen name="Login" component={Login} />
-             <HomeStack.Screen name="Ahow_bank" component={Ahow_bank} />
-             <HomeStack.Screen name="chat" component={chat} />
-        </HomeStack.Navigator>
-    );
-  }
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Home" component={Home} />
+      <HomeStack.Screen name="Tradesman" component={Tradesman} />
+      <HomeStack.Screen name="Profile" component={Profile} />
+      <HomeStack.Screen name="Profile_tras_user" component={profile_tras_user}
+        options={{
+          title: 'Profile',
+        }} />
+      <HomeStack.Screen name="workings_tras_user" component={workings_tras_user}
+        options={{
+          title: 'Profile',
+        }} />
+      <HomeStack.Screen name="address" component={address}
+       options={{
+        title: 'Address',
+      }} />
+      <HomeStack.Screen name="Login" component={Login} />
+      <HomeStack.Screen name="Ahow_bank" component={Ahow_bank} />
+      <HomeStack.Screen name="chat" component={chat} />
+    </HomeStack.Navigator>
+  );
+}
 
 export default function RouterHome() {
   return (
-     <App/>
+    <App />
   );
 }

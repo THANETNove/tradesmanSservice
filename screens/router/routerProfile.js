@@ -18,29 +18,42 @@ import Privacypolicy from '../privacypolicy';
 const HomeStack = createNativeStackNavigator();
 
 function App() {
-    return (
+  return (
 
-        <HomeStack.Navigator>
-             <HomeStack.Screen name="Profile" component={Profile} />
-            <HomeStack.Screen name="Login" component={Login} />
-            <HomeStack.Screen name="Registration" component={Registration} />
-            <HomeStack.Screen name="Servict_form" component={Servict_form} />
-            <HomeStack.Screen name="Workings" component={Workings} />
-            <HomeStack.Screen name="Bank_account" component={Bank_account} />
-            <HomeStack.Screen name="FromBank" component={FromBank} />
-            <HomeStack.Screen name="Chat" component={Chat} />
-            <HomeStack.Screen name="Information" component={Information} />
-            <HomeStack.Screen name="Home_paste" component={Home_paste} />
-            <HomeStack.Screen name="Address_user" component={Address_user} />
-            <HomeStack.Screen name="Payment" component={Payment} />
-            <HomeStack.Screen name="Privacypolicy" component={Privacypolicy} />
-            
-        </HomeStack.Navigator>
-    );
-  }
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="Profile" component={Profile} />
+      <HomeStack.Screen name="Login" component={Login} />
+      <HomeStack.Screen name="Registration" component={Registration} />
+      <HomeStack.Screen name="Servict_form" component={Servict_form} 
+      options={{
+        title: 'Address',
+      }} />
+      <HomeStack.Screen name="Workings" component={Workings} />
+      <HomeStack.Screen name="Bank_account" component={Bank_account} options={{
+        title: 'Bank Account',
+      }}  />
+      <HomeStack.Screen name="FromBank" component={FromBank} 
+       options={{
+        title: 'From Bank Account',
+      }} />
+      <HomeStack.Screen name="Chat" component={Chat} />
+      <HomeStack.Screen name="Information" component={Information} 
+      options={{
+        title: 'Account',
+      }} />
+      <HomeStack.Screen name="Home_paste" component={Home_paste} />
+      <HomeStack.Screen name="Address_user" component={Address_user} options={{
+        title: 'Address',
+      }} />
+      <HomeStack.Screen name="Payment" component={Payment} />
+      <HomeStack.Screen name="Privacypolicy" component={Privacypolicy} />
+
+    </HomeStack.Navigator>
+  );
+}
 
 export default function RouterProfile() {
   return (
-     <App/>
+    <App />
   );
 }
