@@ -217,7 +217,7 @@ class address extends Component {
                   <View>
                     <Text style={styles.text2}>{"GPS"}</Text>
                     <View style={styles.box1}>
-                      {this.map()}
+                    {/*   {this.map()} */}
                     </View>
                   </View>
                 </View>

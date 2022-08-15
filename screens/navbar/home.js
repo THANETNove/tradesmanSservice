@@ -312,7 +312,7 @@ class Home extends Component {
 
 
   render() {
-    console.log("this.props.posts.startApp");
+
     const login_props = this.props.posts.login;
     const {startApp} = this.state;
     return (

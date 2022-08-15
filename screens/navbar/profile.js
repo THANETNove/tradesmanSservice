@@ -536,7 +536,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     marginRight: 20,
     marginTop: 10,
-    marginBottom: 4,
+    marginBottom: 5,
   },
   box4: {
     height: 180,
