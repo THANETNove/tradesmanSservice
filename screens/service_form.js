@@ -26,8 +26,8 @@ let apiKey = "AIzaSyBdjxXSNpAnyW0lzE_uliQ121U4mkmSgPk";
 
 const Service_form = ({ navigation: { popToTop, navigate } }) => {
   const [location, setLocation] = useState({
-    latitude: null,
-    longitude: null,
+    latitude: 13.7244416,
+    longitude: 100.3529157,
   });
 
   const [name, setName] = useState(null);
@@ -83,49 +83,43 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }
   };
 
-  const map =  () => {
-
-    return  (
+  const map = () => {
+    return (
       <>
-      {
-        location.latitude === null ? null
-        :
         <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: location.latitude,
-          longitude: location.longitude,
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
-        }}
-        >
-        <Marker
-          coordinate={{
+          style={styles.map}
+          initialRegion={{
             latitude: location.latitude,
             longitude: location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
           }}
-          draggable={true}
-          onDragStart={(e) => {
-            setLocation({
-              latitude: e.nativeEvent.coordinate.latitude,
-              longitude: e.nativeEvent.coordinate.longitude,
-            });
-          }}
-          onDragEnd={(e) => {
-            setLocation({
-              latitude: e.nativeEvent.coordinate.latitude,
-              longitude: e.nativeEvent.coordinate.longitude,
-            });
-          }}
-          provider="google"
-        >
-          <Callout>
-            <Text>ตำเเหน่งของคุณ</Text>
-          </Callout>
-        </Marker>
-      </MapView>
-      }
-        
+          >
+          <Marker
+            coordinate={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+            }}
+            draggable={true}
+            onDragStart={(e) => {
+              setLocation({
+                latitude: e.nativeEvent.coordinate.latitude,
+                longitude: e.nativeEvent.coordinate.longitude,
+              });
+            }}
+            onDragEnd={(e) => {
+              setLocation({
+                latitude: e.nativeEvent.coordinate.latitude,
+                longitude: e.nativeEvent.coordinate.longitude,
+              });
+            }}
+            provider="google"
+          >
+            <Callout>
+              <Text>ตำเเหน่งของคุณ</Text>
+            </Callout>
+          </Marker>
+        </MapView>
       </>
     );
   };
@@ -240,6 +234,13 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
 
 
+/*   function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  } */
 
   
 
@@ -429,7 +430,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     );
   };
 
-  const showAddress = () => {
+  /* const showAddress = () => {
     return (
       <>
         <ScrollView>
@@ -708,18 +709,21 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
         </SafeAreaView>
       </>
     );
-  };
+  }; */
 
   /*   console.log(useSelector((state) => ({ ...state })));
    */
   console.log(location);
   return (
     <>
-      {statusAddress === null
+      {
+        addAddress()
+      }
+      {/* {statusAddress === null
         ? addAddress()
         : statusEdit === true
         ? editAddress()
-        : showAddress()}
+        : showAddress()} */}
     </>
   );
 };
