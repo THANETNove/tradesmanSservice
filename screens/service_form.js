@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef,usePreviousEffect } from "react";
 import MapView, { Marker, Callout } from "react-native-maps";
 import {
   SafeAreaView,
@@ -83,43 +83,49 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }
   };
 
-  const map = () => {
-    return (
+  const map =  () => {
+
+    return  (
       <>
+      {
+        location.latitude === null ? null
+        :
         <MapView
-          style={styles.map}
-          initialRegion={{
+        style={styles.map}
+        initialRegion={{
+          latitude: location.latitude,
+          longitude: location.longitude,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+        >
+        <Marker
+          coordinate={{
             latitude: location.latitude,
             longitude: location.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
           }}
+          draggable={true}
+          onDragStart={(e) => {
+            setLocation({
+              latitude: e.nativeEvent.coordinate.latitude,
+              longitude: e.nativeEvent.coordinate.longitude,
+            });
+          }}
+          onDragEnd={(e) => {
+            setLocation({
+              latitude: e.nativeEvent.coordinate.latitude,
+              longitude: e.nativeEvent.coordinate.longitude,
+            });
+          }}
+          provider="google"
         >
-          <Marker
-            coordinate={{
-              latitude: location.latitude,
-              longitude: location.longitude,
-            }}
-            draggable={true}
-            onDragStart={(e) => {
-              setLocation({
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude,
-              });
-            }}
-            onDragEnd={(e) => {
-              setLocation({
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude,
-              });
-            }}
-            provider="google"
-          >
-            <Callout>
-              <Text>ตำเเหน่งของคุณ</Text>
-            </Callout>
-          </Marker>
-        </MapView>
+          <Callout>
+            <Text>ตำเเหน่งของคุณ</Text>
+          </Callout>
+        </Marker>
+      </MapView>
+      }
+        
       </>
     );
   };
@@ -232,15 +238,20 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }
   };
 
+
+
+
+  
+
   useEffect(() => {
-    if (location.longitude === null) {
-      getLocation();
-      map();
-    }
+  
+    getLocation();
+/*     map(); */
+
     if (technicianType === null) {
       loadtTechnician();
-    }
-  }, []);
+    } 
+  }, [/* location.latitude */]);
 
   /*   const url = useSelector(state => ({...state}));
     console.log("url",url); */
@@ -406,7 +417,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                {location.longitude === null ? null :  map()}
+                { map()}
               </View>
               <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
@@ -687,7 +698,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                {location.longitude === null ? null : map()}
+                {map()}
               </View>
               <TouchableOpacity style={styles.button} onPress={() => update()}>
                 <Text style={styles.text}>บันทึก</Text>
@@ -701,7 +712,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
   /*   console.log(useSelector((state) => ({ ...state })));
    */
-  console.log("555");
+  console.log(location);
   return (
     <>
       {statusAddress === null
