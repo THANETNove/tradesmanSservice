@@ -414,8 +414,17 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                    <Text> {location.latitude}  </Text>
-                    <Text> {location.longitude}  </Text>
+                  {/*   <Text> {location.latitude}  </Text>
+                    <Text> {location.longitude}  </Text> */}
+                     <MapView
+                     style={styles.map}
+                      initialRegion={{
+                        latitude: location.latitude,
+                        longitude: location.longitude,
+                        latitudeDelta: 0.0922,
+                        longitudeDelta: 0.0421,
+                      }}
+                  />
               </View>
               <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
