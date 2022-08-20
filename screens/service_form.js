@@ -720,21 +720,23 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
   /*   console.log(useSelector((state) => ({ ...state })));
    */
-  console.log(location);
+
   return (
-    <>
-     <View style={styles.container}>
-      <MapView style={styles.map} />
-    </View>
-     {/*  {
-        addAddress()
-      } */}
-      {/* {statusAddress === null
+    <MapView
+    initialRegion={{
+      latitude: 37.78825,
+      longitude: -122.4324,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+    }}
+  />
+/*     <>
+      {statusAddress === null
         ? addAddress()
         : statusEdit === true
         ? editAddress()
-        : showAddress()} */}
-    </>
+        : showAddress()}
+    </> */
   );
 };
 
