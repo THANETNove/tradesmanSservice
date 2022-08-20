@@ -414,13 +414,13 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                  {/*   <Text> {location.latitude}  </Text>
-                    <Text> {location.longitude}  </Text> */}
+                    <Text> {location.latitude}  </Text>
+                    <Text> {location.longitude}  </Text>
                      <MapView
                      style={styles.map}
                       initialRegion={{
-                        latitude: location.latitude,
-                        longitude: location.longitude,
+                        latitude: 37.78825,
+                        longitude: -122.4324,
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                       }}
