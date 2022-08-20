@@ -1,7 +1,7 @@
 import axios from "axios";
 /*  const  url = 'https://reqres.in';  */
 /*  const url = 'http://192.168.1.12/project/api-database';  */  //หน่วย
-   const url = 'http://th-projet.com/api-database';    // ยอน 
+   const url = 'https://th-projet.com/api-database';    // ยอน 
 /* const getUser = async () => {
 
   const rse = await axios.get(`${url}/getUsers`).then((result) => {
