@@ -83,7 +83,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }
   };
 
-  const map = () => {
+/*   const map = () => {
     return (
       <>
         <MapView
@@ -122,7 +122,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
         </MapView>
       </>
     );
-  };
+  }; */
 
   const serve = async () => {
     const data = [
@@ -232,27 +232,17 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }
   };
 
-
-
-/*   function usePrevious(value) {
-    const ref = useRef();
-    useEffect(() => {
-      ref.current = value;
-    });
-    return ref.current;
-  } */
-
   
 
-  useEffect(() => {
+/*   useEffect(() => {
   
     getLocation();
-/*     map(); */
+    map();
 
     if (technicianType === null) {
       loadtTechnician();
     } 
-  }, [/* location.latitude */]);
+  }, [location.latitude]); */
 
   /*   const url = useSelector(state => ({...state}));
     console.log("url",url); */
@@ -418,7 +408,40 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                { map()}
+              <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: 0.0922,
+            longitudeDelta: 0.0421,
+          }}
+          >
+          <Marker
+            coordinate={{
+              latitude: location.latitude,
+              longitude: location.longitude,
+            }}
+            draggable={true}
+            onDragStart={(e) => {
+              setLocation({
+                latitude: e.nativeEvent.coordinate.latitude,
+                longitude: e.nativeEvent.coordinate.longitude,
+              });
+            }}
+            onDragEnd={(e) => {
+              setLocation({
+                latitude: e.nativeEvent.coordinate.latitude,
+                longitude: e.nativeEvent.coordinate.longitude,
+              });
+            }}
+            provider="google"
+          >
+            <Callout>
+              <Text>ตำเเหน่งของคุณ</Text>
+            </Callout>
+          </Marker>
+        </MapView>
               </View>
               <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
