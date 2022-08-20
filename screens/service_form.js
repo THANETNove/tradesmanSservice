@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Alert,
+  Dimensions
 } from "react-native";
 import technician_type from "./service/getService";
 import * as Location from "expo-location";
@@ -722,9 +723,12 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
   console.log(location);
   return (
     <>
-      {
+     <View style={styles.container}>
+      <MapView style={styles.map} />
+    </View>
+     {/*  {
         addAddress()
-      }
+      } */}
       {/* {statusAddress === null
         ? addAddress()
         : statusEdit === true
@@ -734,7 +738,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
   );
 };
 
-const styles = StyleSheet.create({
+/* const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
@@ -984,6 +988,18 @@ const styles = StyleSheet.create({
     marginTop: -25,
     marginBottom: 5,
     borderRadius: 10,
+  },
+}); */
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
 });
 
