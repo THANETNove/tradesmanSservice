@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "techician Online2",
+    "name": "techician online",
     "slug": "onthTechicianOnline",
-    "version": "3.0.17",
+    "version": "3.0.16",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -27,7 +27,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.ththanet.techicianOnline",
-      "versionCode": 17
+      "versionCode": 16
     },
     "web": {
       "favicon": "./assets/favicon.png"
