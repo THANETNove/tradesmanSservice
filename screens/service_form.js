@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, usePreviousEffect } from "react";
-import MapView, { Marker, Callout } from "react-native-maps";
+import MapView, { Marker, Callout,PROVIDER_GOOGLE } from "react-native-maps";
 import {
   SafeAreaView,
   StyleSheet,
@@ -24,6 +24,7 @@ import img1 from "../assets/images/BB-2.png";
 // You can import from local files
 
 let apiKey = "AIzaSyBdjxXSNpAnyW0lzE_uliQ121U4mkmSgPk";
+
 
 
 const Service_form = ({ navigation: { popToTop, navigate } }) => {
@@ -235,12 +236,12 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
   };
 
 
-  useEffect(() => {
+ /*  useEffect(() => {
     if (location.latitude === null) {
       getLocation();
     }
    
-  })
+  }) */
 
   /*   useEffect(() => {
     
@@ -724,6 +725,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
   return (
     <MapView
+    provider={PROVIDER_GOOGLE} // remove if not using Google Maps
     style={styles.map}
     initialRegion={{
       latitude: 37.78825,
