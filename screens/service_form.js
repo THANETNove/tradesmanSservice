@@ -725,7 +725,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
   return (
     <MapView
-    provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+    provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
     style={styles.map}
     initialRegion={{
       latitude: 37.78825,
