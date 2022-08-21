@@ -86,46 +86,52 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }
   };
 
-  /*   const map = () => {
+    const map = () => {
       return (
         <>
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: location.latitude,
-              longitude: location.longitude,
-              latitudeDelta: 0.0922,
-              longitudeDelta: 0.0421,
-            }}
-            >
-            <Marker
-              coordinate={{
-                latitude: location.latitude,
-                longitude: location.longitude,
-              }}
-              draggable={true}
-              onDragStart={(e) => {
-                setLocation({
-                  latitude: e.nativeEvent.coordinate.latitude,
-                  longitude: e.nativeEvent.coordinate.longitude,
-                });
-              }}
-              onDragEnd={(e) => {
-                setLocation({
-                  latitude: e.nativeEvent.coordinate.latitude,
-                  longitude: e.nativeEvent.coordinate.longitude,
-                });
-              }}
-              provider="google"
-            >
-              <Callout>
-                <Text>ตำเเหน่งของคุณ</Text>
-              </Callout>
-            </Marker>
-          </MapView>
+        {
+          location.latitude === null ? null
+           :
+           <MapView
+           provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
+           style={styles.map}
+           initialRegion={{
+             latitude: location.latitude,
+             longitude: location.longitude,
+             latitudeDelta: 0.0922,
+             longitudeDelta: 0.0421,
+           }}
+           >
+           <Marker
+             coordinate={{
+               latitude: location.latitude,
+               longitude: location.longitude,
+             }}
+             draggable={true}
+             onDragStart={(e) => {
+               setLocation({
+                 latitude: e.nativeEvent.coordinate.latitude,
+                 longitude: e.nativeEvent.coordinate.longitude,
+               });
+             }}
+             onDragEnd={(e) => {
+               setLocation({
+                 latitude: e.nativeEvent.coordinate.latitude,
+                 longitude: e.nativeEvent.coordinate.longitude,
+               });
+             }}
+             provider="google"
+           >
+             <Callout>
+               <Text>ตำเเหน่งของคุณ</Text>
+             </Callout>
+           </Marker>
+         </MapView>
+        }
+          
         </>
       );
-    }; */
+    };
 
   const serve = async () => {
     const data = [
@@ -236,12 +242,12 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
   };
 
 
- /*  useEffect(() => {
+  useEffect(() => {
     if (location.latitude === null) {
       getLocation();
     }
    
-  }) */
+  })
 
   /*   useEffect(() => {
     
@@ -439,7 +445,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     );
   };
 
-  /* const showAddress = () => {
+  const showAddress = () => {
     return (
       <>
         <ScrollView>
@@ -513,6 +519,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                 {statusAddress.location !== undefined ? (
                   <>
                     <MapView
+                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
                       style={styles.map}
                       initialRegion={{
                         latitude: statusAddress.location.latitude,
@@ -718,33 +725,23 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
         </SafeAreaView>
       </>
     );
-  }; */
+  };
 
   /*   console.log(useSelector((state) => ({ ...state })));
    */
 
   return (
-    <MapView
-    provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
-    style={styles.map}
-    initialRegion={{
-      latitude: 37.78825,
-      longitude: -122.4324,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-    }}
-  />
-/*     <>
+    <>
       {statusAddress === null
         ? addAddress()
         : statusEdit === true
         ? editAddress()
         : showAddress()}
-    </> */
+    </>
   );
 };
 
-/* const styles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     width: "100%",
     height: "100%",
@@ -995,18 +992,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     marginBottom: 5,
     borderRadius: 10,
   },
-}); */
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-  },
 });
+
 
 export default connect()(Service_form);
