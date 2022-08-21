@@ -3,6 +3,7 @@
     "name": "techician online",
     "slug": "onthTechicianOnline",
     "version": "3.0.16",
+    "runtimeVersion": "2.718",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
