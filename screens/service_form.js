@@ -246,6 +246,9 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     if (location.latitude === null) {
       getLocation();
     }
+    if (technicianType === null) {
+      loadtTechnician();
+    } 
    
   })
 
@@ -423,17 +426,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                    <Text> {location.latitude}  </Text>
-                    <Text> {location.longitude}  </Text>
-                     <MapView
-                     style={styles.map}
-                      initialRegion={{
-                        latitude: 37.78825,
-                        longitude: -122.4324,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                      }}
-                  />
+              {map()}
               </View>
               <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
