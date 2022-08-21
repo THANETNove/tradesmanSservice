@@ -35,7 +35,7 @@ class Message extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { message, login } = this.props.posts;
-    if (this.props.posts.login != null) {
+    if (this.props.posts.login !== null) {
       this.set_State(this.props.posts.login);
     }
   }
@@ -131,7 +131,6 @@ class Message extends Component {
   };
 
   technician(message, messageGrou, urlImg) {
-    /*     console.log("message",messageGrou); */
     return (
       <>
         {messageGrou &&
@@ -186,7 +185,7 @@ class Message extends Component {
 
   render() {
     const { starusLogin, message, messageGrou, urlImg } = this.state;
-
+      console.log("55");
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>

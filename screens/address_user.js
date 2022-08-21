@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import MapView, { Marker, Callout } from "react-native-maps";
+import MapView, { Marker, Callout,PROVIDER_GOOGLE } from "react-native-maps";
 import {
   SafeAreaView,
   StyleSheet,
@@ -84,7 +84,11 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   const map = () => {
     return (
       <>
+      {
+        location.longitude === null ? null 
+        :
         <MapView
+        provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
           style={styles.map}
           initialRegion={{
             latitude: location.latitude,
@@ -118,6 +122,8 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
             </Callout>
           </Marker>
         </MapView>
+      }
+        
       </>
     );
   };
@@ -219,18 +225,12 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
       await Alert.alert("เเก้ไขไม่สำเร็จ กรุณาลองใหม่");
     }
   }; 
-
   useEffect(() => {
-    if (location.longitude === null) {
-      console.log("asdasdad");
+    if (location.latitude === null) {
       getLocation();
-      map();
     }
-    console.log("555555");
-/*     if (statusAddress === null) {
-      getAddress_user(idPhone);
-    } */
-  }, []);
+   
+  })
 
   /*   const url = useSelector(state => ({...state}));
     console.log("url",url); */
@@ -346,9 +346,9 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
 
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
-     {/*          <View style={styles.containerMap}>
-                {location.longitude === null ? null : null }
-              </View> */}
+              <View style={styles.containerMap}>
+                { map() }
+              </View>
               <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
               </TouchableOpacity>
@@ -422,8 +422,8 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
               <View style={styles.box1}>
                 {statusAddress.location !== undefined ? (
                   <>
-                  {null}
-               {/*      <MapView
+                    <MapView
+                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
                       style={styles.map}
                       initialRegion={{
                         latitude: statusAddress.location.latitude,
@@ -442,7 +442,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
                           <Text>ตำเเหน่งของคุณ</Text>
                         </Callout>
                       </Marker>
-                    </MapView> */}
+                    </MapView>
                   </>
                 ) : null}
               </View>
@@ -570,7 +570,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                {location.longitude === null ? null : null/*  <>{map()}</> */}
+                { map()}
               </View>
               <TouchableOpacity style={styles.button} onPress={() => update()}>
                 <Text style={styles.text}>บันทึก</Text>

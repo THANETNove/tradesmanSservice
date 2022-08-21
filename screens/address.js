@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import MapView, { Marker, Callout } from "react-native-maps";
+import MapView, { Marker, Callout,PROVIDER_GOOGLE } from "react-native-maps";
 import get_technician from './service/getService';
 import {
   SafeAreaView,
@@ -93,6 +93,7 @@ class address extends Component {
           location.latitude !== null ?
             <>
               <MapView
+              provider={PROVIDER_GOOGLE} 
                 style={styles.map}
                 initialRegion={{
                   latitude: location.latitude,
@@ -217,7 +218,7 @@ class address extends Component {
                   <View>
                     <Text style={styles.text2}>{"GPS"}</Text>
                     <View style={styles.box1}>
-                    {/*   {this.map()} */}
+                      {this.map()}
                     </View>
                   </View>
                 </View>
