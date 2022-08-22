@@ -13,7 +13,10 @@ import {
 import { FontAwesome } from "@expo/vector-icons";
 import { connect } from "react-redux";
 import getMessage from "../service/getService";
+/* import Notifications from "../navbar/notifications"; */
 import { Fontisto } from '@expo/vector-icons';
+
+
 
 class Message extends Component {
   constructor(props) {
@@ -64,6 +67,7 @@ class Message extends Component {
             messageGrou: resultGrouBy,
             urlImg: this.props.posts.urlImage,
           });
+
         }
       }
     }
@@ -93,36 +97,31 @@ class Message extends Component {
                 }
               });
             const name = (
-  
-                <TouchableWithoutFeedback
-                  onPress={() => this.clickChat(index.id_technician)}
-                >
-                  <View style={styles.box1}>
-                    {index.file_src !== null ? (
-                      <Image
-                        style={styles.image}
-                        source={{ uri: `${urlImg}profile/${index.file_src}` }}
-                      />
-                    ) : (
-                      <Image
-                        style={styles.image}
-                        source={{
-                          uri: "https://www.josephiteweb.org/wp-content/uploads/2018/02/paslk-600x400.jpg",
-                        }}
-                      />
-                    )}
-                    <Text style={styles.text1}>
-                      <Text style={styles.text2}>{index.name}</Text> {"14.06"}
-                    </Text>
-                    <Text style={styles.text3}>
-                      Message {index.id_technician}{}
-                    </Text>
-                    {id_teh.length !== 0 ? (
-                      <Text style={styles.text4}>{id_teh.length}</Text>
-                    ) : null}
-                  </View>
-                </TouchableWithoutFeedback>
-              
+
+              <TouchableWithoutFeedback
+                onPress={() => this.clickChat(index.id_technician)}
+              >
+                <View style={styles.box1}>
+                  {index.file_src !== null ? (
+                    <Image
+                      style={styles.image}
+                      source={{ uri: `${urlImg}profile/${index.file_src}` }}
+                    />
+                  ) : (
+                    <Image style={styles.image} source={require('../../assets/images/AAA.png')}/>
+                  )}
+                  <Text style={styles.text1}>
+                    <Text style={styles.text2}>{index.name}</Text> {"14.06"}
+                  </Text>
+                  <Text style={styles.text3}>
+                    Message {index.id_technician}{ }
+                  </Text>
+                  {id_teh.length !== 0 ? (
+                    <Text style={styles.text4}>{id_teh.length}</Text>
+                  ) : null}
+                </View>
+              </TouchableWithoutFeedback>
+
             );
             return name;
           })}
@@ -140,71 +139,80 @@ class Message extends Component {
               message.filter((va) => {
                 if (va.idUser === index.idUser) {
                   if (va.status_read === "0") {
-                    console.log("va", va);
                     return va.idUser;
                   }
                 }
               });
+         
 
             const name = (
-              
-                <TouchableWithoutFeedback
-                  onPress={() => this.clickChat(index.idUser)}
-                >
-                  <View style={styles.box1}>
-                    {index.file_src !== null ? (
-                      <Image
-                        style={styles.image}
-                        source={{ uri: `${urlImg}profile/${index.file_src}` }}
-                      />
-                    ) : (
-                      <Image
-                        style={styles.image}
-                        source={{
-                          uri: "https://www.josephiteweb.org/wp-content/uploads/2018/02/paslk-600x400.jpg",
-                        }}
-                      />
-                    )}
-                    <Text style={styles.text1}>
-                      <Text style={styles.text2}>{index.name}</Text>{" "}
-                      {index.created_at}
-                    </Text>
-                    <Text style={styles.text3}>Message</Text>
-                    {id_teh.length !== 0 ? (
-                      <Text style={styles.text4}>{id_teh.length}</Text>
-                    ) : null}
-                  </View>
-                </TouchableWithoutFeedback>
-              
+
+              <TouchableWithoutFeedback
+                onPress={() => this.clickChat(index.idUser)}
+              >
+                <View style={styles.box1}>
+                  {index.file_src !== null ? (
+                    <Image
+                      style={styles.image}
+                      source={{ uri: `${urlImg}profile/${index.file_src}` }}
+                    />
+                  ) : (
+                    <Image style={styles.image} source={require('../../assets/images/AAA.png')}/>
+                  )}
+                  <Text style={styles.text1}>
+                    <Text style={styles.text2}>{index.name}</Text>{" "}
+                    {index.created_at}
+                  </Text>
+                  <Text style={styles.text3}>Message</Text>
+                  {id_teh.length !== 0 ? (
+                    <Text style={styles.text4}>{id_teh.length}</Text>
+                  ) : null}
+                </View>
+              </TouchableWithoutFeedback>
+
             );
             return name;
           })}
       </>
     );
   }
+ 
 
   render() {
     const { starusLogin, message, messageGrou, urlImg } = this.state;
-      console.log("55");
+
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
           <View style={styles.top}>
             {this.props.posts.login != null ? (
-              this.props.posts.login.status_user === "ลูกค้าทั่วไป" ? 
+              this.props.posts.login.status_user === "ลูกค้าทั่วไป" ?
                 <>
-                {/* <TouchableOpacity onPress={() => this.set_State(this.props.posts.login)}>
+                  <TouchableOpacity onPress={() => this.set_State(this.props.posts.login)}>
                     <Fontisto name="spinner-refresh" style={styles.icons} />
-                </TouchableOpacity> */}
-                {
+                  </TouchableOpacity>
+               
+                  {
                     this.user(message, messageGrou, urlImg)
-                }
-              
+                  }
+
                 </>
+
+                : (
+                  <>
+                    <TouchableOpacity onPress={() => this.set_State(this.props.posts.login)}>
+                      <Fontisto name="spinner-refresh" style={styles.icons} />
+                    </TouchableOpacity>
             
-               : (
-                this.technician(message, messageGrou, urlImg)
-              )
+                    
+                    {
+                      this.technician(message, messageGrou, urlImg)
+                    }
+                   {/*  <Notifications /> */}
+                   
+                  </>
+
+                )
             ) : (
               <TouchableWithoutFeedback
                 onPress={() => this.props.navigation.navigate("Login")}
@@ -212,9 +220,7 @@ class Message extends Component {
                 <View style={styles.box1}>
                   <Image
                     style={styles.image}
-                    source={{
-                      uri: "https://www.josephiteweb.org/wp-content/uploads/2018/02/paslk-600x400.jpg",
-                    }}
+                    source={require('../../assets/images/AAA.png')}
                   />
 
                   <Text style={styles.text5}>ยังไม่ได้ login</Text>
@@ -312,7 +318,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     width: 30,
     height: 30,
-    padding: 4,
+    padding: 1,
     backgroundColor: "#37C1FB",
     color: "#ffff",
     borderRadius: 30,
@@ -338,3 +344,5 @@ const mapStateToProps = (state) => {
   };
 };
 export default connect(mapStateToProps, null)(Message);
+
+

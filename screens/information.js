@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
 
   box6: {
   
-   /*  height: 140,
+    height: 140,
     width: 140,
     backgroundColor: "#37C1FB",
     shadowColor: "#000",
@@ -237,8 +237,7 @@ const styles = StyleSheet.create({
     marginTop: 80,
     marginLeft: 110,
     borderWidth: 3,
-    borderColor: "#fff", */
-/*     position: "absolute", */
+    borderColor: "#fff",
     marginTop: -90,
     zIndex: 1,
     display: "flex",

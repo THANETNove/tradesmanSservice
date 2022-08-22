@@ -4,13 +4,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './screens/navbar/home';
-import Login from './screens/login';
-import Message from './screens/navbar/message';
-import Shop from './screens/navbar/shop';
-import Profile_user from './screens/navbar/profile_user';
+
 import RouterHome from './screens/router/routerHome';
 import RouterShop from './screens/router/routerShop';
+import RouterNotifications from './screens/router/notifications';
 import RouterMessge from './screens/router/routerMessge';
 import RouterProfile from './screens/router/routerProfile';
 import { createStore } from 'redux';
@@ -40,6 +37,10 @@ function MyStack() {
       <Tab.Screen name="message" component={RouterMessge}
         options={{
           tabBarIcon: ({ size, color }) => (<MaterialCommunityIcons name="message-processing" color={color} size={size} />)
+        }} />
+        <Tab.Screen name="Notifications" component={RouterNotifications}
+        options={{
+          tabBarIcon: ({ size, color }) => (<MaterialCommunityIcons name="Notifications" color={color} size={size} />)
         }} />
       <Tab.Screen name="Profile" component={RouterProfile}
         options={{

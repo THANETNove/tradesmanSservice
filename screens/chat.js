@@ -173,7 +173,7 @@ class Chat extends Component {
                                 index.file_src != null ?
                                 <Image style={styles.image} source={{ uri: `${urlImg}profile/${index.file_src}` }} />
                                 :
-                                <Image style={styles.image} source={{ uri: "https://st2.depositphotos.com/5592054/8393/v/600/depositphotos_83937052-stock-illustration-cartoon-plumber-holding-a-big.jpg"}}/>
+                                <Image style={styles.image} source={require('../assets/images/AAA.png')}/>
                               }
                             </TouchableWithoutFeedback>
               
