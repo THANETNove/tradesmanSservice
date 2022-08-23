@@ -1,4 +1,5 @@
 import { React, Component } from "react";
+import * as Notifications from 'expo-notifications';
 import {
   SafeAreaView,
   StyleSheet,
@@ -95,8 +96,8 @@ class Chat extends Component {
     const { messageUser, starusLogin } = this.state;
     const status_read = 0;
     const status_user = starusLogin.id;
-
-    if (messageUser) {
+    this.notificatio(56)
+/*     if (messageUser) {
       const { starusLogin, id_click } = this.state;
 
       if (starusLogin.status_user === "ลูกค้าทั่วไป") {
@@ -122,13 +123,13 @@ class Chat extends Component {
         }
         this.notificatio (id_click)
       }
-    }
+    } */
   }
 
   notificatio = async (e) => {
     const getNotificatio = await getMessage.getUser(e);
     const expoPushToken = getNotificatio[0].notificationsId;
-    
+    console.log("555");
     const message = {
       to: expoPushToken,
       sound: 'default',
@@ -136,7 +137,9 @@ class Chat extends Component {
       body: 'And here is the body!',
       data: { someData: 'goes here' },
     };
-  
+
+ 
+   const userId = e;
     await fetch('https://exp.host/--/api/v2/push/send', {
       method: 'POST',
       headers: {
@@ -145,6 +148,7 @@ class Chat extends Component {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(message),
+
     });
   }
 

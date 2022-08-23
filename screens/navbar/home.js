@@ -3,7 +3,6 @@ import { SafeAreaView, StyleSheet, TextInput, Text, TouchableWithoutFeedback, To
 import { connect } from "react-redux";
 import technician_type from "../service/getService";
 
-
 class Home extends Component {
 
   constructor(props) {

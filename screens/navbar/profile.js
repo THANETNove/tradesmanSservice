@@ -187,6 +187,12 @@ class Profile_tradesman extends Component {
               </View>
             </View>
             <View style={styles.box3}>
+                <MaterialIcons name="privacy-tip" style={styles.icons3} />
+                <Text style={styles.text2}
+                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"privacy policy"}
+                </Text>
+              </View>
+            <View style={styles.box3}>
               <MaterialCommunityIcons name="logout" style={styles.icons5} />
               <Text
                 style={styles.text2}
