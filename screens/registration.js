@@ -20,6 +20,7 @@ import bookBank from "./service/getService";
 import { connect } from "react-redux";
 import getUrlReducer from "../redux/logInReducer"
 import {useSelector,useDispatch} from 'react-redux';
+import Notifications from './navbar/notifications';
 
 
 
@@ -32,12 +33,13 @@ const Registration = ({ navigation: { popToTop } }) => {
   const [statusUser, setStatusUser] = useState("ลูกค้าทั่วไป");
   const [statusCkeck, setStatusCkeck] = useState(false);
   const [modalVisible, setModalVisible] = useState("false");
+  const [notifi, setNotifi] = useState(useSelector(state => state.notifications));
   const dispatch = useDispatch();
 
 
 
   const serve = async () => {
-    const  data = await [phone, md5(password), statusUser, statusCkeck];
+    const  data = await [phone, md5(password), statusUser, statusCkeck,notifi];
 
 
 
@@ -79,8 +81,7 @@ const Registration = ({ navigation: { popToTop } }) => {
     setStatusCkeck(true);
   }
 
-  const url = useSelector(state => ({...state}));
-
+  const url = useSelector(state => state.notifications);
   console.log("url",url);
   return (
     <SafeAreaView style={styles.container}>
@@ -259,9 +260,13 @@ const Registration = ({ navigation: { popToTop } }) => {
           </TouchableOpacity>
         </View>
       </View>
-       
+      <View style={{display: 'none'}}>
+      <Notifications />
+      </View>
+
       </ScrollView>
     </SafeAreaView>
+    
   );
 };
 

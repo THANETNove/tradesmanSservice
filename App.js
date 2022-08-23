@@ -16,6 +16,7 @@ import { Provider } from "react-redux";
 import  configureStore   from './redux/reducers';
 import { PersistGate } from 'redux-persist/integration/react';
 import * as Linking from 'expo-linking';
+import {Text} from "react-native";
 
 
 const { store, persistor } = configureStore();
@@ -67,6 +68,8 @@ function handleDeepLink(event) {
     return() =>{
       Linking.removeEventListener("url");
     }
+
+
   },[]) 
 
   return (
@@ -81,3 +84,4 @@ function handleDeepLink(event) {
 
   );
 } 
+

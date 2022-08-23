@@ -2,6 +2,8 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, Button, Platform } from 'react-native';
+import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -11,11 +13,12 @@ Notifications.setNotificationHandler({
   }),
 });
 
-export default function App() {
+const  Notification = () => {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
@@ -36,6 +39,11 @@ export default function App() {
     };
   }, []);
 
+  dispatch({
+    type: "ADD_NOTIFICATIONS",
+    payload: expoPushToken,
+  });
+  console.log("expoPushToken",expoPushToken);
   return (
     <View
       style={{
@@ -110,3 +118,5 @@ async function registerForPushNotificationsAsync() {
 
   return token;
 }
+
+export default connect()(Notification);

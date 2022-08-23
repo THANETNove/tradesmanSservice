@@ -119,6 +119,26 @@ const searchUser = async (e) => {
     });
   return seaUser;
 };
+// ดึง user 
+const getUser = async (e) => {
+  const seaUser = await axios.get(`${url}/getUser.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+      id: e,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return seaUser;
+};
 
 // ดึงงานช่างทั้งหมด
 const technician_type = async () => {
@@ -464,6 +484,7 @@ const createUser = async (e) => {
   formdata.append('password', e[1]);
   formdata.append('status_user', e[2]);
   formdata.append('status_check', e[3]);
+  formdata.append('notificationsId', e[4]);
   const cerUser = await axios.post(`${url}/addUser.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
@@ -815,5 +836,6 @@ export default {
   getMessage_user_groupBy,
   getMessage_technician_groupBy,
   updateMessage,
-  getUserAddressid
+  getUserAddressid,
+  getUser
 };

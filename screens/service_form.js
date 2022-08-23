@@ -720,8 +720,8 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     );
   };
 
-  /*   console.log(useSelector((state) => ({ ...state })));
-   */
+ /*    console.log(useSelector((state) => ({ ...state }))); */
+  
 
   return (
     <>

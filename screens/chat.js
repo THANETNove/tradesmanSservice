@@ -109,6 +109,7 @@ class Chat extends Component {
             })
           }
         }
+        this.notificatio (id_click)
       } else {
         const data = [id_click, starusLogin.id, messageUser, status_read, status_user];
         if (starusLogin.id !== null && id_click !== null) {
@@ -119,11 +120,34 @@ class Chat extends Component {
             })
           }
         }
+        this.notificatio (id_click)
       }
-
-
     }
   }
+
+  notificatio = async (e) => {
+    const getNotificatio = await getMessage.getUser(e);
+    const expoPushToken = getNotificatio[0].notificationsId;
+    
+    const message = {
+      to: expoPushToken,
+      sound: 'default',
+      title: 'Original Title  📬',
+      body: 'And here is the body!',
+      data: { someData: 'goes here' },
+    };
+  
+    await fetch('https://exp.host/--/api/v2/push/send', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Accept-encoding': 'gzip, deflate',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(message),
+    });
+  }
+
 
   message_user(e) {
     this.setState({

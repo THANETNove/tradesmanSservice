@@ -30,9 +30,11 @@ class Home extends Component {
   componentDidUpdate(prevProps, prevState) {
     const { login,startApp } = this.props.posts;
     if (prevProps.login !== login && this.state.login  !== null) {
-      this.getTechnician_type();
+      setTimeout(() => {
+        this.getTechnician_type();
+      }, 6000);
     }
-    
+
 
     if (startApp !== this.state.startApp) {
       this.setState({
@@ -333,6 +335,7 @@ class Home extends Component {
 
         
         }
+        
       </>
     );
   }
