@@ -93,6 +93,7 @@ class Chat extends Component {
 
   click_Message = async () => {
     const { messageUser, starusLogin } = this.state;
+
     const status_read = 0;
     const status_user = starusLogin.id;
     if (messageUser) {
@@ -100,39 +101,38 @@ class Chat extends Component {
 
       if (starusLogin.status_user === "ลูกค้าทั่วไป") {
         const data = [starusLogin.id, id_click, messageUser, status_read, status_user];
-        if (starusLogin.id !== null && id_click !== null) {
+        /* if (starusLogin.id !== null && id_click !== null) {
           const result1 = await getMessage.addMessage(data);
           if (result1 === "success") {
             this.setState({
               messageUser: null,
             })
           }
-        }
-        this.notificatio (id_click)
+        } */
+        this.notificatio (id_click,"ลูกค้า",messageUser)
       } else {
         const data = [id_click, starusLogin.id, messageUser, status_read, status_user];
-        if (starusLogin.id !== null && id_click !== null) {
+     /*    if (starusLogin.id !== null && id_click !== null) {
           const result1 = await getMessage.addMessage(data);
           if (result1 === "success") {
             this.setState({
               messageUser: null,
             })
           }
-        }
-        this.notificatio (id_click)
+        } */
+        this.notificatio (id_click,"ช่าง",messageUser)
       }
     }
   }
 
-  notificatio = async (e) => {
+  notificatio = async (e,ty,messageUser) => {
     const getNotificatio = await getMessage.getUser(e);
     const expoPushToken = getNotificatio[0].notificationsId;
-    console.log("555");
     const message = {
       to: expoPushToken,
       sound: 'default',
-      title: 'Original Title  📬',
-      body: 'And here is the body!',
+      title: `Message   ${ty}  📬`,
+      body: `${messageUser}`,
       data: { someData: 'goes here' },
     };
 

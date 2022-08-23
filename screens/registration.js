@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState,useEffect } from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -26,6 +26,7 @@ import Notifications from './navbar/notifications';
 
 var md5 = require("md5");
 
+
 const Registration = ({ navigation: { popToTop } }) => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -37,11 +38,13 @@ const Registration = ({ navigation: { popToTop } }) => {
   const dispatch = useDispatch();
 
 
+  
+
 
   const serve = async () => {
+
+    console.log("notificationsId",notificationsId);
     const  data = await [phone, md5(password), statusUser, statusCkeck,notificationsId];
-
-
 
    const seaUser = await bookBank.searchUser(data);
 
@@ -260,7 +263,7 @@ const Registration = ({ navigation: { popToTop } }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{display: 'none'}}>
+      <View /* style={{display: 'none'}} */>
       <Notifications />
       </View>
 

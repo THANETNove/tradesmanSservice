@@ -2,30 +2,33 @@ import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, Button, Platform } from 'react-native';
+import { useSelector, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: true,
-    shouldSetBadge: true,
+    shouldPlaySound: true,/*  */
+    shouldSetBadge: false,
   }),
 });
 
-export default function App() {
+const  Notification = () => {
   const [expoPushToken, setExpoPushToken] = useState('');
   const [notification, setNotification] = useState(false);
   const notificationListener = useRef();
   const responseListener = useRef();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-
-   
     registerForPushNotificationsAsync().then(token => setExpoPushToken(token));
 
+    // This listener is fired whenever a notification is received while the app is foregrounded
     notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
       setNotification(notification);
     });
 
+    // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
       console.log(response);
     });
@@ -35,7 +38,16 @@ export default function App() {
       Notifications.removeNotificationSubscription(responseListener.current);
     };
   }, []);
+  
+  if (expoPushToken) {
+    dispatch({
+      type: "ADD_NOTIFICATIONS",
+      payload: expoPushToken,
+    });
+  }
 
+/*  
+  console.log("expoPushToken",expoPushToken); */
   return (
     <View
       style={{
@@ -50,23 +62,33 @@ export default function App() {
         <Text>Data: {notification && JSON.stringify(notification.request.content.data)}</Text>
       </View>
       <Button
-        title="Press to schedule a notification"
+        title="Press to Send Notification"
         onPress={async () => {
-          await schedulePushNotification();
+          await sendPushNotification(expoPushToken);
         }}
       />
     </View>
   );
 }
 
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "You've got mail! 📬",
-      body: 'Here is the notification body',
-      data: { data: 'goes here' },
+// Can use this function below, OR use Expo's Push Notification Tool-> https://expo.dev/notifications
+async function sendPushNotification(expoPushToken) {
+  const message = {
+    to: expoPushToken,
+    sound: 'default',
+    title: 'Original Title',
+    body: 'And here is the body!',
+    data: { someData: 'goes here' },
+  };
+
+  await fetch('https://exp.host/--/api/v2/push/send', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Accept-encoding': 'gzip, deflate',
+      'Content-Type': 'application/json',
     },
-    trigger: { seconds: 2 },
+    body: JSON.stringify(message),
   });
 }
 
@@ -90,7 +112,7 @@ async function registerForPushNotificationsAsync() {
   }
 
   if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('default', {
+    Notifications.setNotificationChannelAsync('default', {
       name: 'default',
       importance: Notifications.AndroidImportance.MAX,
       vibrationPattern: [0, 250, 250, 250],
@@ -100,3 +122,5 @@ async function registerForPushNotificationsAsync() {
 
   return token;
 }
+
+export default connect()(Notification);
