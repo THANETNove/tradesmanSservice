@@ -33,13 +33,13 @@ const Registration = ({ navigation: { popToTop } }) => {
   const [statusUser, setStatusUser] = useState("ลูกค้าทั่วไป");
   const [statusCkeck, setStatusCkeck] = useState(false);
   const [modalVisible, setModalVisible] = useState("false");
-  const [notifi, setNotifi] = useState(useSelector(state => state.notifications));
+  const [notificationsId, setNotificationsId] = useState(useSelector(state => state.notifications));
   const dispatch = useDispatch();
 
 
 
   const serve = async () => {
-    const  data = await [phone, md5(password), statusUser, statusCkeck,notifi];
+    const  data = await [phone, md5(password), statusUser, statusCkeck,notificationsId];
 
 
 
