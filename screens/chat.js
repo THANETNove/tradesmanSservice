@@ -83,7 +83,6 @@ class Chat extends Component {
 
       result1 && result1.map((value)=>{
         if ((value.status_read === "0") && (id_click === value.status_user)) {
-          console.log("asdas",id_click,  value.idUser,value.id);
           const id = value.id;
           const status_read = "1";
           const result_status =  getMessage.updateMessage(id,status_read);
@@ -96,8 +95,7 @@ class Chat extends Component {
     const { messageUser, starusLogin } = this.state;
     const status_read = 0;
     const status_user = starusLogin.id;
-    this.notificatio(56)
-/*     if (messageUser) {
+    if (messageUser) {
       const { starusLogin, id_click } = this.state;
 
       if (starusLogin.status_user === "ลูกค้าทั่วไป") {
@@ -123,7 +121,7 @@ class Chat extends Component {
         }
         this.notificatio (id_click)
       }
-    } */
+    }
   }
 
   notificatio = async (e) => {
