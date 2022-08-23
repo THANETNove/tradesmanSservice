@@ -38,10 +38,10 @@ function MyStack() {
         options={{
           tabBarIcon: ({ size, color }) => (<MaterialCommunityIcons name="message-processing" color={color} size={size} />)
         }} />
-     {/*    <Tab.Screen name="Notifications" component={RouterNotifications}
+        <Tab.Screen name="Notifications" component={RouterNotifications}
         options={{
           tabBarIcon: ({ size, color }) => (<MaterialCommunityIcons name="Notifications" color={color} size={size} />)
-        }} /> */}
+        }} />
       <Tab.Screen name="Profile" component={RouterProfile}
         options={{
           tabBarIcon: ({ size, color }) => (<FontAwesome name="user" color={color} size={size} />)
