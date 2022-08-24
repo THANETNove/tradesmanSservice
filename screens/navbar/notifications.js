@@ -37,7 +37,9 @@ const  Notification = () => {
       Notifications.removeNotificationSubscription(notificationListener.current);
       Notifications.removeNotificationSubscription(responseListener.current);
     };
-  }, []);
+
+
+  }, [expoPushToken]);
   
   if (expoPushToken) {
     dispatch({
@@ -46,6 +48,7 @@ const  Notification = () => {
     });
   }
 
+  console.log("expoPushToken",expoPushToken);
 /*  
   console.log("expoPushToken",expoPushToken); */
   return (

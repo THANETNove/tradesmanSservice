@@ -189,7 +189,7 @@ class Profile_tradesman extends Component {
             <View style={styles.box3}>
                 <MaterialIcons name="privacy-tip" style={styles.icons3} />
                 <Text style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"privacy policy"}
+                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"นโยบายความเป็นส่วนตัว"}
                 </Text>
               </View>
             <View style={styles.box3}>
@@ -274,13 +274,13 @@ class Profile_tradesman extends Component {
                   onPress={() => this.props.navigation.navigate("Servict_form")}>{"ข้อมูลการติดต่อ"}
                 </Text>
               </View>
-              <View style={styles.box3}>
+         {/*      <View style={styles.box3}>
                 <FontAwesome5 name="cc-visa" style={styles.icons4} />
                 <Text
                   style={styles.text2}
                   onPress={() => this.props.navigation.navigate("Payment")}>{"ชำระเงิน"}
                 </Text>
-              </View>
+              </View> */}
               <View style={styles.box3}>
                 <Ionicons name="card" style={styles.icons5} />
                 <Text
@@ -291,7 +291,7 @@ class Profile_tradesman extends Component {
               <View style={styles.box3}>
                 <MaterialIcons name="privacy-tip" style={styles.icons3} />
                 <Text style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"privacy policy"}
+                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"นโยบายความเป็นส่วนตัว"}
                 </Text>
               </View>
               <View style={styles.box3}>
@@ -375,7 +375,6 @@ class Profile_tradesman extends Component {
         </View> */}
          <SafeAreaView style={styles.container}>
           <ScrollView>
-
             <View style={styles.box}>
               <View style={styles.box1}>
                   <View style={styles.box6}>
@@ -387,11 +386,6 @@ class Profile_tradesman extends Component {
 
             <View style={styles.top}>
               <View style={styles.box3}>
-                <FontAwesome name="user" style={styles.icons3} />
-                <Text style={styles.text2}>{"โปรไฟล์"}
-                </Text>
-              </View>
-              <View style={styles.box3}>
                 <MaterialIcons name="login" style={styles.icons3} />
                 <Text style={styles.text2}
                   onPress={() => this.props.navigation.navigate("Login")}>{"เข้าสู่ระบบ"}
@@ -400,7 +394,7 @@ class Profile_tradesman extends Component {
               <View style={styles.box3}>
                 <MaterialIcons name="privacy-tip" style={styles.icons3} />
                 <Text style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"privacy policy"}
+                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"นโยบายความเป็นส่วนตัว"}
                 </Text>
               </View>
             </View>
