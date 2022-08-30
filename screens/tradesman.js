@@ -88,7 +88,6 @@ class Home_tar extends Component {
                             { va.file_src !== null ? 
                             
                             <>
-                              {console.log("va",va)}
                               <Image style={styles.image} source={{ uri: `${urlImg}profile/${va.file_src}` }}/>
                               {/* <Image style={styles.image1}  source={{ uri: `${urlImg}profile/${va.file_src}` }}/> */}
                             </>

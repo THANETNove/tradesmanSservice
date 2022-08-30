@@ -127,7 +127,7 @@ class Profile_tras_user extends Component {
           </View>
 
           <View style={styles.top}>
-            {login === "ลูกค้าทั่วไป" ?
+            {this.props.posts.login.status_user === "ลูกค้าทั่วไป" ?
               <>
                 <View style={styles.box3}>
                   <FontAwesome5 name="file-image" style={styles.icons5} />
@@ -139,8 +139,6 @@ class Profile_tras_user extends Component {
               :
               null
             }
-
-
             <View style={styles.box3}>
               <FontAwesome5 name="address-book" style={styles.icons5} />
               <Text
@@ -153,11 +151,11 @@ class Profile_tras_user extends Component {
               <Ionicons name="chatbox-ellipses-sharp" style={styles.icons5} />
               <Text
                 style={styles.text2}
-                onPress={() => this.props.navigation.navigate("Chat")}>{"แชท"}
+                onPress={() => this.props.navigation.navigate("chat")}>{"แชท"}
               </Text>
             </View>
 
-            {login === "ลูกค้าทั่วไป" ?
+            {this.props.posts.login.status_user === "ลูกค้าทั่วไป" ?
               <>
                    <View style={styles.box3}>
                   <Ionicons name="card" style={styles.icons5} />
