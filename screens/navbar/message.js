@@ -114,7 +114,7 @@ class Message extends Component {
                     <Text style={styles.text2}>{index.name}</Text> {"14.06"}
                   </Text>
                   <Text style={styles.text3}>
-                    Message {index.id_technician}{ }
+                    Message
                   </Text>
                   {id_teh.length !== 0 ? (
                     <Text style={styles.text4}>{id_teh.length}</Text>

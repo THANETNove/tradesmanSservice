@@ -93,7 +93,7 @@ class Home_tar extends Component {
                             :
                             <>
                               <Image style={styles.image3} source={{ uri: `${urlImg}profile/logo_technician.png` }}/>
-                              <Image style={styles.image1}  source={{ uri: `${urlImg}profile/logo_technician.png` }}/>
+                           {/*    <Image style={styles.image1}  source={{ uri: `${urlImg}profile/logo_technician.png` }}/> */}
                             </>
                             }
                             <Text style={styles.text1}>ชื่อ : </Text>
