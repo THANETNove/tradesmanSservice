@@ -86,7 +86,9 @@ class Home_tar extends Component {
                           <View style={styles.box}>
                           <Image style={styles.image2} source={require('../assets/images/A-4.jpg')}/>
                             { va.file_src !== null ? 
+                            
                             <>
+                              {console.log("va",va)}
                               <Image style={styles.image} source={{ uri: `${urlImg}profile/${va.file_src}` }}/>
                               {/* <Image style={styles.image1}  source={{ uri: `${urlImg}profile/${va.file_src}` }}/> */}
                             </>
@@ -96,15 +98,10 @@ class Home_tar extends Component {
                            {/*    <Image style={styles.image1}  source={{ uri: `${urlImg}profile/logo_technician.png` }}/> */}
                             </>
                             }
-                            <Text style={styles.text1}>ชื่อ : </Text>
-                            <Text style={styles.text3}>{va.name}</Text>
-
-                            <Text style={styles.text2}>ประเภทงาน : </Text>
-                            <Text style={styles.text4}>{va.technician_1}</Text>
-
-                            <Text style={styles.text5}>ประเภทงาน : </Text>
-                            <Text style={styles.text6}>{va.technician_2}</Text>
-
+                            <Text style={styles.text1}>ชื่อ : {va.name}</Text>
+                            <Text style={styles.text2}>ประเภทงาน : {va.technician_1} </Text>
+                            <Text style={styles.text5}>ประเภทงาน : {va.technician_2}</Text>
+                            <Text style={styles.text8}>จังหวัด : {va.province}</Text>
                           </View>
                           
                         </TouchableWithoutFeedback>
@@ -162,7 +159,7 @@ const styles = StyleSheet.create({
     width: '45%',
     height: 200,
     padding: 5,
-    marginTop: 20,
+    marginTop: 50,
     marginLeft: 12,
     borderRadius: 10,
     shadowColor: "#000",
@@ -211,7 +208,7 @@ const styles = StyleSheet.create({
   },
   image2: {
     width: '100%',
-    height: 200,
+    height: 240,
     borderRadius: 10,
     marginTop: -5,
   },
@@ -238,13 +235,13 @@ const styles = StyleSheet.create({
   },
   text3: {
     fontSize: 13,
-    marginLeft: 42,
+    marginLeft: "25%",
     marginTop: 125,
     position:"absolute"
   },
   text4: {
     fontSize: 13,
-    marginLeft: 85,
+    
     marginTop: 150,
     position:"absolute"
   },
@@ -268,6 +265,12 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginTop: 8,
     color: "#fff",
+  },
+  text8: {
+    fontSize: 13,
+    marginLeft: 12,
+    marginTop: 190,
+    position:"absolute"
   },
   icons: {
     marginLeft: 5,

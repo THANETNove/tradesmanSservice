@@ -274,13 +274,13 @@ class Profile_tradesman extends Component {
                   onPress={() => this.props.navigation.navigate("Servict_form")}>{"ข้อมูลการติดต่อ"}
                 </Text>
               </View>
-         {/*      <View style={styles.box3}>
+              <View style={styles.box3}>
                 <FontAwesome5 name="cc-visa" style={styles.icons4} />
                 <Text
                   style={styles.text2}
                   onPress={() => this.props.navigation.navigate("Payment")}>{"ชำระเงิน"}
                 </Text>
-              </View> */}
+              </View>
               <View style={styles.box3}>
                 <Ionicons name="card" style={styles.icons5} />
                 <Text
