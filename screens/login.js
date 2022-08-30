@@ -226,7 +226,7 @@ class Login extends Component {
                   title="Go to Details"
                   onPress={() => this.props.navigation.navigate("Registration")}
                 >
-                  สมักสมาชิก
+                  สมัครสมาชิก
                 </Text>
               </View>
             </View>
