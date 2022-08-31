@@ -230,14 +230,16 @@ class Chat extends Component {
                   underlineColorAndroid="transparent"
                   value={messageUser}
                   multiline
-                  numberOfLines={4}
+
                   onChange={(e) => this.message_user(e.nativeEvent.text)}
                 />
               </View>
             </View>
-            <TouchableOpacity >
+              <View>
+              <TouchableOpacity >
                     <Octicons name="paper-airplane" style={styles.icons} onPress={() => this.click_Message()} />
-                  </TouchableOpacity>
+              </TouchableOpacity>
+              </View>
           </View>
         </SafeAreaView>
       </>
@@ -268,21 +270,22 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20,
     marginLeft: 20,
-    marginTop:10,
-    marginBottom:10,
-    width:"80%",
+    width:"80%",  
+    paddingTop:10,
+    paddingBottom:10,
   },
   text1: {
     fontSize: 13,
     marginLeft: 20,
+
   },
   text2: {
     marginLeft: 15,
     marginRight: 15,
     fontSize: 16,
-    marginTop: 5,
+    marginTop: 10,
     marginBottom:10,
-    alignSelf:"flex-end"
+    alignSelf:"flex-end",
   },
   text3: {
     marginLeft: 15,
@@ -295,6 +298,7 @@ const styles = StyleSheet.create({
   box1: {
     marginTop:0,
     height: "auto",
+    minHeight:50,
     marginLeft: 10,
     marginRight: 10,
     borderRadius: 25,
@@ -304,7 +308,8 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     elevation: 2,
     marginBottom: 10,
-    zIndex:0
+    zIndex:0,
+    
   },
   box2: {
     marginBottom:10,
@@ -327,16 +332,19 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 5,
     marginRight:50,
+    alignSelf:"flex-start"
   },
   box4: {
     height: "auto",
-    backgroundColor: "#33CCFF",
+    width:"auto",
     marginBottom:5,
     marginLeft:10,
     marginRight:10,
     borderRadius: 5,
     marginLeft:60,
-
+    backgroundColor: "#33CCFF",
+    borderRadius: 5,
+    alignSelf:"flex-end"
   },
 
   icons: {
@@ -359,7 +367,6 @@ const styles = StyleSheet.create({
   row: {
     textAlign: "left",
     flexDirection: "row",
-  /*   flexWrap: "wrap", */
   },
   chat1: {
     marginLeft: "auto",
@@ -367,7 +374,7 @@ const styles = StyleSheet.create({
  
   },
   screenView:{
-    bottom:20
+    bottom:10
   }
 });
 
