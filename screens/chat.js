@@ -322,7 +322,7 @@ const styles = StyleSheet.create({
   },
   touchable: {
     width: 10,
-    marginTop:10,
+    marginTop:30,
   },
   box3: {
     height: "auto",
