@@ -308,10 +308,11 @@ const styles = StyleSheet.create({
   },
   box2: {
     marginBottom:10,
-    marginLeft:50
+    marginLeft:50,
+    marginTop:10
   },
   box2_1: {
-    marginTop:20,
+    marginTop:10,
     marginBottom:5
   },
   touchable: {
@@ -325,7 +326,7 @@ const styles = StyleSheet.create({
     marginLeft: 70,
     marginRight: 10,
     borderRadius: 5,
-    marginRight:50
+    marginRight:50,
   },
   box4: {
     height: "auto",
@@ -334,7 +335,7 @@ const styles = StyleSheet.create({
     marginLeft:10,
     marginRight:10,
     borderRadius: 5,
-    marginLeft:60
+    marginLeft:60,
 
   },
 
