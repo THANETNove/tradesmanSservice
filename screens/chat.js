@@ -173,7 +173,7 @@ class Chat extends Component {
       <>
         <SafeAreaView style={styles.container}>
           <View style={styles.footer}>
-            <ScrollView ref={ref => { this.scrollView = ref }}
+            <ScrollView ref={ref => { this.scrollView = ref }} style={styles.screenView}
               onContentSizeChange={() => this.scrollView.scrollToEnd({ animated: true })}>
 
               {
@@ -182,7 +182,7 @@ class Chat extends Component {
                   if (index.status_user === starusLogin.id) {
                     const name = (
                       <View style={styles.chat}>
-                        <View style={styles.box2}>
+                        <View style={styles.box2_1}>
                           <Text style={styles.chat1}>{index.created_at}</Text>
                         </View>
                         <View style={styles.box4}>
@@ -193,8 +193,9 @@ class Chat extends Component {
                     return name;
                   } else {
                     const name = (
-                      <View>
-                            <TouchableWithoutFeedback onPress={() => this.ClickU(id_click)}>
+                      <View  style={styles.row}>
+                        <View style={styles.touchable}>
+                        <TouchableWithoutFeedback onPress={() => this.ClickU(id_click)}>
                             {
                                 index.file_src != null ?
                                 <Image style={styles.image} source={{ uri: `${urlImg}profile/${index.file_src}` }} />
@@ -202,15 +203,17 @@ class Chat extends Component {
                                 <Image style={styles.image} source={require('../assets/images/AAA.png')}/>
                               }
                             </TouchableWithoutFeedback>
-              
-                    
+                        </View>
+                        <View>
                         <View style={styles.box2}>
                           <Text style={styles.text1}>{index.created_at}</Text>
                         </View>
                         <View style={styles.box3}>
-                          <Text style={styles.text2}>{index.message}</Text>
+                          <Text style={styles.text3}>{index.message}</Text>
                         </View>
-                      </View>
+                        </View>
+                      
+                       </View>
                     )
                     return name;
                   }
@@ -226,16 +229,15 @@ class Chat extends Component {
                   placeholder="Type a message"
                   underlineColorAndroid="transparent"
                   value={messageUser}
+                  multiline
+                  numberOfLines={4}
                   onChange={(e) => this.message_user(e.nativeEvent.text)}
                 />
-                <View >
-                  <TouchableOpacity >
-                    <Octicons name="paper-airplane" style={styles.icons} onPress={() => this.click_Message()} />
-                  </TouchableOpacity>
-                </View>
-
               </View>
             </View>
+            <TouchableOpacity >
+                    <Octicons name="paper-airplane" style={styles.icons} onPress={() => this.click_Message()} />
+                  </TouchableOpacity>
           </View>
         </SafeAreaView>
       </>
@@ -259,28 +261,42 @@ const styles = StyleSheet.create({
     textAlign: "end",
   },
   footer: {
+    marginTop:10,
     flex: 1,
     justifyContent: "flex-end",
   },
   text: {
     fontSize: 20,
     marginLeft: 20,
-    marginTop: 10,
+    marginTop:10,
+    marginBottom:10,
+    width:"80%",
   },
   text1: {
-    fontSize: 16,
+    fontSize: 13,
     marginLeft: 20,
   },
   text2: {
     marginLeft: 15,
     marginRight: 15,
-    fontSize: 18,
-    marginTop: 10,
+    fontSize: 16,
+    marginTop: 5,
+    marginBottom:10,
+    alignSelf:"flex-end"
+  },
+  text3: {
+    marginLeft: 15,
+    marginRight: 15,
+    fontSize: 16,
+    marginTop: 5,
+    marginBottom:10,
+    textAlign: "left"
   },
   box1: {
-    height: 50,
-    marginLeft: 25,
-    marginRight: 25,
+    marginTop:0,
+    height: "auto",
+    marginLeft: 10,
+    marginRight: 10,
     borderRadius: 25,
     backgroundColor: "#fff",
     shadowColor: "#000",
@@ -288,45 +304,47 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     elevation: 2,
     marginBottom: 10,
+    zIndex:0
   },
   box2: {
-    marginTop: -70,
-    marginLeft: 50,
-    marginBottom: 48,
+    marginBottom:10,
+    marginLeft:50
+  },
+  box2_1: {
+    marginTop:20,
+    marginBottom:5
+  },
+  touchable: {
+    width: 10,
+    marginTop:10,
   },
   box3: {
-    height: 40,
+    height: "auto",
     backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 4,
     padding: -10,
-    marginBottom: 25,
-    marginTop: -45,
     marginLeft: 70,
-    marginRight: "auto",
-    borderRadius: 25,
+    marginRight: 10,
+    borderRadius: 5,
+    marginRight:50
   },
   box4: {
-    height: 40,
-    backgroundColor: "#fff",
-    shadowColor: "#000",
-    shadowOpacity: 0.3,
-    shadowRadius: 8,
-    elevation: 4,
-    padding: -10,
-    marginBottom: 25,
-    marginTop: -45,
-    marginLeft: "auto",
-    marginRight: 20,
-    borderRadius: 25,
+    height: "auto",
+    backgroundColor: "#33CCFF",
+    marginBottom:5,
+    marginLeft:10,
+    marginRight:10,
+    borderRadius: 5,
+    marginLeft:60
+
   },
 
   icons: {
     fontSize: 30,
     marginTop: 10,
     marginRight: 20,
+    alignSelf:"flex-end",
+    marginTop:-48,
+    zIndex:2,
   },
   image: {
     marginLeft: 15,
@@ -335,12 +353,21 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   chat: {
-    marginTop: 50,
+    marginTop: 0,
+  },
+  row: {
+    textAlign: "left",
+    flexDirection: "row",
+  /*   flexWrap: "wrap", */
   },
   chat1: {
     marginLeft: "auto",
     marginRight: 30,
+ 
   },
+  screenView:{
+    bottom:20
+  }
 });
 
 const mapStateToProps = (state) => {
