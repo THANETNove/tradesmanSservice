@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 20,
   },
   image2: {
-    height: 220,
+    height: "220",
     width: "100%",
     marginLeft: "auto",
     marginRight: "auto",
