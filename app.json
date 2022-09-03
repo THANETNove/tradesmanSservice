@@ -41,7 +41,7 @@
       [
         "expo-notifications",
         {
-          "icon": "./assets/adaptive-icon.jpg",
+          "icon": "./assets/images/AAA.png",
           "color": "#ffffff",
           "sounds": ["./local/path/to/mySound.wav", "./local/path/to/myOtherSound.wav"],
           "mode": "production"
