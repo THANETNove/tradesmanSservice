@@ -18,7 +18,8 @@ import { setDisabled } from "react-native/Libraries/LogBox/Data/LogBoxData";
 import { Picker } from "@react-native-picker/picker";
 import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
-import img1 from "../assets/images/BB-2.png";
+import img1 from "../assets/images/AA1.png";
+import login from "./login";
 
 // You can import from local files
 
@@ -226,6 +227,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     }
   }; 
   useEffect(() => {
+
     if (location.latitude === null) {
       getLocation();
     }
@@ -249,14 +251,14 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
                 resizeMode="cover"
                 style={styles.image2}
               >
-                <View style={styles.container}>
+{/*                 <View style={styles.container}>
                   <View style={styles.box5}>
                   <Image
                     style={styles.image}
-                    source={require('../assets/images/AAA.png')}
+                    source={require('../assets/images/AA1.png')}
                   />
                   </View>
-                </View>
+                </View> */}
               </ImageBackground>
             </View>
 
@@ -366,7 +368,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
           <View>
             <Image
               style={styles.image2}
-              source={require("../assets/images/BB-2.png")}
+              source={require("../assets/images/AA1.png")}
             />
           </View>
           <View style={styles.box}>
@@ -464,14 +466,14 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
                 resizeMode="cover"
                 style={styles.image2}
               >
-                <View style={styles.container}>
+                {/* <View style={styles.container}>
                   <View style={styles.box5}>
                   <Image
                     style={styles.image}
-                    source={require('../assets/images/AAA.png')}
+                    source={require('../assets/images/AA1.png')}
                   />
                   </View>
-                </View>
+                </View> */}
               </ImageBackground>
             </View>
 
