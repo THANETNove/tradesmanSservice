@@ -22,6 +22,8 @@ class Home_tar extends Component {
     const name = this.props.posts.technician;
     this.technicianAndUser(name);
   }
+  
+  
 
   technicianAndUser = async (e) => {
     const result1 = await get_technician.gettechnician(e);
