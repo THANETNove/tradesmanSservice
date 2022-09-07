@@ -158,15 +158,14 @@ const styles = StyleSheet.create({
   },
   box: {
     width: '45%',
-    height: 200,
-    padding: 5,
-    marginTop: 50,
+    height: 'auto',
+    marginTop: 15,
     marginLeft: 12,
     borderRadius: 10,
     shadowColor: "#000",
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
-    marginBottom: 4,
+    marginBottom: 5,
   },
   box1: {
     height: 40,
@@ -269,9 +268,10 @@ const styles = StyleSheet.create({
   },
   text8: {
     fontSize: 13,
-    marginLeft: 12,
+    marginLeft: 15,
     marginTop: 190,
-    position:"absolute"
+    position:"absolute",
+    fontWeight: "bold",
   },
   icons: {
     marginLeft: 5,
