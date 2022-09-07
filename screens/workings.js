@@ -30,6 +30,7 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
   const [image7, setImage7] = useState(null);
   const [image8, setImage8] = useState(null);
   const [image9, setImage9] = useState(null);
+  const [seveEdit, setSeveEdit] = useState(true);
   const [activityIndicator, setActivityIndicator] = useState(false);
   const [statusImage, setStatusImage] = useState(
     useSelector((state) => state.image)
@@ -131,6 +132,7 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
     }
   };
   const updateImage = async () => {
+    setSeveEdit(false)
     setActivityIndicator(true)
     let nameImage = JSON.parse(statusImage);
     let index = JSON.parse(statusImage).length;
@@ -592,15 +594,20 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
                 
 
               </View>
+                
+                {
+                  seveEdit === true ?
+                  <View>
+                  <TouchableOpacity
+                    style={styles.button}
+                    onPress={() => updateImage()}
+                  >
+                    <Text style={styles.text3}>บันทึกข้อมูล</Text>
+                  </TouchableOpacity>
+                </View>
+                 : null
+                }
 
-              <View>
-                <TouchableOpacity
-                  style={styles.button}
-                  onPress={() => updateImage()}
-                >
-                  <Text style={styles.text3}>บันทึกข้อมูล</Text>
-                </TouchableOpacity>
-              </View>
             </View>
           </ScrollView>
         </SafeAreaView>

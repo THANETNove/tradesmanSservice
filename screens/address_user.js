@@ -226,6 +226,8 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
       await Alert.alert("เเก้ไขไม่สำเร็จ กรุณาลองใหม่");
     }
   }; 
+  
+  //componentDidMount เปิดมาครั้งเเลกเเล้วทำงาน 1 ครั้ง
   useEffect(() => {
 
     if (location.latitude === null) {
@@ -233,6 +235,22 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     }
    
   })
+
+ // componentDidUpdate ถ้าข้อมูลใน start มีการเปลี่ยนเเปลง ถึงจะอัพเดต
+/*   useEffect(() => {
+      // loginA = ture เปิด 
+    if (loginA === false) {
+      getLocation();
+    }
+   
+  } ,[loginA]) */
+
+/*   componentDidUpdate(prevProps, prevState) {
+    const {technician} = this.state;
+    if(prevProps.loginA  !== loginA){
+     
+    }
+  } */
 
   /*   const url = useSelector(state => ({...state}));
     console.log("url",url); */
