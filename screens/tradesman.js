@@ -100,7 +100,7 @@ class Home_tar extends Component {
                             </>
                             }
                             <Text style={styles.text1}>ชื่อ : {va.name}</Text>
-                            <Text style={styles.text2}>ประเภทงาน : {va.technician_1} </Text>
+                            <Text style={styles.text2}>ประเภทงาน : {va.technician_1}</Text>
                             <Text style={styles.text5}>ประเภทงาน : {va.technician_2}</Text>
                             <Text style={styles.text8}>จังหวัด : {va.province}</Text>
                           </View>
