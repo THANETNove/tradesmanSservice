@@ -71,8 +71,8 @@ async  componentDidMount() {
                     <TouchableOpacity style={styles.button} 
                     onPress={() => this.props.navigation.navigate("FromBank")}
                     >
-                    <AntDesign name="pluscircleo" style={styles.icons} />
-                      <Text style={styles.text}>เเก้ไขบัญชี</Text>
+                    
+                      <Text style={styles.text0}>เเก้ไขบัญชี</Text>
                     </TouchableOpacity>
                 </View>
             
@@ -175,6 +175,13 @@ container: {
     paddingLeft: 110,
     fontSize: 20,
     marginTop: -25,
+    color: '#fff'
+  },
+  text0: {
+    flex: 1,
+    textAlign: 'center',
+    fontSize: 25,
+    marginTop: 10,
     color: '#fff'
   },
   text1: {
