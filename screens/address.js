@@ -81,7 +81,6 @@ class address extends Component {
         longitude: location.longitude
       }
     })
-
   }
 
   map = () => {
@@ -495,7 +494,7 @@ import {
   ScrollView,
   Alert,
 } from "react-native";
-import technician_type from "./service/getService";
+import get_technician from './service/getService';
 import * as Location from "expo-location";
 import { setDisabled } from "react-native/Libraries/LogBox/Data/LogBoxData";
 import { Picker } from "@react-native-picker/picker";
@@ -512,8 +511,13 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
     latitude: null,
     longitude: null,
   });
+  const [gps, setGps] = useState(null);
   const [address, setAddress] = useState(null);
   const [technician, setTechnician] = useState(null);
+  const [login, setLogin] = useState(null);
+  const [id, setId] = useState(useSelector((state) => state.id));
+  const [status, setStatus] = useState(useSelector((state) => state.login.status_user));
+
   
 
   const dispatch = useDispatch();
@@ -530,10 +534,10 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
     Location.setGoogleApiKey(apiKey);
     let { coords } = await Location.getCurrentPositionAsync();
 
-    setLocation({
+    /* setLocation({
       latitude: coords.latitude,
       longitude: coords.longitude,
-    });
+    }); */
 
     if (coords) {
       let { longitude, latitude } = coords;
@@ -552,6 +556,7 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
   /*   console.log(useSelector((state) => ({ ...state })));
    */
   const map = () => {
+
     return (
       <>
       {
@@ -597,24 +602,48 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
       </>
     );
   };
+  technicianAndUser = async (e) => {
+    const result1 = await get_technician.gettechnicianAddressid(e);
+    const loc = JSON.parse(result1.location);
+    setLocation({
+      latitude: loc.latitude,
+      longitude: loc.longitude,
+    });
+    setTechnician(result1);
+    urlImage(this.props.posts.urlImage);
+   
+  }
+  andUsers = async (e) => {
+    const result2 = await get_technician.getUserAddressid(e);
+    const loc = JSON.parse(result2.location);
+/*     console.log("loc2",loc); */
+setLocation({
+        latitude: loc.latitude,
+        longitude: loc.longitude,
+      });
+    setTechnician(result2);
+    urlImage(this.props.posts.urlImage);
+  
+  }
  
   useEffect(() => {
+  
+    getLocation();
 
-    if (location.latitude === null) {
-      getLocation();
+    if (status === "ช่าง") {
+      this.andUsers(id);
+    }else{
+      this.technicianAndUser(id);
     }
-    
    
-  })
-  console.log(useSelector((state) => state.id ));
-  console.log(useSelector((state) => state.login.status_user ));
+  },[location.latitude,location.longitude])
+ 
   return (
     
     <>
-    <Text>asdasds</Text>
      {
       
-         /*  technician !== null ?
+           technician !== null ?
             <>
               <ScrollView>
                 <View>
@@ -691,7 +720,7 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
 
             </>
             :
-            null */
+            null 
         }
     </>
   );
