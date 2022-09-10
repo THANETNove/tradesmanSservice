@@ -69,7 +69,7 @@ const Registration = ({ navigation: { popToTop } }) => {
           await Alert.alert('บันทึกสำเร็จ');
          await popToTop();
         } else {
-          await Alert.alert('บันทึกไม่สำเร็จ กรุณาลองใหม่');
+          await Alert.alert('สมัคร ไม่สำเร็จ กรุณา ต่อ อินเตอร์เน็ต');
         }
       } else {
         await Alert.alert(`เบอร์โทร ${phone} นี้มีในระบบอยู่เเล้ว`);

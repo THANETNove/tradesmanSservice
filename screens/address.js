@@ -614,14 +614,16 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
    
   }
   andUsers = async (e) => {
+   
     const result2 = await get_technician.getUserAddressid(e);
-    const loc = JSON.parse(result2.location);
-/*     console.log("loc2",loc); */
-setLocation({
+    console.log("result2",result2);
+    const loc = JSON.parse(result2[0].location);
+    setLocation({
         latitude: loc.latitude,
         longitude: loc.longitude,
       });
-    setTechnician(result2);
+      
+    setTechnician(result2[0]);
     urlImage(this.props.posts.urlImage);
   
   }
@@ -638,6 +640,7 @@ setLocation({
    
   },[location.latitude,location.longitude])
  
+  console.log("idtechnician",technician);
   return (
     
     <>
@@ -693,7 +696,7 @@ setLocation({
                     <Text style={styles.text6}>{"รหัสไปรษณีย์"}</Text>
                     <Text style={styles.text7}>{technician.zipcode}</Text>
                   </View>
-                  {login === "ลูกค้าทั่วไป" ?
+                  {status === "ลูกค้าทั่วไป" ?
                     <>
                       <View style={styles.box7}>
                         <Text style={styles.text6}>{"ประเภทงาน"}</Text>
@@ -717,7 +720,6 @@ setLocation({
                   </View>
                 </View>
               </ScrollView>
-
             </>
             :
             null 

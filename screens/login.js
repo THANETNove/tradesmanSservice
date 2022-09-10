@@ -173,7 +173,7 @@ class Login extends Component {
   
         await this.props.navigation.popToTop();
     } else {
-      await Alert.alert('Login ไม่สำเร็จ กรุณาลองใหม่');
+      await Alert.alert('User หรือ password ไม่ถูกต้องกรุณาลองใหม่');
     }
   };
 

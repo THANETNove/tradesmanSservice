@@ -44,11 +44,13 @@ class Message extends Component {
   }
 
   set_State = async (e) => {
+    console.log("e",e);
     if (e !== null) {
       if (e.status_user === "ลูกค้าทั่วไป") {
         const { starusLogin } = this.state;
         const result = await getMessage.getMessage_user(e.id);
         const resultGrouBy = await getMessage.getMessage_user_groupBy(e.id);
+        console.log('resultGrouBy',resultGrouBy)
         if (result) {
           this.setState({
             message: result,
@@ -61,6 +63,7 @@ class Message extends Component {
         const resultGrouBy = await getMessage.getMessage_technician_groupBy(
           e.id
         );
+        console.log("5555");
         if (result1 && resultGrouBy) {
           this.setState({
             message: result1,
@@ -96,6 +99,7 @@ class Message extends Component {
                   }
                 }
               });
+                /* console.log("index",index); */
             const name = (
 
               <TouchableWithoutFeedback
@@ -111,7 +115,11 @@ class Message extends Component {
                     <Image style={styles.image} source={require('../../assets/images/AAA.png')}/>
                   )}
                   <Text style={styles.text1}>
-                    <Text style={styles.text2}>{index.name}</Text> {"14.06"}
+                    {
+                       index.name !== null ? 
+                       index.name
+                       : "name"
+                    }
                   </Text>
                   <Text style={styles.text3}>
                     Message
@@ -143,7 +151,7 @@ class Message extends Component {
                   }
                 }
               });
-         
+              console.log("indextechnician",index);
 
             const name = (
 
@@ -159,10 +167,12 @@ class Message extends Component {
                   ) : (
                     <Image style={styles.image} source={require('../../assets/images/AAA.png')}/>
                   )}
-                  <Text style={styles.text1}>
-                    <Text style={styles.text2}>{index.name}</Text>{" "}
-                    {index.created_at}
-                  </Text>
+
+                    <Text style={styles.text1}>{
+                      index.name !== null ? 
+                      index.name
+                      : "name"
+                    }</Text>
                   <Text style={styles.text3}>Message</Text>
                   {id_teh.length !== 0 ? (
                     <Text style={styles.text4}>{id_teh.length}</Text>
@@ -176,6 +186,7 @@ class Message extends Component {
       </>
     );
   }
+ 
  
 
   render() {
@@ -300,6 +311,7 @@ const styles = StyleSheet.create({
     marginLeft: 55,
     marginTop: -50,
     fontSize: 18,
+    paddingLeft: 5
   },
   text2: {
     marginTop: -18,
