@@ -50,6 +50,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   );
   const [statusEdit, setStatusEdit] = useState(false);
   const [id, setId] = useState(null);
+  const [seveEdit, setSeveEdit] = useState(true);
   const dispatch = useDispatch();
 
   const mapRef = React.createRef();
@@ -143,7 +144,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
       zipcode,
       location,
     ];
-    
+    setSeveEdit(false)
 
  const result = await technician_type.createAddress_user(data);
 
@@ -214,6 +215,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
       zipcode,
       location,
     ];
+    setSeveEdit(false)
     const result = await technician_type.updateAddress_user(data);
     
     if (result === "success") {
@@ -369,9 +371,14 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
               <View style={styles.containerMap}>
                 { map() }
               </View>
-              <TouchableOpacity style={styles.button} onPress={() => serve()}>
+              {
+                  seveEdit === true ? 
+                  <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
               </TouchableOpacity>
+              :null
+              }
+              
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -592,9 +599,14 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
               <View style={styles.containerMap}>
                 { map()}
               </View>
-              <TouchableOpacity style={styles.button} onPress={() => update()}>
+              {
+                seveEdit === true ? 
+                <TouchableOpacity style={styles.button} onPress={() => update()}>
                 <Text style={styles.text}>บันทึก</Text>
               </TouchableOpacity>
+                : null
+              }
+              
             </View>
           </ScrollView>
         </SafeAreaView>

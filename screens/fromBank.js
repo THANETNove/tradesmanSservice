@@ -11,11 +11,13 @@ const FromBank = ({ navigation: { popToTop } }) => {
     const [name, setName] = useState(null);
     const [number_bank, setNumber_bank] = useState(null);
     const [bank, setBank] = useState(null);
+    const [seveEdit, setSeveEdit] = useState(true);
     const [id_user, setId_user] = useState(useSelector((state) => state.login.id));
     const [statusBookBank ,setBookBank] = useState(useSelector((state) => state.bookbank));
     const dispatch = useDispatch();
 
     const serve = async () => {
+      setSeveEdit(false)
       const data = [id_user,name, number_bank, bank];
              const result = await bookBank.createBookBank(data);
              if (result === "success") {
@@ -28,6 +30,7 @@ const FromBank = ({ navigation: { popToTop } }) => {
       };
 
      const update  = async () =>  {
+       setSeveEdit(false)
        let id =  statusBookBank[0].id;
        console.log(id);
           const data = [id,name, number_bank, bank];
@@ -111,9 +114,14 @@ const FromBank = ({ navigation: { popToTop } }) => {
                 </View>
 
                 <View >
+                  {
+                    seveEdit === true ? 
                     <TouchableOpacity  style={styles.button} onPress={() => serve()}>
                       <Text style={styles.text}>บันทึกข้อมูล</Text>
                     </TouchableOpacity>
+                     :null
+                  }
+                    
                 </View>
             
               </View>
@@ -172,9 +180,14 @@ const FromBank = ({ navigation: { popToTop } }) => {
                 </View>
 
                 <View >
-                    <TouchableOpacity  style={styles.button} onPress={() => update()}>
+                  {
+                     seveEdit === true ? 
+                     <TouchableOpacity  style={styles.button} onPress={() => update()}>
                       <Text style={styles.text}>บันทึกข้อมูล</Text>
                     </TouchableOpacity>
+                     : null
+                  }
+                    
                 </View>
             
               </View>

@@ -54,6 +54,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
   );
   const [statusEdit, setStatusEdit] = useState(false);
   const [id, setId] = useState(null);
+  const [seveEdit, setSeveEdit] = useState(true);
   const dispatch = useDispatch();
 
   const mapRef = React.createRef();
@@ -148,7 +149,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
       technician_1,
       technician_2,
     ];
-
+    setSeveEdit(false)
     const result = await technician_type.createAddress(data);
     if (result === "success") {
       await getAddress(idPhone);
@@ -174,7 +175,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
       technician_1,
       technician_2,
     ];
-
+    setSeveEdit(false)
     const result = await technician_type.updateAddress(data);
     if (result === "success") {
       await getAddress(idPhone);
@@ -217,6 +218,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
 
   const getAddress = async (e) => {
+
     const result = await technician_type.getAddress(e);
 
     if (result !== null) {
@@ -428,9 +430,14 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               <View style={styles.containerMap}>
               {map()}
               </View>
-              <TouchableOpacity style={styles.button} onPress={() => serve()}>
+              {
+                 seveEdit === true ? 
+                 <TouchableOpacity style={styles.button} onPress={() => serve()}>
                 <Text style={styles.text}>บันทึก</Text>
               </TouchableOpacity>
+              : null
+              }
+              
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -710,9 +717,14 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               <View style={styles.containerMap}>
                 {map()}
               </View>
-              <TouchableOpacity style={styles.button} onPress={() => update()}>
+              {
+                 seveEdit === true ? 
+                 <TouchableOpacity style={styles.button} onPress={() => update()}>
                 <Text style={styles.text}>บันทึก</Text>
               </TouchableOpacity>
+              : null
+              }
+              
             </View>
           </ScrollView>
         </SafeAreaView>

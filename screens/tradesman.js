@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleSheet, TextInput, Text, TouchableWithoutFeedback, View, Image, ScrollView } from 'react-native';
+import { SafeAreaView, StyleSheet, TextInput, Text, TouchableWithoutFeedback, View, Image, ScrollView,ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from "react-redux";
 import get_technician from './service/getService';
@@ -86,7 +86,7 @@ class Home_tar extends Component {
                       const name = (
                         <TouchableWithoutFeedback onPress={() => this.ClickU(va.idPhone)}>
                           <View style={styles.box}>
-                          <Image style={styles.image2} source={require('../assets/images/A-4.jpg')}/>
+                       {/*    <ImageBackground style={styles.image2} source={require('../assets/images/A-4.jpg')}> */}
                             { va.file_src !== null ? 
                             
                             <>
@@ -100,12 +100,12 @@ class Home_tar extends Component {
                             </>
                             }
                             <View style={styles.text}>
-                            <Text style={styles.text1}>ชื่อ : {va.name} </Text>
+                            <Text style={styles.text1}>ชื่อ : {va.name}</Text>
                             <Text style={styles.text2}>ประเภทงาน :  {va.technician_1}</Text>
                             <Text style={styles.text3}>ประเภทงาน : {va.technician_2} </Text>
                             <Text style={styles.text4}>จังหวัด : {va.province}</Text>
                             </View>
-                           
+                           {/* </ImageBackground> */}
                           </View>
                           
                         </TouchableWithoutFeedback>
@@ -161,7 +161,7 @@ const styles = StyleSheet.create({
   },
   box: {
     width: '45%',
-    height: 'auto',
+    backgroundColor: "#C8F9FE",
     marginTop: 10,
     marginLeft: 12,
     borderRadius: 10,
@@ -169,6 +169,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.34,
     shadowRadius: 6.27,
     marginBottom: 5,
+    paddingBottom: 10,
+    paddingRight:5,
   },
   box1: {
     height: 40,
@@ -217,7 +219,7 @@ const styles = StyleSheet.create({
   },
   text: {
     marginTop: 120,
-    position:"absolute"
+    position: "relative"
   },
   text1: {
     fontSize: 13,

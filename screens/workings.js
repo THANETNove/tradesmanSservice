@@ -82,6 +82,7 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
 
   const serve = async (e) => {
     setActivityIndicator(true)
+    setSeveEdit(false)
     let result = null;
     if (image1 !== null) {
       const result1 = await bookBank.uplodeImages(image1, id_user);
@@ -358,12 +359,15 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
                   </TouchableOpacity>
                 </View>
               </View>
-
-              <View>
-                <TouchableOpacity style={styles.button} onPress={() => serve()}>
-                  <Text style={styles.text3}>บันทึกข้อมูล</Text>
-                </TouchableOpacity>
-              </View>
+                {
+                    seveEdit === true ? 
+                    <View>
+                    <TouchableOpacity style={styles.button} onPress={() => serve()}>
+                      <Text style={styles.text3}>บันทึกข้อมูล</Text>
+                    </TouchableOpacity>
+                  </View>
+                  : null
+                }
             </View>
           </ScrollView>
         </SafeAreaView>
