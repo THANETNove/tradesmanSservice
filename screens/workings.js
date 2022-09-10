@@ -16,7 +16,7 @@ import {
 import * as ImagePicker from "expo-image-picker";
 import bookBank from "./service/getService";
 import { AntDesign } from "@expo/vector-icons";
-import img1 from "../assets/images/BB-1.png";
+import img1 from "../assets/images/AA1.png";
 import { useSelector, useDispatch } from "react-redux";
 import { connect } from "react-redux";
 
@@ -212,12 +212,12 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
                 resizeMode="cover"
                 style={styles.backgroun}
               >
-                <View style={styles.box4}>
+            {/*     <View style={styles.box4}>
                   <Image
                     style={styles.image2}
                     source={require("../assets/images/AAA.png")}
                   />
-                </View>
+                </View> */}
               </ImageBackground>
             </View>
             <View style={styles.box6}>
@@ -387,7 +387,7 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
               <View>
                 <Image
                   style={styles.image5}
-                  source={require("../assets/images/BB-2.png")}
+                  source={require("../assets/images/AA1.png")}
                 />
               </View>
               <View style={styles.box6}>
@@ -449,12 +449,12 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
                 resizeMode="cover"
                 style={styles.backgroun}
               >
-                <View style={styles.box4}>
+                {/* <View style={styles.box4}>
                   <Image
                     style={styles.image2}
                     source={require("../assets/images/AAA.png")}
                   />
-                </View>
+                </View> */}
               </ImageBackground>
             </View>
             <View style={styles.box6}>

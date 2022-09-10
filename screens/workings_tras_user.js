@@ -45,7 +45,7 @@ import get_technician from './service/getService';
               <View>
                 <Image
                   style={styles.image5}
-                  source={require("../assets/images/BB-2.png")}
+                  source={require("../assets/images/AA1.png")}
                 />
               </View>
               <View style={styles.box6}>
@@ -69,8 +69,8 @@ import get_technician from './service/getService';
           </>
         ) : 
         <>
+        <Image style={styles.image5} source={require("../assets/images/AA1.png")}/>
         <Text style={styles.text1}>ไม่มีรูปภาพ ที่เกี่ยวข้อง </Text>
-        <Image style={styles.image5} source={require("../assets/images/logo_technician.png")}/>
         </>
         }
      </>
