@@ -12,9 +12,21 @@ import {
     TouchableOpacity,
     TouchableHighlight
 } from "react-native";
+import { connect } from "react-redux";
 import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo } from "@expo/vector-icons";
 
+
 class Add_shopping extends Component {
+
+    newProduct() {
+
+        if (this.props.posts.login !== null) {
+            this.props.navigation.navigate("add_product")
+        }else {
+            this.props.navigation.navigate("Login")
+        }
+        
+    }
     add_shopping() {
         return (
             <>
@@ -29,7 +41,7 @@ class Add_shopping extends Component {
 
                         <View style={styles.top}>
                             <View style={styles.box3}>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")}>
+                                <TouchableOpacity onPress={() => this.newProduct()}>
                                    {/*  <MaterialIcons name="home-repair-service" style={styles.icons3} /> */}
                                     <Text style={styles.text2}>{"เพิ่มสินค้า"}
                                     </Text>
@@ -95,10 +107,10 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 5,
         paddingBottom: 20,
-        borderTopLeftRadius:30,
-        borderTopRightRadius:30,
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
+        borderTopLeftRadius: 90,
+      /*   borderTopRightRadius:30,
+        borderBottomLeftRadius: 10, */
+        borderBottomRightRadius: 90,
     },
     box6: {
         height: 140,
@@ -140,5 +152,9 @@ const styles = StyleSheet.create({
         paddingLeft: 13,
     },
 });
-
-export default Add_shopping;
+const mapStateToProps = (state) => {
+    return {
+      posts: state
+    }
+  }
+export default connect(mapStateToProps, null)(Add_shopping);

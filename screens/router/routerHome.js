@@ -12,6 +12,7 @@ import Ahow_bank from '../show_bank';
 import chat from '../chat';
 import HomeShop from '../homeShop';
 import Add_shopping from '../add_shopping';
+import Add_product from '../add_product';
 
 
 
@@ -21,11 +22,11 @@ function App() {
   return (
 
     <HomeStack.Navigator>
- {/*      <HomeStack.Screen name="HomeManu" component={HomeManu}
+      <HomeStack.Screen name="HomeManu" component={HomeManu}
         options={{
           title: 'Manu',
         }}
-      /> */}
+      />
       <HomeStack.Screen name="Home" component={Home} />
       <HomeStack.Screen name="Tradesman" component={Tradesman} />
       <HomeStack.Screen name="Profile" component={Profile} />
@@ -51,6 +52,10 @@ function App() {
       <HomeStack.Screen name="add_shopping" component={Add_shopping}
         options={{
           title: 'Shopping',
+        }} />
+      <HomeStack.Screen name="add_product" component={Add_product}
+        options={{
+          title: 'Product',
         }} />
     </HomeStack.Navigator>
   );

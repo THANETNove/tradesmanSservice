@@ -229,6 +229,7 @@ class Chat extends Component {
                   placeholder="Type a message"
                   underlineColorAndroid="transparent"
                   value={messageUser}
+                  
                   multiline
 
                   onChange={(e) => this.message_user(e.nativeEvent.text)}
