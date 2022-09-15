@@ -20,7 +20,7 @@ class Home extends Component {
 
   componentDidMount() {
 
-    this.setUrl();
+    /* this.setUrl(); */
     this.getTechnician_type();
     this.deleteSarte();
 
@@ -53,12 +53,12 @@ class Home extends Component {
   }
 
 
-  setUrl = () => {
+/*   setUrl = () => {
     this.props.dispatch({
       type: 'ADD_URL',
       payload: "https://th-projet.com/api-database/images/"
     })
-  }
+  } */
 
   deleteSarte() {
 

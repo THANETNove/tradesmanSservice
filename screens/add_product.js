@@ -31,6 +31,12 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
   const [image4, setImage4] = useState(null);
   const [image5, setImage5] = useState(null);
   const [image6, setImage6] = useState(null);
+  const [idImage1, setIdImage1] = useState(null);
+  const [idImage2, setIdImage2] = useState(null);
+  const [idImage3, setIdImage3] = useState(null);
+  const [idImage4, setIdImage4] = useState(null);
+  const [idImage5, setIdImage5] = useState(null);
+  const [idImage6, setIdImage6] = useState(null);
   const [heading, setHeading] = useState(null);
   const [detail, setDetail] = useState(null);
   const [seveEdit, setSeveEdit] = useState(true);
@@ -39,6 +45,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     useSelector((state) => state.login.id)
   );
   const [id_shop, setId_shop] = useState(null);
+  const [url, setUrl] = useState(useSelector((state) => state.urlImage));
   const dispatch = useDispatch();
 
 
@@ -48,15 +55,50 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
 
   const getShop = async () => {
     const result1 = await shopImg.getShop(id_user);
+    const result2 = await shopImg.getImageShop(id_user);
+    /* const url =  useSelector((state) => state.urlImage); */
+    console.log("result2",result2);
     if (result1) {
       const data = result1[0];
       setId_shop(data.id)
       setHeading(data.heading)
       setDetail(data.detail)
-    }
-    
-    /*    console.log("result1",id_shop.id_shop); */
   }
+  if (result2) {
+    result2.map((index) => {
+      if (index.nameImage === "image1") {
+        setImage1({
+          uri: `${url}/shop/${index.url_shop}`
+        })
+      }
+      if (index.nameImage === "image2") {
+        setImage2({
+          uri: `${url}/shop/${index.url_shop}`
+        })
+      }
+      if (index.nameImage === "image3") {
+        setImage3({
+          uri: `${url}/shop/${index.url_shop}`
+        })
+      }
+      if (index.nameImage === "image4") {
+        setImage4({
+          uri: `${url}/shop/${index.url_shop}`
+        })
+      }
+      if (index.nameImage === "image5") {
+        setImage5({
+          uri: `${url}/shop/${index.url_shop}`
+        })
+      }
+      if (index.nameImage === "image6") {
+        setImage6({
+          uri: `${url}/shop/${index.url_shop}`
+        })
+      }
+  })
+  }
+}
 
 
   const pickImage = async (e) => {
@@ -293,6 +335,9 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
       </>
     );
   };
+  console.log("img1",image1);
+  console.log("img6",image6);
+  
   return (
     <>
       {

@@ -159,6 +159,25 @@ const getShop = async (e) => {
     });
   return seaUser;
 };
+const getImageShop = async (e) => {
+  const seaUser = await axios.get(`${url}/getImageShop.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+      id: e,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return seaUser;
+};
 
 // ดึงงานช่างทั้งหมด
 const technician_type = async () => {
@@ -930,5 +949,6 @@ export default {
   uplodeImagesShop,
   createShop,
   getShop,
-  updateShop
+  updateShop,
+  getImageShop
 };

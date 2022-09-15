@@ -22,6 +22,17 @@ import { logoutStore } from "../logout";
 
 
 class homeManu extends Component {
+
+    setUrl = () => {
+        this.props.dispatch({
+          type: 'ADD_URL',
+          payload: "https://th-projet.com/api-database/images/"
+        })
+      }
+
+    componentDidMount() {
+        this.setUrl()
+    }
     home() {
         return (
             <>
