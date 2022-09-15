@@ -139,6 +139,26 @@ const getUser = async (e) => {
     });
   return seaUser;
 };
+// ดึง getShop 
+const getShop = async (e) => {
+  const seaUser = await axios.get(`${url}/getShop.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+      id: e,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return seaUser;
+};
 
 // ดึงงานช่างทั้งหมด
 const technician_type = async () => {
@@ -499,6 +519,26 @@ const createUser = async (e) => {
     });
   return cerUser;
 };
+const createShop = async (e) => {
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id_shop', e[0]);
+  formdata.append('heading', e[1]);
+  formdata.append('detail', e[2]);
+  const cerUser = await axios.post(`${url}/addShop.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+
+    return "success";
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return cerUser;
+};
 
 const createAddress = async (e) => {
 
@@ -628,6 +668,32 @@ const uplodeImages = async (e,id_user) => {
    return cerimg;
  };
 
+const uplodeImagesShop = async (e,userId) => {
+  console.log("userId",userId);
+  const formdata = new FormData();
+   formdata.append('image', {
+     uri: e.uri,
+     type: 'image/jpg',
+     name: e.uri.split('/').pop(),
+   })
+   formdata.append('id_user', userId[0])
+   formdata.append('nameImage', userId[1])
+ 
+   const cershop = await axios.post(`${url}/saveFileShop.php`, formdata, {
+     headers: {
+       'Content-Type': 'multipart/form-data;charset=utf-8',
+     }
+   }).then((result) => {
+
+     return "success";
+   })
+     .catch((error) => {
+
+       return error;
+     });
+   return cershop;
+ };
+
  const imageProfile = async (e,id_user) => {
   const formdata = new FormData();
    formdata.append('image', {
@@ -703,6 +769,29 @@ const updateAddress_user = async (e) => {
   formdata.append('zipcode', e[8]);
   formdata.append('location', JSON.stringify(e[9]));
   const upuser = await axios.post(`${url}/updateAddress_user.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+
+    return "success";
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return upuser;
+  
+}
+
+const updateShop = async (e) => {
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', e[0]);
+  formdata.append('heading', e[1]);
+  formdata.append('detail', e[2]);
+
+  const upuser = await axios.post(`${url}/updateShop.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -837,5 +926,9 @@ export default {
   getMessage_technician_groupBy,
   updateMessage,
   getUserAddressid,
-  getUser
+  getUser,
+  uplodeImagesShop,
+  createShop,
+  getShop,
+  updateShop
 };
