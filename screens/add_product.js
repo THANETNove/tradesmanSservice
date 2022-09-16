@@ -57,7 +57,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     const result1 = await shopImg.getShop(id_user);
     const result2 = await shopImg.getImageShop(id_user);
     /* const url =  useSelector((state) => state.urlImage); */
-    console.log("result2",result2);
+    /* console.log("result2",result2); */
     if (result1) {
       const data = result1[0];
       setId_shop(data.id)
@@ -67,31 +67,55 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
   if (result2) {
     result2.map((index) => {
       if (index.nameImage === "image1") {
+        setIdImage1({
+          id: index.id,
+          name: index.url_shop
+        })
         setImage1({
           uri: `${url}/shop/${index.url_shop}`
         })
       }
       if (index.nameImage === "image2") {
+        setIdImage2({
+          id: index.id,
+          name: index.url_shop
+        })
         setImage2({
           uri: `${url}/shop/${index.url_shop}`
         })
       }
       if (index.nameImage === "image3") {
+        setIdImage3({
+          id: index.id,
+          name: index.url_shop
+        })
         setImage3({
           uri: `${url}/shop/${index.url_shop}`
         })
       }
       if (index.nameImage === "image4") {
+        setIdImage4({
+          id: index.id,
+          name: index.url_shop
+        })
         setImage4({
           uri: `${url}/shop/${index.url_shop}`
         })
       }
       if (index.nameImage === "image5") {
+        setIdImage5({
+          id: index.id,
+          name: index.url_shop
+        })
         setImage5({
           uri: `${url}/shop/${index.url_shop}`
         })
       }
       if (index.nameImage === "image6") {
+        setIdImage6({
+          id: index.id,
+          name: index.url_shop
+        })
         setImage6({
           uri: `${url}/shop/${index.url_shop}`
         })
@@ -128,40 +152,87 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     }
   };
   const serve = async (e) => {
-
-    setActivityIndicator(true)
+/* console.log("idImage1",idImage1); */
+     setActivityIndicator(true)
     setSeveEdit(false)
     let result = null;
     let data = [id_user, heading, detail]
     if (image1 !== null) {
-      let userId = [id_user, "image1"]
-      const result1 = await shopImg.uplodeImagesShop(image1, userId);
-      result = result1;
+      if (idImage1 === null) {
+        let userId = [id_user, "image1"]
+        const result1 = await shopImg.uplodeImagesShop(image1, userId);
+        result = result1;
+      }else{
+        if (image1.type) {
+          const result1 = await shopImg.uplodeUpdateImagesShop(image1, idImage1.id,idImage1.name);
+          result = result1;
+        }
+      }
     }
+
     if (image2 !== null) {
-      let userId = [id_user, "image2"]
-      const result2 = await shopImg.uplodeImagesShop(image2, userId);
-      result = result2;
+      if (idImage2 === null) {
+        let userId = [id_user, "image2"]
+        const result2 = await shopImg.uplodeImagesShop(image2, userId);
+        result = result2;
+      }else{
+        if (image2.type) {
+          const result1 = await shopImg.uplodeUpdateImagesShop(image2, idImage2.id,idImage2.name);
+          result = result1;
+        }
+      }
     }
+
     if (image3 !== null) {
-      let userId = [id_user, "image3"]
-      const result2 = await shopImg.uplodeImagesShop(image3, userId);
-      result = result2;
+      if (idImage3 === null) {
+        let userId = [id_user, "image3"]
+        const result2 = await shopImg.uplodeImagesShop(image3, userId);
+        result = result2;
+      }else{
+        if (image3.type) {
+          const result1 = await shopImg.uplodeUpdateImagesShop(image3, idImage3.id,idImage3.name);
+          result = result1;
+        }
+      }
     }
+
     if (image4 !== null) {
-      let userId = [id_user, "image4"]
+      if (idImage4 === null) {
+        let userId = [id_user, "image4"]
       const result2 = await shopImg.uplodeImagesShop(image4, userId);
       result = result2;
+      }else{
+        if (image4.type) {
+          const result1 = await shopImg.uplodeUpdateImagesShop(image4, idImage4.id,idImage4.name);
+          result = result1;
+        }
+      }
     }
+
     if (image5 !== null) {
-      let userId = [id_user, "image5"]
-      const result2 = await shopImg.uplodeImagesShop(image5, userId);
-      result = result2;
+      if (idImage5 === null) {
+        let userId = [id_user, "image5"]
+        const result2 = await shopImg.uplodeImagesShop(image5, userId);
+        result = result2;
+      }else{
+        if (image5.type) {
+          const result1 = await shopImg.uplodeUpdateImagesShop(image5, idImage5.id,idImage5.name);
+          result = result1;
+        }
+      }
     }
+
     if (image6 !== null) {
-      let userId = [id_user, "image6"]
-      const result2 = await shopImg.uplodeImagesShop(image6, userId);
-      result = result2;
+      if (idImage6 === null) {
+        let userId = [id_user, "image6"]
+        const result2 = await shopImg.uplodeImagesShop(image6, userId);
+        result = result2;
+      }else{
+        if (image6.type) {
+          const result1 = await shopImg.uplodeUpdateImagesShop(image6, idImage6.id,idImage6.name);
+          result = result1;
+        }
+      }
     }
 
     if (id_shop === null) {
@@ -335,8 +406,8 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
       </>
     );
   };
-  console.log("img1",image1);
-  console.log("img6",image6);
+/*   console.log("img1",image1);
+  console.log("img6",image6); */
   
   return (
     <>

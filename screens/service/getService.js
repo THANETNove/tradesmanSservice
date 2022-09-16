@@ -688,7 +688,7 @@ const uplodeImages = async (e,id_user) => {
  };
 
 const uplodeImagesShop = async (e,userId) => {
-  console.log("userId",userId);
+  /* console.log("userId",userId); */
   const formdata = new FormData();
    formdata.append('image', {
      uri: e.uri,
@@ -851,6 +851,31 @@ const uplodeUpdateImages = async (e,id,name) => {
    return upimg;
  };
 
+const uplodeUpdateImagesShop = async (e,id,name) => {
+/* console.log("e",e,id,name); */
+  const formdata = new FormData();
+   formdata.append('image', {
+     uri: e.uri,
+     type: 'image/jpg',
+     name: e.uri.split('/').pop(),
+   })
+   formdata.append('id', id)
+   formdata.append('name', name)
+   const upimgshop = await axios.post(`${url}/saveUpdateFileShop.php`, formdata, {
+     headers: {
+       'Content-Type': 'multipart/form-data;charset=utf-8',
+     }
+   }).then((result) => {
+
+     return "success";
+   })
+     .catch((error) => {
+
+       return null;
+     });
+   return upimgshop;
+ };
+
  
 const uplodeUpdateImagesProfile = async (e,id,name) => {
 
@@ -950,5 +975,6 @@ export default {
   createShop,
   getShop,
   updateShop,
-  getImageShop
+  getImageShop,
+  uplodeUpdateImagesShop
 };
