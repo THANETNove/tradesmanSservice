@@ -20,6 +20,7 @@ class Information extends Component {
     this.state = {
       imgProfile: null,
       url: `${this.props.posts.urlImage}profile/`,
+      activityIndicator: true
     };
   }
 
@@ -38,6 +39,9 @@ class Information extends Component {
   };
 
   saveImage = async () => {
+    this.setState({
+      activityIndicator: false
+    })
     let id_user = this.props.posts.login.id;
     let imag = this.state.imgProfile;
     const result = await image.imageProfile(imag, id_user);
@@ -81,6 +85,9 @@ class Information extends Component {
   };
 
   updateImage = async () => {
+    this.setState({
+      activityIndicator: false
+    })
     let img = this.state.imgProfile;
     let id = this.props.posts.imageProfile[0].id;
     let name = this.props.posts.imageProfile[0].name;
@@ -146,22 +153,31 @@ class Information extends Component {
                     {this.props.posts.login.status_user}
                   </Text>
                 </View>
-                {this.props.posts.imageProfile === null ? 
-                <>
+                {
+                  this.state.activityIndicator === true ?
+                  <>
+                  {
+                    this.props.posts.imageProfile === null ? 
+                    <>
+                        <TouchableOpacity style={styles.box2}>
+                          <Text onPress={() => this.saveImage()} style={styles.text4}>
+                            Save เพิ่มรูป
+                          </Text>
+                        </TouchableOpacity>
+                    </> 
+                    : 
+                    <>
                     <TouchableOpacity style={styles.box2}>
-                      <Text onPress={() => this.saveImage()} style={styles.text4}>
-                        Save เพิ่มรูป
-                      </Text>
-                    </TouchableOpacity>
-                </> 
-                : 
-                <>
-                <TouchableOpacity style={styles.box2}>
-                    <Text onPress={() => this.updateImage()} style={styles.text4}>
-                      บันทึกรูปภาพ
-                    </Text>
-                  </TouchableOpacity>
-                </>
+                        <Text onPress={() => this.updateImage()} style={styles.text4}>
+                          บันทึกรูปภาพ
+                        </Text>
+                      </TouchableOpacity>
+                    </>
+                  }
+                  </>
+                  : null
+                }
+                {
                 }
               </View>
             </View> 

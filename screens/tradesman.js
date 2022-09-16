@@ -100,10 +100,18 @@ class Home_tar extends Component {
                             </>
                             }
                             <View style={styles.text}>
-                            <Text style={styles.text1}>ชื่อ : {va.name}</Text>
-                            <Text style={styles.text2}>ประเภทงาน :  {va.technician_1}</Text>
-                            <Text style={styles.text3}>ประเภทงาน : {va.technician_2} </Text>
-                            <Text style={styles.text4}>จังหวัด : {va.province}</Text>
+                            <Text style={styles.text1}>ชื่อ : {
+                              va.name !== "null" ? va.name : null
+                            }</Text>
+                            <Text style={styles.text2}>ประเภทงาน :  {
+                              va.technician_1 !== "null" ? va.technician_1 :null
+                            }</Text>
+                            <Text style={styles.text3}>ประเภทงาน : {
+                               va.technician_2 !== "null" ? va.technician_2 :null
+                            } </Text>
+                            <Text style={styles.text4}>จังหวัด : {
+                              va.province !=="null" ? va.province : null
+                            }</Text>
                             </View>
                            {/* </ImageBackground> */}
                           </View>
