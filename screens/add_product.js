@@ -153,8 +153,9 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
   };
   const serve = async (e) => {
 /* console.log("idImage1",idImage1); */
-     setActivityIndicator(true)
+    setActivityIndicator(true)
     setSeveEdit(false)
+    
     let result = null;
     let data = [id_user, heading, detail]
     if (image1 !== null) {
@@ -244,7 +245,6 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
       result = result2;
     }
     if (result === "success") {
-
       setActivityIndicator(false)
       await Alert.alert("บันทึกภาพ สำเร็จ");
       await popToTop();
@@ -562,7 +562,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     position: "absolute",
     zIndex: 1,
-    marginTop: 200,
+    marginTop: "110%",
     marginLeft: 20,
   },
   text1: {
