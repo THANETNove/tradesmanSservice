@@ -19,20 +19,37 @@ import { Button } from "react-native-web";
 import { connect } from "react-redux";
 import img1 from "../../assets/images/A-6.png";
 import { logoutStore } from "../logout";
-
+import shopImg from "../service/getService";
 
 class homeManu extends Component {
 
-    setUrl = () => {
+
+    setUrl = async () => {
         this.props.dispatch({
           type: 'ADD_URL',
           payload: "https://th-projet.com/api-database/images/"
         })
+        const shopAll = await shopImg.getShopImagesAll();
+        if (shopAll) {
+            this.props.dispatch({
+                type: 'ADD_SHOPALL',
+                payload: shopAll
+            })
+        }
       }
 
     componentDidMount() {
         this.setUrl()
     }
+
+    add_shopping() {
+        if (this.props.posts.login !== null) {
+            this.props.navigation.navigate("add_shopping")
+        }else {
+            this.props.navigation.navigate("Login")
+        } 
+    }
+
     home() {
         return (
             <>
@@ -56,7 +73,7 @@ class homeManu extends Component {
                                     <Text style={styles.text2}>{"ร้านค้า"}
                                     </Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity onPress={() => this.props.navigation.navigate("add_shopping")}>
+                                <TouchableOpacity onPress={() => this.add_shopping()}>
                                     <MaterialIcons name="add-shopping-cart" style={styles.icons3} />
                                     <Text style={styles.text2}>{"เพิ่มสินร้านค้า"}
                                     </Text>
@@ -73,7 +90,7 @@ class homeManu extends Component {
         return (
             <>
                 {
-                    this.home()
+                this.home()
                 }
             </>
         );

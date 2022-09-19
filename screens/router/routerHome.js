@@ -13,6 +13,7 @@ import chat from '../chat';
 import HomeShop from '../homeShop';
 import Add_shopping from '../add_shopping';
 import Add_product from '../add_product';
+import Shop_user from '../shop_user';
 
 
 
@@ -56,6 +57,10 @@ function App() {
       <HomeStack.Screen name="add_product" component={Add_product}
         options={{
           title: 'Product',
+        }} />
+      <HomeStack.Screen name="shop_user" component={Shop_user}
+        options={{
+          title: 'รายละเอียด',
         }} />
     </HomeStack.Navigator>
   );

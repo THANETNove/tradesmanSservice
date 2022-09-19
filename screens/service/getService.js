@@ -198,6 +198,25 @@ const technician_type = async () => {
     });
   return seaUser;
 }
+// ดึงสินค้าทั้งหมด
+const getShopImagesAll = async () => {
+  const getShopImg = await axios.get(`${url}/getShopImagesAll.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return getShopImg;
+}
 
 // ดึงข้อมูล ช่าง ตามประเภทงาน
 const gettechnician = async (e) => {
@@ -976,5 +995,6 @@ export default {
   getShop,
   updateShop,
   getImageShop,
-  uplodeUpdateImagesShop
+  uplodeUpdateImagesShop,
+  getShopImagesAll
 };

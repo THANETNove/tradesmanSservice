@@ -15,6 +15,10 @@ import {technicianReducer} from './technicianReducer';
 import {idTechnicianReducer} from './idTechnicianReducer';
 import {startAppReducer} from './startAppReducer';
 import {notificationsReducer} from './notificationsReducer';
+import {imgesShopReducer} from './imgesShopReducer';
+import {shopReducer} from './shopReducer';
+import {shopAllReducer} from './shopAllReducer';
+import {idShopReducer} from './idShopReducer';
 
 const persistConfig = {
   key: "root",    
@@ -35,6 +39,10 @@ const rootReducer = combineReducers({
     id: idTechnicianReducer,
     startApp: startAppReducer,
     notifications: notificationsReducer,
+    imgesShop: imgesShopReducer,
+    shop: shopReducer,
+    shopAll: shopAllReducer,
+    idShop: idShopReducer,
 
 });
 

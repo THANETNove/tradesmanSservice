@@ -14,19 +14,41 @@ import {
 } from "react-native";
 import { connect } from "react-redux";
 import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo } from "@expo/vector-icons";
-
+import shopImg from "./service/getService";
 
 class Add_shopping extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            login: this.props.posts.login,
+        };
+      }
+    componentDidMount() {
+        this.getShop()
+    }
 
     newProduct() {
-
-        if (this.props.posts.login !== null) {
-            this.props.navigation.navigate("add_product")
-        }else {
-            this.props.navigation.navigate("Login")
-        }
+        this.props.navigation.navigate("add_product")
+    }
+    getShop = async(e) => {
+        const {login} =  this.state;
+        const result1 = await shopImg.getShop(login.id);
+        const result2 = await shopImg.getImageShop(login.id);
+       
+      if (result1) {
+        this.props.dispatch({
+            type: 'ADD_SHOP',
+            payload: result1
+          })
+        this.props.dispatch({
+            type: 'ADD_IMAGESHOP',
+            payload: result2
+          })
+      }
+      
         
     }
+
     add_shopping() {
         return (
             <>

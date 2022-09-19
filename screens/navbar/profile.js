@@ -113,6 +113,10 @@ class Profile_tradesman extends Component {
       type: 'DELETE_IDTECHNICAN',
       payload: null
     })
+    this.props.dispatch({
+      type: 'DELETE_SHOPALL',
+      payload: null
+    })
   }
 
   async logout() {
