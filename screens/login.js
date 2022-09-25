@@ -218,11 +218,19 @@ class Login extends Component {
             </View>
 
             <View style={styles.icons}>
-         {/*      <AntDesign name="checkcircleo" size={20} color="#37C1FB" />
-              <Text style={styles.text1}>{"จดจำฉัน"}</Text> */}
-              <View style={styles.button2}>
+              {/* <AntDesign name="checkcircleo" size={20} color="#37C1FB" /> */}
+              <View /* style={styles.button3} */>
                 <Text
                   style={styles.text2}
+                  title="Go to Details"
+                  onPress={() => this.props.navigation.navigate("ResetPassword")}
+                >
+                  ลืมรหัสผ่าน
+                </Text>
+              </View>
+              <View style={styles.button2}>
+                <Text
+                  style={styles.text3}
                   title="Go to Details"
                   onPress={() => this.props.navigation.navigate("Registration")}
                 >
@@ -343,6 +351,12 @@ const styles = StyleSheet.create({
   text2: {
     marginLeft: -15,
     marginTop: -4,
+    fontSize: 16,
+    marginBottom: 2,
+  },
+  text3: {
+    marginLeft: -15,
+    marginTop: -25,
     fontSize: 16,
     marginBottom: 2,
   },

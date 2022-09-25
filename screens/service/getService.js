@@ -304,6 +304,26 @@ const getLogin = async (e) => {
     });
   return seaUser;
 };
+// เช็ค  Reset password
+const getRestPassword = async (e) => {
+  const seaUser = await axios.get(`${url}/restPassword.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+      phone: e,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return seaUser;
+};
 
 const getAddress = async (e) => {
   const seaUser = await axios.get(`${url}/getAddress.php`, {
@@ -842,6 +862,28 @@ const updateShop = async (e) => {
       return error;
     });
   return upuser;
+}
+
+
+const updatePasswors = async (e) => {
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', e[0]);
+  formdata.append('password', e[1]);
+
+  const upPass = await axios.post(`${url}/updatePassword.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+
+    return "success";
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return upPass;
   
 }
 
@@ -996,5 +1038,7 @@ export default {
   updateShop,
   getImageShop,
   uplodeUpdateImagesShop,
-  getShopImagesAll
+  getShopImagesAll,
+  getRestPassword,
+  updatePasswors
 };

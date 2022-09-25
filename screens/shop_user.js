@@ -28,15 +28,24 @@ class Shop_user extends Component {
             show: false,
             img:null,
             url: null,
-            id:null
+            id:null,
+            showImg:null,
+            login:null
         };
     }
 
 
     componentDidMount() {
 
-        const { idShop, urlImage } = this.props.posts;
+        const { idShop, urlImage, login} = this.props.posts;
+        if (login !== null) {
+            this.setState({
+                login:login.id
+            })
+        }
+        
         this.getShop(idShop, urlImage)
+        
 
 
     }
@@ -74,66 +83,92 @@ class Shop_user extends Component {
         });
     }
 
-    clickShop(e) {
+    clickShop(e,j) {
+
         this.setState({
-            show: e
+            showImg:j,
+            show: e,
+           
         })
     }
     clickChat(e) {
-        console.log("e",e);
-        this.props.dispatch({
-            type: 'ADD_IDTECHNICAN',
-            payload: this.state.id
-          })
-         this.props.navigation.navigate("Profile_tras_user")
+        if (this.state.login !== null) {
+            this.props.dispatch({
+                type: 'ADD_IDTECHNICAN',
+                payload: this.state.id
+              })
+             this.props.navigation.navigate("Profile_tras_user")
+        }else{
+            this.props.navigation.navigate("Login")
+        }
+
+      
     }
 
     render() {
-        const { show, dataSource, detail, heading,img,url,id } = this.state;
-        return (
+        const { show, dataSource, detail, heading,img,url,id ,showImg,login} = this.state;
+       
+       console.log('id',id); 
+       return (
             <>
                 {
                     show === false ?
                         <ScrollView>
-                            <View>
-                                {dataSource !== null ?
-                                    <TouchableOpacity onPress={(e) => this.clickShop(true)}>
-                                        <Slideshow
-                                            dataSource={dataSource}
-                                            position={this.state.position}
-                                            onPositionChanged={position => this.setState({ position })} />
-                                    </TouchableOpacity>
-                                    : null}
-
-                            </View>
-                            <View>
-                                <TouchableOpacity onPress={(e) => this.clickChat(id)}>
-                                   <Ionicons name="chatbox-ellipses-sharp" style={styles.icons5}/>
-                                </TouchableOpacity>
+                             <View>
+                                {/* */}
                         
                                 <Text style={styles.heading}>{heading !== null ? heading : null}</Text>
                                 <Text style={styles.detail}>{
                                     detail !== null ? detail : null}</Text>
+                           {
+                               id == login ?  
+                               <Text style={styles.shopyou}>ร้านค้าของคุณ</Text>
+                               : 
+                                <TouchableOpacity onPress={(e) => this.clickChat(id)}>
+                                    <Ionicons name="chatbox-ellipses-sharp" style={styles.icons5}/>
+                                </TouchableOpacity>
+                           }
+                          
                             </View>
+                          
+                            <View>
+                                {img !== null ?
+                                <View style={styles.row}>
+                                {
+                                     img.map((index) => {
+                                        const image = (
+                                            <TouchableOpacity onPress={(e) => this.clickShop(true,index.url_shop)}>
+                                                <View style={styles.box}>
+                                                    <View style={styles.img}>
+                                                        <Image source={{ uri: `${url}shop/${index.url_shop}` }}
+                                                                style={styles.image}
+                                                            />
+                                                    </View>
+                                                </View>
+                                            </TouchableOpacity>
+
+                                        );
+                    
+                                        return image;
+                                      })
+                                }
+                                </View>
+                                    : null}
+
+                            </View>
+                           
                         </ScrollView>
                         : null
                 }
                 {
                     show === true ?
                         <View style={styles.box8}>
-                            <Text style={styles.close} onPress={(e) => this.clickShop(false)}>X</Text>
+                            <Text style={styles.close} onPress={(e) => this.clickShop(false,null)}>X</Text>
                             <ScrollView>
-                              {(url!== null) && img !== null ? img.map((index) => {
-                                const image = (
-                               <Image
-                                    source={{ uri: `${url}shop/${index.url_shop}` }}
+                            <Image
+                                    source={{ uri: `${url}shop/${showImg}` }}
                                     style={styles.image4}
                                 />
-                                )
-                                return image;
-                            }):
-                            null
-                            }
                             </ScrollView>
                         </View>
                         : null
@@ -163,6 +198,24 @@ const styles = StyleSheet.create({
         zIndex: 2,
 
     },
+    row: {
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        marginBottom: 20,
+      },
+    box: {
+        width: 160,
+        height: "auto",
+       /*  marginTop: 10,
+        marginLeft: 5, */
+        /* borderRadius: 2, */
+        shadowColor: "#000",
+        shadowOpacity: 0.34,
+        shadowRadius: 6.27,
+        backgroundColor: "#4BC7FB",
+      },
     horizontal: {
         position: "absolute",
         top: "50%",
@@ -191,14 +244,24 @@ const styles = StyleSheet.create({
         width: 100
     },
     image4: {
-        width: 320,
-        height: 200,
-        marginTop: 10,
+        width: "100%",
+        height: 300,
+        marginTop: 20,
         marginLeft: "auto",
         marginRight: "auto",
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#b1b1b1',
+      },
+      image: {
+        width: "100%",
+        height: 150,
+        marginLeft: "auto",
+        marginRight: "auto",
+       /*  borderRadius: 5, */
+        borderWidth: 1,
+        borderColor: '#FFF',
+    
       },
       icons5: {
         fontSize: 35,
@@ -207,8 +270,16 @@ const styles = StyleSheet.create({
         color: "#37C1FB",
         zIndex:2,
         paddingLeft:10,
-        marginBottom: -10
+        marginBottom: 20
       },
+      shopyou: {
+        paddingTop: 20,
+        paddingLeft: 10,
+        paddingRight: 10,
+        fontSize: 25,
+        marginBottom:20,
+        color: "#00000"
+      }
 });
 
 

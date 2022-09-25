@@ -13,6 +13,7 @@ import Home_paste from '../home_page';
 import Address_user from '../address_user';
 import Payment from '../payment';
 import Privacypolicy from '../privacypolicy';
+import ResetPassword from '../reset_password';
 
 
 const HomeStack = createNativeStackNavigator();
@@ -49,6 +50,10 @@ function App() {
       <HomeStack.Screen name="Privacypolicy" component={Privacypolicy} 
       options={{
         title: 'Privacy Policy',
+      }} />
+      <HomeStack.Screen name="ResetPassword" component={ResetPassword} 
+      options={{
+        title: 'ResetPassword',
       }} />
 
     </HomeStack.Navigator>

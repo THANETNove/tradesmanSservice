@@ -47,8 +47,6 @@ const Registration = ({ navigation: { popToTop } }) => {
     const  data = await [phone, md5(password), statusUser, statusCkeck,notificationsId];
 
    const seaUser = await bookBank.searchUser(data);
-
-
     if (statusCkeck === true) {
       if (seaUser === null) {
         const result = await bookBank.createUser(data);
@@ -66,7 +64,7 @@ const Registration = ({ navigation: { popToTop } }) => {
             type: 'ADD_LOGIN',
             payload: data3
           })
-          await Alert.alert('บันทึกสำเร็จ');
+          await Alert.alert(`สมัครสำเร็จ password ของคุณคือ ${password}` );
          await popToTop();
         } else {
           await Alert.alert('สมัคร ไม่สำเร็จ กรุณา ต่อ อินเตอร์เน็ต');
