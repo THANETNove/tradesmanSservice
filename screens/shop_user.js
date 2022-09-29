@@ -124,9 +124,12 @@ class Shop_user extends Component {
                                id == login ?  
                                <Text style={styles.shopyou}>ร้านค้าของคุณ</Text>
                                : 
+                              <>
+                               <Text style={styles.text}>ติดต่อชื้อสินค้า</Text>
                                 <TouchableOpacity onPress={(e) => this.clickChat(id)}>
                                     <Ionicons name="chatbox-ellipses-sharp" style={styles.icons5}/>
                                 </TouchableOpacity>
+                              </>
                            }
                           
                             </View>
@@ -243,9 +246,14 @@ const styles = StyleSheet.create({
     img_z:{
         width: 100
     },
+    text: {
+        marginTop:10,
+        paddingLeft: 10,
+        fontSize: 18
+    },
     image4: {
         width: "100%",
-        height: 300,
+        height: 350,
         marginTop: 20,
         marginLeft: "auto",
         marginRight: "auto",
@@ -265,7 +273,7 @@ const styles = StyleSheet.create({
       },
       icons5: {
         fontSize: 35,
-        marginTop: 20,
+        marginTop: 0,
         paddingRight: 20,
         color: "#37C1FB",
         zIndex:2,

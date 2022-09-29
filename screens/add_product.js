@@ -129,8 +129,8 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
+     /*  aspect: [5, 5],
+      quality: 1, */
     });
 
     if (!result.cancelled) {
@@ -283,6 +283,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <View style={styles.box3}>
                 <Text style={styles.text1}>ภาพที่ 1 จะเป็นภาพหลัก</Text>
+                <Text style={styles.text}>ขนาดภาพเเนะนำ 720*720</Text>
               </View>
               <View style={styles.boxhead}>
                 <View style={styles.box1}>
@@ -580,6 +581,13 @@ const styles = StyleSheet.create({
     zIndex: 1,
     marginTop: "120%",
     marginLeft: 20,
+  },
+  text: {
+    marginLeft: "auto",
+    marginRight: "auto",
+    fontWeight: "bold",
+    fontSize: 12,
+    marginTop: 2,
   },
   text1: {
     marginLeft: "auto",
