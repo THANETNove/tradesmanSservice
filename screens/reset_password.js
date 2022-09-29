@@ -92,7 +92,7 @@ class Reset_paeeword extends Component {
                     keyboardType='numeric'
                     style={{flex: 1, paddingLeft: 12}}
                     placeholder="เบอร์โทรศัพท์ "
-                    underlineColorAndroid="phone"
+                   /*  underlineColorAndroid="phone" */
                     onChange={(e) =>
                       this.handleOnPress(e.nativeEvent.text, "phone")
                     }
