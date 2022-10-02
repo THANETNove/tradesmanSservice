@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import MapView, { Marker, Callout,PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import {
   SafeAreaView,
   StyleSheet,
@@ -86,53 +86,53 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   const map = () => {
     return (
       <>
-      {
-        location.longitude === null ? null 
-        :
-        <MapView
-        provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
-          style={styles.map}
-          initialRegion={{
-            latitude: location.latitude,
-            longitude: location.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        >
-          <Marker
-            coordinate={{
-              latitude: location.latitude,
-              longitude: location.longitude,
-            }}
-            draggable={true}
-            onDragStart={(e) => {
-              setLocation({
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude,
-              });
-            }}
-            onDragEnd={(e) => {
-              setLocation({
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude,
-              });
-            }}
-            provider="google"
-          >
-            <Callout>
-              <Text>ตำเเหน่งของคุณ</Text>
-            </Callout>
-          </Marker>
-        </MapView>
-      }
-        
+        {
+          location.longitude === null ? null
+            :
+            <MapView
+              provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
+              style={styles.map}
+              initialRegion={{
+                latitude: location.latitude,
+                longitude: location.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}
+            >
+              <Marker
+                coordinate={{
+                  latitude: location.latitude,
+                  longitude: location.longitude,
+                }}
+                draggable={true}
+                onDragStart={(e) => {
+                  setLocation({
+                    latitude: e.nativeEvent.coordinate.latitude,
+                    longitude: e.nativeEvent.coordinate.longitude,
+                  });
+                }}
+                onDragEnd={(e) => {
+                  setLocation({
+                    latitude: e.nativeEvent.coordinate.latitude,
+                    longitude: e.nativeEvent.coordinate.longitude,
+                  });
+                }}
+                provider="google"
+              >
+                <Callout>
+                  <Text>ตำเเหน่งของคุณ</Text>
+                </Callout>
+              </Marker>
+            </MapView>
+        }
+
       </>
     );
   };
 
   const serve = async () => {
 
-   const data = [
+    const data = [
       idPhone,
       name,
       phone_number,
@@ -146,13 +146,13 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     ];
     setSeveEdit(false)
 
- const result = await technician_type.createAddress_user(data);
+    const result = await technician_type.createAddress_user(data);
 
-     if (result === "success") {
-      await getAddress_user(idPhone); 
+    if (result === "success") {
+      await getAddress_user(idPhone);
       await Alert.alert("บันทึกสำเร็จ");
-      setStatusAddress(true);  
-      await popToTop(); 
+      setStatusAddress(true);
+      await popToTop();
     } else {
       await Alert.alert("บันทึกไม่สำเร็จ กรุณาลองใหม่");
     }
@@ -160,10 +160,10 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
 
   const getAddress_user = async (e) => {
     const result1 = await technician_type.getAddress_user(e);
-   
-    
-   if (result1 !== null) {
-    
+
+
+    if (result1 !== null) {
+
       let data3 = {
         id: result1[0].id,
         name: result1[0].name,
@@ -175,15 +175,15 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
         province: result1[0].province,
         zipcode: result1[0].zipcode,
         location: JSON.parse(result1[0].location),
-      }; 
-      
+      };
+
       dispatch({
         type: "ADD_ADDRESS_USER",
         payload: data3,
-      }); 
-    } 
+      });
+    }
   };
- 
+
   const edit = async () => {
     setStatusEdit(true);
     setId(statusAddress.id);
@@ -217,7 +217,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     ];
     setSeveEdit(false)
     const result = await technician_type.updateAddress_user(data);
-    
+
     if (result === "success") {
       await getAddress_user(idPhone);
       setStatusEdit(false);
@@ -227,32 +227,32 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     } else {
       await Alert.alert("เเก้ไขไม่สำเร็จ กรุณาลองใหม่");
     }
-  }; 
-  
+  };
+
   //componentDidMount เปิดมาครั้งเเลกเเล้วทำงาน 1 ครั้ง
   useEffect(() => {
 
     if (location.latitude === null) {
       getLocation();
     }
-   
+
   })
 
- // componentDidUpdate ถ้าข้อมูลใน start มีการเปลี่ยนเเปลง ถึงจะอัพเดต
-/*   useEffect(() => {
-      // loginA = ture เปิด 
-    if (loginA === false) {
-      getLocation();
-    }
-   
-  } ,[loginA]) */
-
-/*   componentDidUpdate(prevProps, prevState) {
-    const {technician} = this.state;
-    if(prevProps.loginA  !== loginA){
+  // componentDidUpdate ถ้าข้อมูลใน start มีการเปลี่ยนเเปลง ถึงจะอัพเดต
+  /*   useEffect(() => {
+        // loginA = ture เปิด 
+      if (loginA === false) {
+        getLocation();
+      }
      
-    }
-  } */
+    } ,[loginA]) */
+
+  /*   componentDidUpdate(prevProps, prevState) {
+      const {technician} = this.state;
+      if(prevProps.loginA  !== loginA){
+       
+      }
+    } */
 
   /*   const url = useSelector(state => ({...state}));
     console.log("url",url); */
@@ -266,12 +266,12 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
         <SafeAreaView style={styles.container}>
           <ScrollView>
             <View>
-            <ImageBackground
+              <ImageBackground
                 source={img1}
                 resizeMode="cover"
                 style={styles.image2}
               >
-{/*                 <View style={styles.container}>
+                {/*                 <View style={styles.container}>
                   <View style={styles.box5}>
                   <Image
                     style={styles.image}
@@ -316,7 +316,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
                     }}
                   />
                 </View>
-  
+
                 <View>
                   <Text style={styles.text2}>{"ที่อยู่"}</Text>
                   <TextInput
@@ -369,16 +369,24 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                { map() }
+                {map()}
               </View>
               {
-                  seveEdit === true ? 
-                  <TouchableOpacity style={styles.button} onPress={() => serve()}>
-                <Text style={styles.text}>บันทึก</Text>
-              </TouchableOpacity>
-              :null
+                seveEdit === true ?
+                  <>
+                    {
+                      location.latitude === null ?
+                        <Text style={styles.text}>กรุณาเปิด GPS</Text>
+                        :
+                        <TouchableOpacity style={styles.button} onPress={() => serve()}>
+                          <Text style={styles.text}>บันทึก</Text>
+                        </TouchableOpacity>
+                    }
+                  </>
+
+                  : null
               }
-              
+
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -403,45 +411,45 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
             <TouchableOpacity style={styles.button1} onPress={() => edit()}>
               <Text style={styles.text5}>แก้ไขข้อมูล</Text>
             </TouchableOpacity>
-            
+
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"ชื่อ"}</Text>
-                <Text style={styles.text7}>{statusAddress.name}</Text>
+              <Text style={styles.text6}>{"ชื่อ"}</Text>
+              <Text style={styles.text7}>{statusAddress.name}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"เบอร์ติดต่อ"}</Text>
-                <Text style={styles.text7}>{statusAddress.phone_number}</Text>
+              <Text style={styles.text6}>{"เบอร์ติดต่อ"}</Text>
+              <Text style={styles.text7}>{statusAddress.phone_number}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"อีเมล"}</Text>
-                <Text style={styles.text7}>{statusAddress.email}</Text>
-            </View>
-            
-            <View style={styles.box7}>
-                <Text style={styles.text6}>{"ที่อยู่"}</Text>
-                <Text style={styles.text7}>{statusAddress.addressUser}</Text>
+              <Text style={styles.text6}>{"อีเมล"}</Text>
+              <Text style={styles.text7}>{statusAddress.email}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"แขวง/ตำบล"}</Text>
-                <Text style={styles.text7}>{statusAddress.subdistrict}</Text>
+              <Text style={styles.text6}>{"ที่อยู่"}</Text>
+              <Text style={styles.text7}>{statusAddress.addressUser}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"เขต/อำเภอ"}</Text>
-                <Text style={styles.text7}>{statusAddress.district}</Text>
+              <Text style={styles.text6}>{"แขวง/ตำบล"}</Text>
+              <Text style={styles.text7}>{statusAddress.subdistrict}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"จังหวัด"}</Text>
-                <Text style={styles.text7}>{statusAddress.province}</Text>
+              <Text style={styles.text6}>{"เขต/อำเภอ"}</Text>
+              <Text style={styles.text7}>{statusAddress.district}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"รหัสไปรษณีย์"}</Text>
-                <Text style={styles.text7}>{statusAddress.zipcode}</Text>
+              <Text style={styles.text6}>{"จังหวัด"}</Text>
+              <Text style={styles.text7}>{statusAddress.province}</Text>
+            </View>
+
+            <View style={styles.box7}>
+              <Text style={styles.text6}>{"รหัสไปรษณีย์"}</Text>
+              <Text style={styles.text7}>{statusAddress.zipcode}</Text>
             </View>
 
             <View>
@@ -450,7 +458,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
                 {statusAddress.location !== undefined ? (
                   <>
                     <MapView
-                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
+                      provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
                       style={styles.map}
                       initialRegion={{
                         latitude: statusAddress.location.latitude,
@@ -486,7 +494,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
         <SafeAreaView style={styles.container}>
           <ScrollView>
             <View>
-            <ImageBackground
+              <ImageBackground
                 source={img1}
                 resizeMode="cover"
                 style={styles.image2}
@@ -597,16 +605,16 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-                { map()}
+                {map()}
               </View>
               {
-                seveEdit === true ? 
-                <TouchableOpacity style={styles.button} onPress={() => update()}>
-                <Text style={styles.text}>บันทึก</Text>
-              </TouchableOpacity>
-                : null
+                seveEdit === true ?
+                  <TouchableOpacity style={styles.button} onPress={() => update()}>
+                    <Text style={styles.text}>บันทึก</Text>
+                  </TouchableOpacity>
+                  : null
               }
-              
+
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -623,8 +631,8 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
       {statusAddress === null
         ? addAddress()
         : statusEdit === true
-        ? editAddress()
-        : showAddress()}
+          ? editAddress()
+          : showAddress()}
     </>
   );
 };
@@ -662,7 +670,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginLeft: -5,
     marginTop: -5
-    
+
   },
   image1: {
     width: 128,
@@ -836,7 +844,7 @@ const styles = StyleSheet.create({
   text7: {
     fontSize: 18,
     marginTop: -20,
-    textAlign:'right',
+    textAlign: 'right',
     marginRight: 20,
   },
   input: {

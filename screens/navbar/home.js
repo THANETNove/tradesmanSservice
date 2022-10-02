@@ -323,7 +323,7 @@ class Home extends Component {
             startApp !== null ? 
               login_props !== null ?
               login_props.status_user === "ช่าง" ?
-                this.tradesman()
+                this.customer()
                 :
                 this.customer()
                 :

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, usePreviousEffect } from "react";
-import MapView, { Marker, Callout,PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import {
   SafeAreaView,
   StyleSheet,
@@ -87,52 +87,52 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }
   };
 
-    const map = () => {
-      return (
-        <>
+  const map = () => {
+    return (
+      <>
         {
           location.latitude === null ? null
-           :
-           <MapView
-           provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
-           style={styles.map}
-           initialRegion={{
-             latitude: location.latitude,
-             longitude: location.longitude,
-             latitudeDelta: 0.0922,
-             longitudeDelta: 0.0421,
-           }}
-           >
-           <Marker
-             coordinate={{
-               latitude: location.latitude,
-               longitude: location.longitude,
-             }}
-             draggable={true}
-             onDragStart={(e) => {
-               setLocation({
-                 latitude: e.nativeEvent.coordinate.latitude,
-                 longitude: e.nativeEvent.coordinate.longitude,
-               });
-             }}
-             onDragEnd={(e) => {
-               setLocation({
-                 latitude: e.nativeEvent.coordinate.latitude,
-                 longitude: e.nativeEvent.coordinate.longitude,
-               });
-             }}
-             provider="google"
-           >
-             <Callout>
-               <Text>ตำเเหน่งของคุณ</Text>
-             </Callout>
-           </Marker>
-         </MapView>
+            :
+            <MapView
+              provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
+              style={styles.map}
+              initialRegion={{
+                latitude: location.latitude,
+                longitude: location.longitude,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+              }}
+            >
+              <Marker
+                coordinate={{
+                  latitude: location.latitude,
+                  longitude: location.longitude,
+                }}
+                draggable={true}
+                onDragStart={(e) => {
+                  setLocation({
+                    latitude: e.nativeEvent.coordinate.latitude,
+                    longitude: e.nativeEvent.coordinate.longitude,
+                  });
+                }}
+                onDragEnd={(e) => {
+                  setLocation({
+                    latitude: e.nativeEvent.coordinate.latitude,
+                    longitude: e.nativeEvent.coordinate.longitude,
+                  });
+                }}
+                provider="google"
+              >
+                <Callout>
+                  <Text>ตำเเหน่งของคุณ</Text>
+                </Callout>
+              </Marker>
+            </MapView>
         }
-          
-        </>
-      );
-    };
+
+      </>
+    );
+  };
 
   const serve = async () => {
     const data = [
@@ -250,8 +250,8 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }
     if (technicianType === null) {
       loadtTechnician();
-    } 
-   
+    }
+
   })
 
   /*   useEffect(() => {
@@ -281,7 +281,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                 resizeMode="cover"
                 style={styles.image2}
               >
-{/*                 <View style={styles.container}>
+                {/*                 <View style={styles.container}>
                   <View style={styles.box5}>
                     <Image
                       style={styles.image}
@@ -428,16 +428,28 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               </View>
               <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
-              {map()}
+                {map()}
               </View>
               {
-                 seveEdit === true ? 
-                 <TouchableOpacity style={styles.button} onPress={() => serve()}>
-                <Text style={styles.text}>บันทึก</Text>
-              </TouchableOpacity>
-              : null
+                seveEdit === true ?
+                  <>
+                    {
+                      location.latitude === null ?
+                        <Text style={styles.text}>กรุณาเปิด GPS</Text>
+                        :
+                        <TouchableOpacity style={styles.button} onPress={() => serve()}>
+                          <Text style={styles.text}>บันทึก</Text>
+                        </TouchableOpacity>
+
+                      /*  <TouchableOpacity style={styles.button} onPress={() => serve()}>
+                       <Text style={styles.text}>บันทึก</Text>
+                     </TouchableOpacity> */
+                    }
+                  </>
+
+                  : null
               }
-              
+
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -462,55 +474,55 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
             <TouchableOpacity style={styles.button1} onPress={() => edit()}>
               <Text style={styles.text5}>แก้ไขข้อมูล</Text>
             </TouchableOpacity>
-            
+
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"ชื่อ"}</Text>
-                <Text style={styles.text7}>{statusAddress.name}</Text>
+              <Text style={styles.text6}>{"ชื่อ"}</Text>
+              <Text style={styles.text7}>{statusAddress.name}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"เบอร์ติดต่อ"}</Text>
-                <Text style={styles.text7}>{statusAddress.phone_number}</Text>
+              <Text style={styles.text6}>{"เบอร์ติดต่อ"}</Text>
+              <Text style={styles.text7}>{statusAddress.phone_number}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"อีเมล"}</Text>
-                <Text style={styles.text7}>{statusAddress.email}</Text>
-            </View>
-            
-            <View style={styles.box7}>
-                <Text style={styles.text6}>{"ที่อยู่"}</Text>
-                <Text style={styles.text7}>{statusAddress.addressUser}</Text>
+              <Text style={styles.text6}>{"อีเมล"}</Text>
+              <Text style={styles.text7}>{statusAddress.email}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"แขวง/ตำบล"}</Text>
-                <Text style={styles.text7}>{statusAddress.subdistrict}</Text>
+              <Text style={styles.text6}>{"ที่อยู่"}</Text>
+              <Text style={styles.text7}>{statusAddress.addressUser}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"เขต/อำเภอ"}</Text>
-                <Text style={styles.text7}>{statusAddress.district}</Text>
+              <Text style={styles.text6}>{"แขวง/ตำบล"}</Text>
+              <Text style={styles.text7}>{statusAddress.subdistrict}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"จังหวัด"}</Text>
-                <Text style={styles.text7}>{statusAddress.province}</Text>
+              <Text style={styles.text6}>{"เขต/อำเภอ"}</Text>
+              <Text style={styles.text7}>{statusAddress.district}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"รหัสไปรษณีย์"}</Text>
-                <Text style={styles.text7}>{statusAddress.zipcode}</Text>
+              <Text style={styles.text6}>{"จังหวัด"}</Text>
+              <Text style={styles.text7}>{statusAddress.province}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"ประเภทงาน 1"}</Text>
-                <Text style={styles.text7}>{statusAddress.technician_1}</Text>
+              <Text style={styles.text6}>{"รหัสไปรษณีย์"}</Text>
+              <Text style={styles.text7}>{statusAddress.zipcode}</Text>
             </View>
 
             <View style={styles.box7}>
-                <Text style={styles.text6}>{"ประเภทงาน 2"}</Text>
-                <Text style={styles.text7}>{statusAddress.technician_2}</Text>
+              <Text style={styles.text6}>{"ประเภทงาน 1"}</Text>
+              <Text style={styles.text7}>{statusAddress.technician_1}</Text>
+            </View>
+
+            <View style={styles.box7}>
+              <Text style={styles.text6}>{"ประเภทงาน 2"}</Text>
+              <Text style={styles.text7}>{statusAddress.technician_2}</Text>
             </View>
 
             <View>
@@ -519,7 +531,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                 {statusAddress.location !== undefined ? (
                   <>
                     <MapView
-                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
+                      provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
                       style={styles.map}
                       initialRegion={{
                         latitude: statusAddress.location.latitude,
@@ -555,12 +567,12 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
         <SafeAreaView style={styles.container}>
           <ScrollView>
             <View>
-            <ImageBackground
+              <ImageBackground
                 source={img1}
                 resizeMode="cover"
                 style={styles.image2}
               >
-     {/*            <View style={styles.container}>
+                {/*            <View style={styles.container}>
                   <View style={styles.box5}>
                   <Image
                     style={styles.image}
@@ -608,7 +620,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                     }}
                   />
                 </View>
-                
+
                 <View>
                   <View>
                     <Text style={styles.text2}>{"เลือกประเภทงานช่าง 1"}</Text>
@@ -623,12 +635,12 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                         <Picker.Item label="เลือกประเภทงาน" value="null" />
                         {technicianType !== null
                           ? technicianType.map((value) => {
-                              let name = value.technician_type;
-                              let picker = (
-                                <Picker.Item label={name} value={name} />
-                              );
-                              return picker;
-                            })
+                            let name = value.technician_type;
+                            let picker = (
+                              <Picker.Item label={name} value={name} />
+                            );
+                            return picker;
+                          })
                           : null}
                       </Picker>
                     </View>
@@ -646,12 +658,12 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                         <Picker.Item label="เลือกประเภทงาน" value="null" />
                         {technicianType !== null
                           ? technicianType.map((value) => {
-                              let name = value.technician_type;
-                              let picker = (
-                                <Picker.Item label={name} value={name} />
-                              );
-                              return picker;
-                            })
+                            let name = value.technician_type;
+                            let picker = (
+                              <Picker.Item label={name} value={name} />
+                            );
+                            return picker;
+                          })
                           : null}
                       </Picker>
                     </View>
@@ -718,13 +730,13 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                 {map()}
               </View>
               {
-                 seveEdit === true ? 
-                 <TouchableOpacity style={styles.button} onPress={() => update()}>
-                <Text style={styles.text}>บันทึก</Text>
-              </TouchableOpacity>
-              : null
+                seveEdit === true ?
+                  <TouchableOpacity style={styles.button} onPress={() => update()}>
+                    <Text style={styles.text}>บันทึก</Text>
+                  </TouchableOpacity>
+                  : null
               }
-              
+
             </View>
           </ScrollView>
         </SafeAreaView>
@@ -732,16 +744,16 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     );
   };
 
- /*    console.log(useSelector((state) => ({ ...state }))); */
-  
+  /*    console.log(useSelector((state) => ({ ...state }))); */
+
 
   return (
     <>
       {statusAddress === null
         ? addAddress()
         : statusEdit === true
-        ? editAddress()
-        : showAddress()}
+          ? editAddress()
+          : showAddress()}
     </>
   );
 };
