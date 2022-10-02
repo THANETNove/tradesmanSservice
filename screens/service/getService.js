@@ -999,6 +999,39 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
     });
   return upBookBank;
 };
+ const deleteImagsShop = async (id,name) => {
+   console.log("id+name",id,name);
+/*    const seaUser = await axios.get(`${url}/deleteImagsShop.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+      id: id,
+      name:name
+    }
+  }).then((result) => {
+    return "success";
+  })
+    .catch((error) => {
+      return error;
+    }); */
+    const formdata = new FormData();
+    formdata.append('isAdd', true);
+    formdata.append('id', id);
+    formdata.append('name', name);
+    const deleteImg = await axios.post(`${url}/deleteImagsShop.php`,formdata,{
+      headers: {
+        'Content-Type': 'multipart/form-data;charset=utf-8',
+      }
+    }).then((result) => {
+      return result;
+    })
+      .catch((error) => {
+        return error;
+      });
+  return deleteImg;
+};
 
 export default {
   createUser,
@@ -1040,5 +1073,6 @@ export default {
   uplodeUpdateImagesShop,
   getShopImagesAll,
   getRestPassword,
-  updatePasswors
+  updatePasswors,
+  deleteImagsShop
 };

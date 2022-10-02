@@ -14,7 +14,7 @@ import {
   ActivityIndicator,
   TextInput
 } from "react-native";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import img1 from "../assets/images/AA1.png";
 import shopImg from "./service/getService";
@@ -129,8 +129,8 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-     /*  aspect: [5, 5],
-      quality: 1, */
+      /*  aspect: [5, 5],
+       quality: 1, */
     });
 
     if (!result.cancelled) {
@@ -251,24 +251,34 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     }
   }
 
+  const deleteImage = async (e, j,k) => {
+    Alert.alert(
+      "Delete Image",
+      "คุณเเน่จะลบภาพ ที่ " + k,
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => 
+        {
+      
+          const result2 =   shopImg.deleteImagsShop(e,j);
+          Alert.alert("ลบภาพ ที่ "  + k +"สำเร็จ");
+          popToTop();
+
+        }
+      }
+      ]
+    );
+  }
+
   const addImage = () => {
     return (
       <>
         <SafeAreaView style={styles.container}>
           <ScrollView>
-
-            {
-              activityIndicator === true ?
-                <View style={styles.box8}>
-                  <View style={styles.horizontal}>
-                    <Text>กำลังบันทึกภาพ</Text>
-                    <ActivityIndicator size={80} color="#fff" />
-                  </View>
-                </View>
-                :
-                null
-            }
-
             <View>
               <ImageBackground
                 source={img1}
@@ -288,11 +298,22 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
               <View style={styles.boxhead}>
                 <View style={styles.box1}>
                   {image1 && (
-                    <Image
-                      source={{ uri: image1.uri }}
-                      style={styles.image3}
-                      onPress={() => pickImage2()}
-                    />
+                    <>
+                    {
+                    idImage1 && ( 
+                      <TouchableOpacity onPress={() => deleteImage(idImage1.id, idImage1.name,"1")} style={styles.icons5}>
+                        <MaterialIcons name="delete" style={styles.icons5} />
+                    </TouchableOpacity>
+                    )
+                    }
+
+                      <Image
+                        source={{ uri: image1.uri }}
+                        style={styles.image3}
+                        onPress={() => pickImage2()}
+                      />
+                    </>
+
                   )}
                   <TouchableOpacity>
                     <AntDesign
@@ -305,7 +326,14 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
 
                 <View style={styles.box1}>
                   {image2 && (
-                    <Image source={{ uri: image2.uri }} style={styles.image3} />
+                    <>
+                     {idImage2 && (
+                      <TouchableOpacity onPress={() => deleteImage(idImage2.id, idImage2.name,"2")} style={styles.icons5}>
+                        <MaterialIcons name="delete" style={styles.icons5} />
+                      </TouchableOpacity>
+                     )}
+                      <Image source={{ uri: image2.uri }} style={styles.image3} />
+                    </>
                   )}
                   <TouchableOpacity>
                     <AntDesign
@@ -318,7 +346,18 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
 
                 <View style={styles.box1}>
                   {image3 && (
-                    <Image source={{ uri: image3.uri }} style={styles.image3} />
+                    <>
+                    {
+                      idImage3 && (
+                        <TouchableOpacity onPress={() => deleteImage(idImage3.id, idImage3.name ,"3")} style={styles.icons5}>
+                        <MaterialIcons name="delete" style={styles.icons5} />
+                      </TouchableOpacity>
+                      )
+                    }
+                     
+                      <Image source={{ uri: image3.uri }} style={styles.image3} />
+                    </>
+
                   )}
                   <TouchableOpacity>
                     <AntDesign
@@ -332,7 +371,18 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
               <View style={styles.boxhead}>
                 <View style={styles.box1}>
                   {image4 && (
-                    <Image source={{ uri: image4.uri }} style={styles.image3} />
+                    <>
+                    {
+                      idImage4 && (
+                        <TouchableOpacity onPress={() => deleteImage(idImage4.id, idImage4.name,"4")} style={styles.icons5}>
+                        <MaterialIcons name="delete" style={styles.icons5} />
+                      </TouchableOpacity>
+                      )
+                    }
+                      
+                      <Image source={{ uri: image4.uri }} style={styles.image3} />
+                    </>
+
                   )}
                   <TouchableOpacity>
                     <AntDesign
@@ -345,7 +395,18 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
 
                 <View style={styles.box1}>
                   {image5 && (
-                    <Image source={{ uri: image5.uri }} style={styles.image3} />
+                    <>
+                    {
+                      idImage5 && (
+                        <TouchableOpacity onPress={() => deleteImage(idImage5.id, idImage5.name,"5")} style={styles.icons5}>
+                        <MaterialIcons name="delete" style={styles.icons5} />
+                      </TouchableOpacity>
+                      )
+                    }
+                      
+                      <Image source={{ uri: image5.uri }} style={styles.image3} />
+                    </>
+
                   )}
                   <TouchableOpacity>
                     <AntDesign
@@ -357,7 +418,18 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                 </View>
                 <View style={styles.box1}>
                   {image6 && (
-                    <Image source={{ uri: image6.uri }} style={styles.image3} />
+                    <>
+                    {
+                      idImage6 && (
+                      <TouchableOpacity onPress={() => deleteImage(idImage6.id, idImage6.name,"6")} style={styles.icons5}>
+                        <MaterialIcons name="delete" style={styles.icons5} />
+                      </TouchableOpacity>
+                      )
+                    }
+                      
+                      <Image source={{ uri: image6.uri }} style={styles.image3} />
+                    </>
+
                   )}
                   <TouchableOpacity>
                     <AntDesign
@@ -402,12 +474,26 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                   </View>
                   : null
               }
+              {
+                activityIndicator === true ?
+                <View style={styles.box8}>
+                  {/* <TouchableHighlight style={styles.button}> */}
+                  <View style={styles.horizontal}>
+                    <Text>กำลังบันทึกภาพ</Text>
+                    <ActivityIndicator size={60} color="#37C1FB" />
+                  </View>
+                  {/* </TouchableHighlight> */}
+                </View>
+                :
+                null
+              }
             </View>
           </ScrollView>
         </SafeAreaView>
       </>
     );
   };
+
   /*   console.log("img1",image1);
     console.log("img6",image6); */
 
@@ -429,11 +515,14 @@ const styles = StyleSheet.create({
   },
   horizontal: {
     position: "absolute",
-    top: "50%",
+    top: "40%",
     left: "50%",
-    marginTop: -50,
+    marginTop: -30,
     marginLeft: -40,
     zIndex: 1,
+    fontSize: 16,
+    marginBottom: 20,
+/*     color: "#37C1FB", */
   },
   backgroun: {
     width: "100%",
@@ -530,16 +619,16 @@ const styles = StyleSheet.create({
     height: 30,
     width: "auto",
     marginTop: 20,
-    marginBottom:20
+    marginBottom: 20
 
-/*     backgroundColor: "#FFF", */
-/*     shadowColor: "#000",
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 3,
-    borderRadius: 10,
-    marginLeft: 15,
-    marginTop: 20, */
+    /*     backgroundColor: "#FFF", */
+    /*     shadowColor: "#000",
+        shadowOpacity: 0.27,
+        shadowRadius: 4.65,
+        elevation: 3,
+        borderRadius: 10,
+        marginLeft: 15,
+        marginTop: 20, */
   },
   box5: {
     height: 25,
@@ -569,18 +658,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   box8: {
-    height: 280,
-    width: 320,
-    backgroundColor: "#37C1FB",
-    shadowColor: "#000",
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 4,
-    borderRadius: 10,
-    position: "absolute",
-    zIndex: 1,
-    marginTop: "120%",
-    marginLeft: 20,
+    marginBottom: 40,
+    paddingBottom:40
   },
   text: {
     marginLeft: "auto",
@@ -644,6 +723,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
   },
+  icons5: {
+    position: "absolute",
+    color: "red",
+    backgroundColor: "#fff",
+    zIndex: 2,
+    fontSize: 30,
+    borderRadius: 30,
+  },
+
 });
 
 export default connect()(Add_product);
