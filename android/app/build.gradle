@@ -144,8 +144,8 @@ android {
         applicationId 'com.ththanet.techicianOnline'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 19
-        versionName "3.0.19"
+        versionCode 20
+        versionName "3.0.20"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
 
         if (isNewArchitectureEnabled()) {

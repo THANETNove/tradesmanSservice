@@ -117,6 +117,14 @@ class Profile_tradesman extends Component {
       type: 'DELETE_SHOPALL',
       payload: null
     })
+    this.props.dispatch({
+      type: 'DELETE_IMAGESHOP',
+      payload: null
+    })
+    this.props.dispatch({
+      type: 'DELETE_SHOP',
+      payload: null
+    })
   }
 
   async logout() {
