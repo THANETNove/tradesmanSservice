@@ -2,7 +2,7 @@ import React ,{useEffect,useState}from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { FontAwesome } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons,MaterialIcons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import RouterHome from './screens/router/routerHome';
@@ -10,6 +10,7 @@ import RouterShop from './screens/router/routerShop';
 import RouterNotifications from './screens/router/notifications';
 import RouterMessge from './screens/router/routerMessge';
 import RouterProfile from './screens/router/routerProfile';
+import RouterAdmin from './screens/router/routerAdmin';
 import { createStore } from 'redux';
 /* import allReducer from './redux/index';aa */
 import { Provider } from "react-redux"; 
@@ -17,6 +18,7 @@ import  configureStore   from './redux/reducers';
 import { PersistGate } from 'redux-persist/integration/react';
 import * as Linking from 'expo-linking';
 import {Text} from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 
 
 const { store, persistor } = configureStore();
@@ -24,6 +26,8 @@ const { store, persistor } = configureStore();
 const Tab = createBottomTabNavigator();
 
 function MyStack() {
+/*   const dispatch = useDispatch(); */
+ const login =  useSelector((state) => state.login);
   return (
     <NavigationContainer>
     <Tab.Navigator screenOptions={{ headerShown: false }}>
@@ -43,6 +47,15 @@ function MyStack() {
         options={{
           tabBarIcon: ({ size, color }) => (<MaterialCommunityIcons name="Notifications" color={color} size={size} />)
         }} /> */}
+        {
+          (login && login.status_user) === "admin" ? 
+          <Tab.Screen name="Admin" component={RouterAdmin}
+        options={{
+          tabBarIcon: ({ size, color }) => (<MaterialIcons name="admin-panel-settings" color={color} size={size} />)
+        }} />
+          :
+          null
+        }
       <Tab.Screen name="Profile" component={RouterProfile}
         options={{
           tabBarIcon: ({ size, color }) => (<FontAwesome name="user" color={color} size={size} />)
@@ -57,6 +70,7 @@ function MyStack() {
 export default function App() {
  
   const [data, setData] = useState(null);
+
 
 function handleDeepLink(event) {
   let data = Linking.parse(event.url);

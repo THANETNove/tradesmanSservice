@@ -125,7 +125,7 @@ class Shop_user extends Component {
                                <Text style={styles.shopyou}>ร้านค้าของคุณ</Text>
                                : 
                               <>
-                               <Text style={styles.text}>ติดต่อชื้อสินค้า</Text>
+                               <Text style={styles.text}>ติดต่อซื้อสินค้า</Text>
                                 <TouchableOpacity onPress={(e) => this.clickChat(id)}>
                                     <Ionicons name="chatbox-ellipses-sharp" style={styles.icons5}/>
                                 </TouchableOpacity>

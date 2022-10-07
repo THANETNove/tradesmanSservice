@@ -440,7 +440,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                   </TouchableOpacity>
                 </View>
                 <View style={styles.box_text}>
-                  <Text>ชื่อสินค้า</Text>
+                  <Text>ซื้ออสินค้า</Text>
                   <TextInput
                     style={styles.input}
                     placeholder="ชื่อสินค้า"
@@ -451,7 +451,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                   /* onChangeText={onChangeText}
                   value={text} */
                   />
-                  <Text>รายละเอียดสิค้า</Text>
+                  <Text>รายละเอียดสินค้า</Text>
                   <TextInput
                     style={styles.textarea}
                     onChange={(e) => {
@@ -460,7 +460,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                     multiline={true}
                     numberOfLines={5}
                     value={detail}
-                    placeholder="รายละเอียดสิค้า"
+                    placeholder="รายละเอียดสินค้า"
                   />
                 </View>
               </View>
