@@ -1,4 +1,5 @@
 import axios from "axios";
+/* import { getToken } from '../hooks/useToken'; */
 /*  const  url = 'https://reqres.in';  */
 /*  const url = 'http://192.168.1.12/project/api-database';  */  //หน่วย
    const url = 'https://th-projet.com/api-database';    // ยอน 
@@ -139,6 +140,24 @@ const getUser = async (e) => {
     });
   return seaUser;
 };
+const getAnnonceText = async () => {
+  const seaUser = await axios.get(`${url}/getAnnonceText.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return seaUser;
+};
 // ดึง getShop 
 const getShop = async (e) => {
   const seaUser = await axios.get(`${url}/getShop.php`, {
@@ -201,9 +220,11 @@ const technician_type = async () => {
 // ดึงสินค้าทั้งหมด
 const getShopImagesAll = async () => {
   const getShopImg = await axios.get(`${url}/getShopImagesAll.php`, {
+
     headers: {
-      'Content-Type': 'text/javascript;charset=utf-8',
+      'Content-Type': 'text/javascript;charset=utf-8'
     },
+  
     params: {
       isAdd: true,
     }
@@ -213,7 +234,27 @@ const getShopImagesAll = async () => {
   })
     .catch((error) => {
 
-      return null;
+      return error;
+    });
+  return getShopImg;
+}
+const getShopImagesAll_Admin = async () => {
+  const getShopImg = await axios.get(`${url}/getShopImagesAll_Admin.php`, {
+
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8'
+    },
+  
+    params: {
+      isAdd: true,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return error;
     });
   return getShopImg;
 }
@@ -564,6 +605,24 @@ const createUser = async (e) => {
   formdata.append('status_check', e[3]);
   formdata.append('notificationsId', e[4]);
   const cerUser = await axios.post(`${url}/addUser.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+
+    return "success";
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return cerUser;
+};
+const createAnnonceText = async (e) => {
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('announce', e);
+  const cerUser = await axios.post(`${url}/addAnnonceText.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -982,6 +1041,45 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
     });
   return upBookBank;
 };
+
+ const updataAnnonceText = async (e) => {
+/*    console.log("e", e); */
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', e[0]);
+  formdata.append('annonce', e[1]);
+  const upAnnonceText = await axios.post(`${url}/updataAnnonceText.php`,formdata,{
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+    return "success";
+  })
+    .catch((error) => {
+      return error;
+    });
+  return upAnnonceText;
+};
+ const UpDateStatusShop = async (e) => {
+   console.log("e",e);
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', e[0]);
+  formdata.append('status', e[1]);
+  formdata.append('comment', e[2]);
+  const upBookBank = await axios.post(`${url}/upDateStatusShop.php`,formdata,{
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+    return result;
+  })
+    .catch((error) => {
+      return error;
+    });
+  return upBookBank;
+};
+
  const updateMessage = async (id,value) => {
   const formdata = new FormData();
   formdata.append('isAdd', true);
@@ -1032,47 +1130,72 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
       });
   return deleteImg;
 };
+ const delete_Announced = async (id) => {
+
+    const formdata = new FormData();
+    formdata.append('isAdd', true);
+    formdata.append('id', id);
+    const deleteImg = await axios.post(`${url}/delete_Announced.php`,formdata,{
+      headers: {
+        'Content-Type': 'multipart/form-data;charset=utf-8',
+      }
+    })
+    .then((result) => {
+      return "success";
+    })
+      .catch((error) => {
+        return error;
+      });
+  return deleteImg;
+};
+
 
 export default {
+  addMessage,
   createUser,
+  createAnnonceText,
+  createShop,
+  createAddress,
+  createBookBank,
   searchUser,
+  createAddress_user,
   getLogin,
   technician_type,
-  createAddress,
   getAddress,
-  updateAddress,
-  uplodeImages,
   getImage,
-  uplodeUpdateImages,
-  createBookBank,
   getBookBank,
-  updateBookBank,
   imageProfile,
-  uplodeUpdateImagesProfile,
   getImageProfile,
-  createAddress_user,
   getAddress_user,
-  updateAddress_user,
   gettechnician,
   gettechnicianAddressid,
   getMessage_user,
   getMessage_user_id,
   getMessage_technician,
   getMessage_technician_id,
-  addMessage,
+  getShopImagesAll,
+  getShopImagesAll_Admin,
+  getRestPassword,
   getMessage_user_groupBy,
   getMessage_technician_groupBy,
-  updateMessage,
   getUserAddressid,
   getUser,
-  uplodeImagesShop,
-  createShop,
-  getShop,
-  updateShop,
   getImageShop,
+  getShop,
+  getAnnonceText,
+  updateShop,
+  updateBookBank,
   uplodeUpdateImagesShop,
-  getShopImagesAll,
-  getRestPassword,
+  uplodeImagesShop,
+  updateMessage,
   updatePasswors,
-  deleteImagsShop
+  UpDateStatusShop,
+  updateAddress,
+  uplodeImages,
+  uplodeUpdateImagesProfile,
+  uplodeUpdateImages,
+  updateAddress_user,
+  updataAnnonceText,
+  deleteImagsShop,
+  delete_Announced
 };

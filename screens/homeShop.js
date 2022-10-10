@@ -23,6 +23,10 @@ class HomeShop extends Component {
   }
 
   componentDidMount() {
+    this.props.dispatch({
+      type: 'DELETE_SHOPALL',
+      payload: null
+    })
     this.setState({
       shopImage: this.props.posts.shopAll,
       url: this.props.posts.urlImage
@@ -62,16 +66,17 @@ class HomeShop extends Component {
 
   allShop() {
     const { shopImage, url } = this.state;
+    console.log("shopImage",shopImage);
     return (
       <>
         <ScrollView style={styles.container}>
           <View style={styles.row}>
             {
-              shopImage !== null ?
+            (shopImage && shopImage !== null) ?
+              /* console.log("มีค่า") */
                 <>
                   {
-                    shopImage.map((index) => {
-                      /* console.log(`${url}shop/${index.url_shop}`); */
+                  shopImage && shopImage.map((index) => {
                       const image = (
                         <TouchableWithoutFeedback onPress={(e) => this.clikShop(index.id_shop)}>
                           <View style={styles.box}>
@@ -91,7 +96,7 @@ class HomeShop extends Component {
                     })
                   }
                 </>
-                : null
+                :  null
 
             }
           </View>

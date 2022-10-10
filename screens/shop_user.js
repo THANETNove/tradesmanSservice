@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
         shadowColor: "#000",
         shadowOpacity: 0.34,
         shadowRadius: 6.27,
-        backgroundColor: "#4BC7FB",
+        backgroundColor: "#FFFF",
       },
     horizontal: {
         position: "absolute",
@@ -253,7 +253,7 @@ const styles = StyleSheet.create({
     },
     image4: {
         width: "100%",
-        height: 350,
+        height: 250,
         marginTop: 20,
         marginLeft: "auto",
         marginRight: "auto",

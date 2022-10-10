@@ -48,6 +48,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
   const [url, setUrl] = useState(useSelector((state) => state.urlImage));
   const [result1, setResult1] = useState(useSelector((state) => state.shop));
   const [result2, setResult2] = useState(useSelector((state) => state.imgesShop));
+  const [comment, setComment] = useState(null);
   const dispatch = useDispatch();
 
 
@@ -58,9 +59,11 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
   const getShop = async () => {
     if (result1) {
       const data = result1[0];
+      console.log("data", data);
       setId_shop(data.id)
       setHeading(data.heading)
       setDetail(data.detail)
+      setComment(data.comment)
     }
     if (result2) {
       result2.map((index) => {
@@ -251,7 +254,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     }
   }
 
-  const deleteImage = async (e, j,k) => {
+  const deleteImage = async (e, j, k) => {
     Alert.alert(
       "Delete Image",
       "คุณเเน่จะลบภาพ ที่ " + k,
@@ -261,15 +264,15 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
           onPress: () => console.log("Cancel Pressed"),
           style: "cancel"
         },
-        { text: "OK", onPress: () => 
         {
-      
-          const result2 =   shopImg.deleteImagsShop(e,j);
-          Alert.alert("ลบภาพ ที่ "  + k +"สำเร็จ");
-          popToTop();
+          text: "OK", onPress: () => {
 
+            const result2 = shopImg.deleteImagsShop(e, j);
+            Alert.alert("ลบภาพ ที่ " + k + "สำเร็จ");
+            popToTop();
+
+          }
         }
-      }
       ]
     );
   }
@@ -299,13 +302,13 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                 <View style={styles.box1}>
                   {image1 && (
                     <>
-                    {
-                    idImage1 && ( 
-                      <TouchableOpacity onPress={() => deleteImage(idImage1.id, idImage1.name,"1")} style={styles.icons5}>
-                        <MaterialIcons name="delete" style={styles.icons5} />
-                    </TouchableOpacity>
-                    )
-                    }
+                      {
+                        idImage1 && (
+                          <TouchableOpacity onPress={() => deleteImage(idImage1.id, idImage1.name, "1")} style={styles.icons5}>
+                            <MaterialIcons name="delete" style={styles.icons5} />
+                          </TouchableOpacity>
+                        )
+                      }
 
                       <Image
                         source={{ uri: image1.uri }}
@@ -327,11 +330,11 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                 <View style={styles.box1}>
                   {image2 && (
                     <>
-                     {idImage2 && (
-                      <TouchableOpacity onPress={() => deleteImage(idImage2.id, idImage2.name,"2")} style={styles.icons5}>
-                        <MaterialIcons name="delete" style={styles.icons5} />
-                      </TouchableOpacity>
-                     )}
+                      {idImage2 && (
+                        <TouchableOpacity onPress={() => deleteImage(idImage2.id, idImage2.name, "2")} style={styles.icons5}>
+                          <MaterialIcons name="delete" style={styles.icons5} />
+                        </TouchableOpacity>
+                      )}
                       <Image source={{ uri: image2.uri }} style={styles.image3} />
                     </>
                   )}
@@ -347,14 +350,14 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                 <View style={styles.box1}>
                   {image3 && (
                     <>
-                    {
-                      idImage3 && (
-                        <TouchableOpacity onPress={() => deleteImage(idImage3.id, idImage3.name ,"3")} style={styles.icons5}>
-                        <MaterialIcons name="delete" style={styles.icons5} />
-                      </TouchableOpacity>
-                      )
-                    }
-                     
+                      {
+                        idImage3 && (
+                          <TouchableOpacity onPress={() => deleteImage(idImage3.id, idImage3.name, "3")} style={styles.icons5}>
+                            <MaterialIcons name="delete" style={styles.icons5} />
+                          </TouchableOpacity>
+                        )
+                      }
+
                       <Image source={{ uri: image3.uri }} style={styles.image3} />
                     </>
 
@@ -372,14 +375,14 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                 <View style={styles.box1}>
                   {image4 && (
                     <>
-                    {
-                      idImage4 && (
-                        <TouchableOpacity onPress={() => deleteImage(idImage4.id, idImage4.name,"4")} style={styles.icons5}>
-                        <MaterialIcons name="delete" style={styles.icons5} />
-                      </TouchableOpacity>
-                      )
-                    }
-                      
+                      {
+                        idImage4 && (
+                          <TouchableOpacity onPress={() => deleteImage(idImage4.id, idImage4.name, "4")} style={styles.icons5}>
+                            <MaterialIcons name="delete" style={styles.icons5} />
+                          </TouchableOpacity>
+                        )
+                      }
+
                       <Image source={{ uri: image4.uri }} style={styles.image3} />
                     </>
 
@@ -396,14 +399,14 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                 <View style={styles.box1}>
                   {image5 && (
                     <>
-                    {
-                      idImage5 && (
-                        <TouchableOpacity onPress={() => deleteImage(idImage5.id, idImage5.name,"5")} style={styles.icons5}>
-                        <MaterialIcons name="delete" style={styles.icons5} />
-                      </TouchableOpacity>
-                      )
-                    }
-                      
+                      {
+                        idImage5 && (
+                          <TouchableOpacity onPress={() => deleteImage(idImage5.id, idImage5.name, "5")} style={styles.icons5}>
+                            <MaterialIcons name="delete" style={styles.icons5} />
+                          </TouchableOpacity>
+                        )
+                      }
+
                       <Image source={{ uri: image5.uri }} style={styles.image3} />
                     </>
 
@@ -419,14 +422,14 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                 <View style={styles.box1}>
                   {image6 && (
                     <>
-                    {
-                      idImage6 && (
-                      <TouchableOpacity onPress={() => deleteImage(idImage6.id, idImage6.name,"6")} style={styles.icons5}>
-                        <MaterialIcons name="delete" style={styles.icons5} />
-                      </TouchableOpacity>
-                      )
-                    }
-                      
+                      {
+                        idImage6 && (
+                          <TouchableOpacity onPress={() => deleteImage(idImage6.id, idImage6.name, "6")} style={styles.icons5}>
+                            <MaterialIcons name="delete" style={styles.icons5} />
+                          </TouchableOpacity>
+                        )
+                      }
+
                       <Image source={{ uri: image6.uri }} style={styles.image3} />
                     </>
 
@@ -462,6 +465,19 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
                     value={detail}
                     placeholder="รายละเอียดสินค้า"
                   />
+                  {
+                    comment != null ?
+                      <>
+                        <Text style={styles.comment}>* เหตุที่ไม่ได้รับการอนุมัติ</Text>
+                        <TextInput style={styles.commentBox}
+                          multiline={true} value={comment}
+                          editable={false} selectTextOnFocus={false}
+                        />
+                      </>
+                      :
+                      null
+                  }
+
                 </View>
               </View>
 
@@ -476,16 +492,16 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
               }
               {
                 activityIndicator === true ?
-                <View style={styles.box8}>
-                  {/* <TouchableHighlight style={styles.button}> */}
-                  <View style={styles.horizontal}>
-                    <Text>กำลังบันทึกภาพ</Text>
-                    <ActivityIndicator size={60} color="#37C1FB" />
+                  <View style={styles.box8}>
+                    {/* <TouchableHighlight style={styles.button}> */}
+                    <View style={styles.horizontal}>
+                      <Text>กำลังบันทึกภาพ</Text>
+                      <ActivityIndicator size={60} color="#37C1FB" />
+                    </View>
+                    {/* </TouchableHighlight> */}
                   </View>
-                  {/* </TouchableHighlight> */}
-                </View>
-                :
-                null
+                  :
+                  null
               }
             </View>
           </ScrollView>
@@ -522,7 +538,7 @@ const styles = StyleSheet.create({
     zIndex: 1,
     fontSize: 16,
     marginBottom: 20,
-/*     color: "#37C1FB", */
+    /*     color: "#37C1FB", */
   },
   backgroun: {
     width: "100%",
@@ -659,7 +675,7 @@ const styles = StyleSheet.create({
   },
   box8: {
     marginBottom: 40,
-    paddingBottom:40
+    paddingBottom: 40
   },
   text: {
     marginLeft: "auto",
@@ -731,6 +747,18 @@ const styles = StyleSheet.create({
     fontSize: 30,
     borderRadius: 30,
   },
+  comment: {
+    color: "red",
+    fontSize: 16,
+
+  },
+  commentBox: {
+    backgroundColor: "#ced4da",
+    minHeight: 80,
+    margin: 12,
+    borderWidth: 1,
+    padding: 10,
+  }
 
 });
 

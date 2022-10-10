@@ -36,12 +36,12 @@ class AdminApp extends Component {
 
                         <View style={styles.top}>
                             <View style={styles.box3}>
-                                <TouchableOpacity /* onPress={() => this.props.navigation.navigate("Home")} */>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate("ShopAdmin")}>
                                     <AntDesign name="checkcircle" style={styles.icons3} />
                                     <Text style={styles.text2}>{"อนุมัติการขาย"}
                                     </Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity /* onPress={() => this.props.navigation.navigate("homeShop")} */>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Announce")}>
                                     <AntDesign name="notification" style={styles.icons3} />
                                     <Text style={styles.text2}>{"ประกาศ"}
                                     </Text>
