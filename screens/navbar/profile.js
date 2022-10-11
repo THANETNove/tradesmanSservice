@@ -422,7 +422,7 @@ class Profile_tradesman extends Component {
   render  () {
     const { modalVisible, urlImg, stausLogin, ckeckUserId } = this.state;
     const login_a =  this.props.posts.login;
-    console.log(this.props.posts);
+
     return  (
       <>
         {

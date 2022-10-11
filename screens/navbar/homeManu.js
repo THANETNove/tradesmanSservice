@@ -13,21 +13,28 @@ import {
     TouchableHighlight
 } from "react-native";
 import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons,AntDesign } from '@expo/vector-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
 import { connect } from "react-redux";
 import img1 from "../../assets/images/A-6.png";
 import { logoutStore } from "../logout";
 import shopImg from "../service/getService";
-
+import MarqueeView from 'react-native-marquee-view';
 class homeManu extends Component {
 
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            data: null,
+            interval: null,
+            annonce: null
+        };
+    }
     setUrl = async () => {
         this.props.dispatch({
-          type: 'ADD_URL',
-          payload: "https://th-projet.com/api-database/images/"
+            type: 'ADD_URL',
+            payload: "https://th-projet.com/api-database/images/"
         })
         const shopAll = await shopImg.getShopImagesAll();
         if (shopAll) {
@@ -36,21 +43,48 @@ class homeManu extends Component {
                 payload: shopAll
             })
         }
-      }
+    }
 
     componentDidMount() {
         this.setUrl()
+        this.getAnnonce()
+       
     }
+    componentWillMount() {
+        this.setState({
+            interval: setInterval(() => {
+                this.getAnnonce()
+            }, 9000)
+        });
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.interval);
+    }
+
+    getAnnonce = async() => {
+        const annonce = await shopImg.getAnnonceText();
+        if (annonce) {
+            this.setState({
+                annonce: annonce
+            })
+        }
+       
+    }
+    
+
+
 
     add_shopping() {
         if (this.props.posts.login !== null) {
             this.props.navigation.navigate("add_shopping")
-        }else {
+        } else {
             this.props.navigation.navigate("Login")
-        } 
+        }
     }
 
     home() {
+        const { annonce } = this.state;
         return (
             <>
                 <SafeAreaView style={styles.container}>
@@ -59,8 +93,28 @@ class homeManu extends Component {
                             <View style={styles.box6}>
                                 <Image style={styles.image3} source={require('../../assets/images/AAA.png')} />
                             </View>
-                        </View>
 
+                        </View>
+                        <MarqueeView>
+                            <View style={styles.marquee}>
+                            <Text style={styles.marqueeText} >
+                           
+                                {
+                                 
+                                   annonce &&  annonce.map((index,j) =>
+                                    {
+                                        console.log("index",index);
+                                        const text =  (
+                                            <Text style={styles.marqueeText2}>    <AntDesign name="notification" style={styles.icons4} />  ประกาศ: <Text style={styles.marqueeText}> {index.announce}</Text> </Text>  
+                                            
+                                        )
+                                        return text
+                                    }
+                                   )
+                                }
+                            </Text>
+                            </View>
+                        </MarqueeView>
                         <View style={styles.top}>
                             <View style={styles.box3}>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate("Home")}>
@@ -86,11 +140,13 @@ class homeManu extends Component {
             </>
         )
     }
+    
     render() {
+
         return (
             <>
                 {
-                this.home()
+                    this.home()
                 }
             </>
         );
@@ -170,6 +226,34 @@ const styles = StyleSheet.create({
         paddingTop: 12,
         paddingLeft: 13,
     },
+    icons4: {
+        width: 50,
+        height: 48,
+        marginLeft: 6,
+        marginTop: 5,
+        fontSize: 26,
+        color: "red",
+        borderRadius: 10,
+        paddingTop: 12,
+        paddingLeft: 13,
+    },
+    marquee: {
+        marginTop: 20,
+        backgroundColor: '#37C1FB',
+        paddingTop:5,
+        paddingLeft:10,
+        paddingRight:10,
+        paddingBottom:5,
+        borderRadius: 5,
+    },
+    marqueeText: {
+        color: "#fff",
+        fontSize:18
+    },
+    marqueeText2: {
+        color: "red",
+        fontSize:18
+    }
 });
 
 const mapStateToProps = (state) => {

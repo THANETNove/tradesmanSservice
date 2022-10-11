@@ -44,13 +44,11 @@ class Message extends Component {
   }
 
   set_State = async (e) => {
-    console.log("e",e);
     if (e !== null) {
       if (e.status_user === "ลูกค้าทั่วไป") {
         const { starusLogin } = this.state;
         const result = await getMessage.getMessage_user(e.id);
         const resultGrouBy = await getMessage.getMessage_user_groupBy(e.id);
-        console.log('resultGrouBy',resultGrouBy)
         if (result) {
           this.setState({
             message: result,
@@ -63,7 +61,6 @@ class Message extends Component {
         const resultGrouBy = await getMessage.getMessage_technician_groupBy(
           e.id
         );
-        console.log("5555");
         if (result1 && resultGrouBy) {
           this.setState({
             message: result1,
@@ -99,7 +96,6 @@ class Message extends Component {
                   }
                 }
               });
-                /* console.log("index",index); */
             const name = (
 
               <TouchableWithoutFeedback

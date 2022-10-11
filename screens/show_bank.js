@@ -34,7 +34,6 @@ class Ahow_bank extends Component {
 
   render() {
     const { technician } = this.state;
-    console.log(technician);
 
     return (
 

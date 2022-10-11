@@ -32,6 +32,7 @@ class AdminApp extends Component {
                             <View style={styles.box6}>
                                 <Image style={styles.image3} source={require('../assets/images/AAA.png')} />
                             </View>
+                           
                         </View>
 
                         <View style={styles.top}>

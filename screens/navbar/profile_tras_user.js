@@ -31,7 +31,6 @@ class Profile_tras_user extends Component {
   componentDidMount() {
     
     var id = this.props.posts.id;
-    console.log("technician",this.state.technician);
     this.setState({
       login: this.props.posts.login,
     })

@@ -28,7 +28,6 @@ class Login extends Component {
     };
   }
 
-/* hjfdhgjdhg */
   handleOnPress(e, user) {
     this.setState({
       [user]: e,
@@ -37,7 +36,6 @@ class Login extends Component {
 
   getAddress = async (e) => {
     const result = await login.getAddress(e);
-/*     console.log("result", result); */
     if (result !== null) {
       let data3 = {
         id: result[0].id,
@@ -64,7 +62,6 @@ class Login extends Component {
 
   getAddress_user = async (e) => {
     const result = await login.getAddress_user(e);
-/*     console.log("result", result); */
     if (result !== null) {
       let data3 = {
         id: result[0].id,

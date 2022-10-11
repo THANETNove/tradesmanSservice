@@ -34,26 +34,20 @@ class Profile_user extends Component {
   }; */
 
   setModalVisible = (visible, urlImg) => {
-    console.log(visible, urlImg);
+
     this.setState({
       modalVisible: visible,
       urlImg: urlImg,
     });
   };
-  /* 
-    clickImg = (e) => {
-      console.log(e);
-      /*     this.setState({
-        urlImg: e,
-      });  
-    }; */
+
 
 
 
 
   render() {
     const { modalVisible, urlImg, stausLogin, ckeckUserId } = this.state;
-    /* console.log(urlImg,"123"); */
+    
     var myStar = [
       <FontAwesome name="star" style={styles.icons} />,
       <FontAwesome name="star" style={styles.icons} />,

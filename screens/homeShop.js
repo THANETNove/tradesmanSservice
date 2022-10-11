@@ -66,14 +66,12 @@ class HomeShop extends Component {
 
   allShop() {
     const { shopImage, url } = this.state;
-    console.log("shopImage",shopImage);
     return (
       <>
         <ScrollView style={styles.container}>
           <View style={styles.row}>
             {
             (shopImage && shopImage !== null) ?
-              /* console.log("มีค่า") */
                 <>
                   {
                   shopImage && shopImage.map((index) => {

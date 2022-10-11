@@ -622,10 +622,8 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     );
   };
 
-  /*   console.log(useSelector((state) => ({ ...state })));
-   */
+  /*   console.log(useSelector((state) => ({ ...state })));*/
 
-  console.log("AAAA");
   return (
     <>
       {statusAddress === null

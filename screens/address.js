@@ -71,8 +71,7 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
   };
 
  
-  /*   console.log(useSelector((state) => ({ ...state })));
-   */
+
   const map = () => {
 
     return (
@@ -134,7 +133,7 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
   andUsers = async (e) => {
    
     const result2 = await get_technician.getUserAddressid(e);
-    console.log("result2",result2);
+
     const loc = JSON.parse(result2[0].location);
     setLocation({
         latitude: loc.latitude,
@@ -158,7 +157,6 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
    
   },[location.latitude,location.longitude])
  
-  console.log("idtechnician",technician);
   return (
     
     <>

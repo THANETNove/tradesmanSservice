@@ -59,7 +59,6 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
   const getShop = async () => {
     if (result1) {
       const data = result1[0];
-      console.log("data", data);
       setId_shop(data.id)
       setHeading(data.heading)
       setDetail(data.detail)
@@ -153,7 +152,6 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     }
   };
   const serve = async (e) => {
-    /* console.log("idImage1",idImage1); */
     setActivityIndicator(true)
     setSeveEdit(false)
 
@@ -510,8 +508,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     );
   };
 
-  /*   console.log("img1",image1);
-    console.log("img6",image6); */
+
 
   return (
     <>

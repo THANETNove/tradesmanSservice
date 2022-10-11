@@ -40,7 +40,6 @@ class Announce extends Component {
 
     getAnnonceText = async () => {
         const result2 = await annonce.getAnnonceText();
-        console.log("55");
         if (result2) {
             this.setState({
                 data: result2
@@ -78,9 +77,7 @@ class Announce extends Component {
             }
 
         } else {
-            /* console.log("id", this.state.id,this.state.annonceText); */
             let data = [this.state.id, this.state.annonceText]
-            console.log("data", data);
             const result2 = await annonce.updataAnnonceText(data);
             if (result2 === "success") {
                 Alert.alert("เเก้ไข ประกาศ สำเร็จ");
@@ -119,7 +116,6 @@ class Announce extends Component {
 
         const response = await annonce.delete_Announced(e);
 
-        console.log("result2", response);
         if (response === "success") {
             this.getAnnonceText()
         }
@@ -161,7 +157,7 @@ class Announce extends Component {
     }
     edit_Announce() {
         const { annonceText, id, showButton } = this.state;
-        /* console.log(annonceText, id); */
+
         return (
             <>
                 <View>
@@ -171,10 +167,11 @@ class Announce extends Component {
                 </View>
                 <View style={styles.row}>
                     <View style={styles.box_text} >
-                        <Text style={styles.text1}>* เเกไขประกาศ</Text>
+                        <Text style={styles.text1}>* เเก้ไขประกาศ</Text>
                         <TextInput style={styles.textarea}
                             onChange={(e) => this.annonce_text(e.nativeEvent.text)}
                             multiline={true} value={annonceText}
+                            numberOfLines={4}
                         />
                         {
                             showButton == true ?
@@ -193,7 +190,6 @@ class Announce extends Component {
 
     show_Announce() {
         const { data } = this.state;
-        /*         console.log("data",data); */
         return (
             <View style={styles.box}>
                 {
@@ -335,7 +331,7 @@ const styles = StyleSheet.create({
         zIndex: 2
     },
     textarea: {
-        minHeight: 100,
+        minHeight: 60,
         margin: 12,
         borderWidth: 1,
         padding: 10,

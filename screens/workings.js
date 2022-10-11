@@ -76,7 +76,7 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
   };
 
   const pickImage2 = async () => {
-    console.log("555");
+
   };
 
 
@@ -121,7 +121,6 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
       result = result2;
     }
  
-   /*  console.log("result", result); */
 
     if (result === "success") {
       await getImags(id_user);
@@ -156,7 +155,6 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
     }
 
     for (let i = index; i < 9; i++) {
-      console.log("I", dataImage[i]);
 
       if (dataImage[i] !== null) {
         const result2 = await bookBank.uplodeImages(dataImage[i], id_user);
@@ -378,7 +376,7 @@ const ImagePickerExample = ({ navigation: { popToTop, navigate } }) => {
     if (statusImage !== null) {
       var img = JSON.parse(statusImage);
     }
-    /*     console.log(img[0].file_src); */
+
     return (
       <>
         {statusImage !== null ? (

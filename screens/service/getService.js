@@ -786,7 +786,7 @@ const uplodeImages = async (e,id_user) => {
  };
 
 const uplodeImagesShop = async (e,userId) => {
-  /* console.log("userId",userId); */
+
   const formdata = new FormData();
    formdata.append('image', {
      uri: e.uri,
@@ -972,7 +972,7 @@ const uplodeUpdateImages = async (e,id,name) => {
  };
 
 const uplodeUpdateImagesShop = async (e,id,name) => {
-/* console.log("e",e,id,name); */
+
   const formdata = new FormData();
    formdata.append('image', {
      uri: e.uri,
@@ -1043,7 +1043,6 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
 };
 
  const updataAnnonceText = async (e) => {
-/*    console.log("e", e); */
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id', e[0]);
@@ -1061,7 +1060,6 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
   return upAnnonceText;
 };
  const UpDateStatusShop = async (e) => {
-   console.log("e",e);
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id', e[0]);
@@ -1098,7 +1096,6 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
   return upBookBank;
 };
  const deleteImagsShop = async (id,name) => {
-   console.log("id+name",id,name);
 /*    const seaUser = await axios.get(`${url}/deleteImagsShop.php`, {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8',

@@ -43,7 +43,7 @@ const Registration = ({ navigation: { popToTop } }) => {
 
   const serve = async () => {
 
-    console.log("notificationsId",notificationsId);
+
     const  data = await [phone, md5(password), statusUser, statusCkeck,notificationsId];
 
    const seaUser = await bookBank.searchUser(data);
@@ -83,7 +83,7 @@ const Registration = ({ navigation: { popToTop } }) => {
   }
 
   const url = useSelector(state => state.notifications);
-  console.log("url",url);
+
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>

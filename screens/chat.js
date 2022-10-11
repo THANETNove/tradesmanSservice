@@ -57,7 +57,6 @@ class Chat extends Component {
       }
       result1 && result1.map((value)=>{
         if ((value.status_read === "0") && (id_click === value.status_user)) {
-        /*   console.log(value.id); */
           const id = value.id;
           const status_read = "1";
           const result_status =  getMessage.updateMessage(id,status_read);
@@ -158,7 +157,7 @@ class Chat extends Component {
   }
 
   ClickU(e) {
-        console.log(e);
+
     this.props.dispatch({
       type: 'ADD_IDTECHNICAN',
       payload: e

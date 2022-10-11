@@ -35,7 +35,7 @@ class Reset_paeeword extends Component {
     })
     if (phone !== null && phone !== "" ) {
       const result = await rest.getRestPassword(phone);
-      console.log(result[0].id);
+  
       if (result === null) {
         this.setState({
           restPass: null
@@ -57,7 +57,6 @@ class Reset_paeeword extends Component {
   savePassword = async()=> {
     const {id,password} = this.state;
     const data = [id,md5(password)]
-    console.log("data",data);
     if (password !== null && password !== " " ) {
       const result = await rest.updatePasswors(data);
       await Alert.alert(
@@ -117,7 +116,6 @@ class Reset_paeeword extends Component {
 
   newPassword() {
     const {password} = this.state;
-    console.log("password",password);
     return(
       <SafeAreaView style={styles.container}>
       <View>
@@ -161,7 +159,6 @@ class Reset_paeeword extends Component {
 
   render() {
     const {newPass,password} = this.state;
-    console.log("password",password);
     return (
       <>
       {

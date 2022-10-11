@@ -32,7 +32,6 @@ const FromBank = ({ navigation: { popToTop } }) => {
      const update  = async () =>  {
        setSeveEdit(false)
        let id =  statusBookBank[0].id;
-       console.log(id);
           const data = [id,name, number_bank, bank];
           const result = await bookBank.updateBookBank(data);
           if (result === "success") {

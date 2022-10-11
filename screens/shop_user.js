@@ -108,7 +108,6 @@ class Shop_user extends Component {
     render() {
         const { show, dataSource, detail, heading,img,url,id ,showImg,login} = this.state;
        
-       console.log('id',id); 
        return (
             <>
                 {

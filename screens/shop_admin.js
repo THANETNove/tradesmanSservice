@@ -53,7 +53,6 @@ class Shop_admin extends Component {
 
     }
     getImageShop = async (e, dataContent) => {
-        /*        console.log(dataContent.id); */
         const result2 = await shop.getImageShop(dataContent.id_shop);
 
         if (result2) {
@@ -141,7 +140,6 @@ class Shop_admin extends Component {
 
     showData() {
         const { data, url } = this.state;
-        console.log("data", data);
         return (
             <View style={styles.box}>
                 {

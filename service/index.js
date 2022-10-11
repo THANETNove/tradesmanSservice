@@ -28,7 +28,6 @@ const db = mysql.createConnection({
 
 
 app.get('/getUsers', (req, res) => {
-    console.log("448888");
     db.query("SELECT * FROM users", (err, result) => {
         if (err) {
             res.send(err);
@@ -42,7 +41,7 @@ app.get('/getUsers', (req, res) => {
 
 app.post('/createUser', (req, res) => {
 
-    console.log(req.body);
+
     const name = req.body.name;
     const email = req.body.email;
     const phone = req.body.phone;
@@ -62,7 +61,7 @@ app.post('/createUser', (req, res) => {
 });
 
 app.post('/createBookBank', (req, res) => {
-    console.log('asdada');
+
     const name = req.body.name;
     const number_bank = req.body.number_bank;
     const bank = req.body.bank;
@@ -81,7 +80,6 @@ app.post('/createBookBank', (req, res) => {
 
 app.post('/createAddress', (req, res) => {
 
-    console.log(req.body);
     const name = req.body.name;
     const addressUser = req.body.addressUser;
     const subdistrict = req.body.subdistrict;
@@ -124,7 +122,7 @@ const storage = multer.diskStorage({
   app.post('/uplodeImages', upload.single("image"), (req, res) => {
 
     if (!req.file) {
-        console.log("No file upload");
+
     } else {
         var imgsrc = 'http://192.168.1.5:3003/service/public/' + req.file.filename
         var insertData = "INSERT INTO image_users(file_src,id_user)VALUES(?,?)"
@@ -160,14 +158,14 @@ const storage = multer.diskStorage({
  */
 
 app.get('/getLogin', (req, res) => {
-    console.log("448888");
+
     db.query(`SELECT  email ,password FROM users WHERE email='thanet@planforfit.com' AND password='e10adc3949ba59abbe56e057f20f883e'`, (err, result) => {
         if (err) {
-            console.log("11");
+           
             res.send(err);
 
         } else {
-            console.log("22");
+          
             res.send(result);
         }
     });

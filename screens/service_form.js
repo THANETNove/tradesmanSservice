@@ -265,7 +265,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     }, [location.latitude]); */
 
   /*   const url = useSelector(state => ({...state}));
-    console.log("url",url); */
+*/
   const image = {
     uri: "https://www.roojai.com/wp-content/uploads/2018/07/how-to-choose-garage-car-mechanic-cover.jpg",
   };
