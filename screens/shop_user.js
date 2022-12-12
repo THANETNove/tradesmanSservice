@@ -195,6 +195,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.27,
         shadowRadius: 4.65,
         elevation: 4,
+        padding: 20,
         borderRadius: 5,
         position: "absolute",
         zIndex: 2,
@@ -236,7 +237,7 @@ const styles = StyleSheet.create({
         fontSize: 20
     },
     close: {
-        paddingTop: 10,
+        paddingTop: "5%",
         textAlign: "right",
         paddingRight: 20,
         fontSize: 20,
@@ -252,8 +253,8 @@ const styles = StyleSheet.create({
     },
     image4: {
         width: "100%",
-        height: 250,
-        marginTop: 20,
+        height: 350,
+        marginTop: "10%",
         marginLeft: "auto",
         marginRight: "auto",
         borderRadius: 5,

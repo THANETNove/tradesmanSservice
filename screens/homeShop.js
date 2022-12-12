@@ -117,14 +117,15 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   row: {
+    marginTop: 20,
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "left",
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginBottom: 20,
   },
   box: {
-    width: 160,
+    width: "30%",
     height: "auto",
     marginTop: 10,
     marginLeft: 12,
@@ -134,9 +135,12 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     backgroundColor: "#4BC7FB",
   },
+/*   img: {
+    height:
+  }, */
   image: {
     width: "100%",
-    height: 150,
+    height: 110,
     marginLeft: "auto",
     marginRight: "auto",
     borderRadius: 5,
