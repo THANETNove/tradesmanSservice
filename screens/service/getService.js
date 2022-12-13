@@ -1128,11 +1128,29 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
   return deleteImg;
 };
  const delete_Announced = async (id) => {
-
+  
     const formdata = new FormData();
     formdata.append('isAdd', true);
     formdata.append('id', id);
     const deleteImg = await axios.post(`${url}/delete_Announced.php`,formdata,{
+      headers: {
+        'Content-Type': 'multipart/form-data;charset=utf-8',
+      }
+    })
+    .then((result) => {
+      return "success";
+    })
+      .catch((error) => {
+        return error;
+      });
+  return deleteImg;
+};
+ const delete_user = async (id) => {
+  console.log("id",id);
+    const formdata = new FormData();
+    formdata.append('isAdd', true);
+    formdata.append('id', id);
+    const deleteImg = await axios.post(`${url}/delete_user.php`,formdata,{
       headers: {
         'Content-Type': 'multipart/form-data;charset=utf-8',
       }
@@ -1194,5 +1212,6 @@ export default {
   updateAddress_user,
   updataAnnonceText,
   deleteImagsShop,
-  delete_Announced
+  delete_Announced,
+  delete_user
 };

@@ -14,6 +14,7 @@ import Address_user from '../address_user';
 import Payment from '../payment';
 import Privacypolicy from '../privacypolicy';
 import ResetPassword from '../reset_password';
+import Deletion from '../deletion';
 
 
 const HomeStack = createNativeStackNavigator();
@@ -54,6 +55,10 @@ function App() {
       <HomeStack.Screen name="ResetPassword" component={ResetPassword} 
       options={{
         title: 'ResetPassword',
+      }} />
+      <HomeStack.Screen name="Deletion" component={Deletion} 
+      options={{
+        title: 'Deletion',
       }} />
 
     </HomeStack.Navigator>

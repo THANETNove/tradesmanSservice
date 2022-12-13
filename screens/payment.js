@@ -15,11 +15,11 @@ import img1 from "../assets/images/logo_technician.png";
 
 class Payment extends Component {
     componentDidMount() {
-        console.log("ตอนเเรก");
+      /*   console.log("ตอนเเรก"); */
     }
 
     componentDidUpdate() {
-        console.log("โหลดเร็จ");
+       /*  console.log("โหลดเร็จ"); */
     }
 
 

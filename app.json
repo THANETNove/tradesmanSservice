@@ -2,7 +2,7 @@
   "expo": {
     "name": "technician online",
     "slug": "onthTechicianOnline",
-    "version": "1.0.0",
+    "version": "3.0.24",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -10,16 +10,17 @@
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
-
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.ththanet.techicianOnline",
-      "buildNumber": "1.0.4"
+      "buildNumber": "1.0.5"
     },
     "android": {
       "adaptiveIcon": {
@@ -27,7 +28,10 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.ththanet.techicianOnline",
-      "versionCode": 16
+      "versionCode": 17,
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -38,16 +42,12 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
-      ],
-      [
-        "expo-notifications",
-        {
-          "icon": "./assets/images/splash.png",
-          "color": "#ffffff",
-          "sounds": ["./local/path/to/mySound.wav", "./local/path/to/myOtherSound.wav"],
-          "mode": "production"
-        }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "82ad714e-bb8a-4c3b-8a54-0cc7c4df35b7"
+      }
+    }
   }
 }

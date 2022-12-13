@@ -74,7 +74,7 @@ class Message extends Component {
   };
 
   clickChat(e) {
-    console.log(e);
+
     this.props.dispatch({
       type: "ADD_IDTECHNICAN",
       payload: e,
@@ -147,7 +147,6 @@ class Message extends Component {
                   }
                 }
               });
-              console.log("indextechnician",index);
 
             const name = (
 

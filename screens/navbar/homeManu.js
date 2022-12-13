@@ -103,7 +103,7 @@ class homeManu extends Component {
                                  
                                    annonce &&  annonce.map((index,j) =>
                                     {
-                                        console.log("index",index);
+                                       /*  console.log("index",index); */
                                         const text =  (
                                             <Text style={styles.marqueeText2}>    <AntDesign name="notification" style={styles.icons4} />  ประกาศ: <Text style={styles.marqueeText}> {index.announce}</Text> </Text>  
                                             

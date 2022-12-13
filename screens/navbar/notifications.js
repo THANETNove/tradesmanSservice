@@ -30,7 +30,7 @@ const  Notification = () => {
 
     // This listener is fired whenever a user taps on or interacts with a notification (works when app is foregrounded, backgrounded, or killed)
     responseListener.current = Notifications.addNotificationResponseReceivedListener(response => {
-      console.log(response);
+     
     });
 
     return () => {
@@ -48,9 +48,8 @@ const  Notification = () => {
     });
   }
 
-  console.log("expoPushToken",expoPushToken);
-/*  
-  console.log("expoPushToken",expoPushToken); */
+
+
   return (
     <View
       style={{
@@ -109,7 +108,7 @@ async function registerForPushNotificationsAsync() {
       return;
     }
     token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
+    
   } else {
     alert('Must use physical device for Push Notifications');
   }

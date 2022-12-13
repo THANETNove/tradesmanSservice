@@ -12,13 +12,13 @@ import {
   TouchableOpacity,
   TouchableHighlight
 } from "react-native";
-import {Ionicons, FontAwesome,FontAwesome5,MaterialIcons } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {Ionicons, FontAwesome,FontAwesome5,MaterialIcons, MaterialCommunityIcons,AntDesign } from "@expo/vector-icons";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
 import { connect } from "react-redux";
 import img1 from "../../assets/images/A-6.png";
 import { logoutStore } from "../logout";
+import technician_type from "../service/getService";
 
 
 class Profile_tradesman extends Component {
@@ -133,6 +133,35 @@ class Profile_tradesman extends Component {
     await this.props.navigation.popToTop();
   }
 
+  async deletion() {
+ 
+
+    Alert.alert(
+      "deletion",
+      "คุณเเน่จะลบบัญชีของคุณ " ,
+      [
+        {
+          text: "Cancel",
+          onPress: () => console.log("Cancel Pressed"),
+          style: "cancel"
+        },
+        {
+          text: "OK", onPress: () => {
+
+            const login_a =  this.props.posts.login;
+            const result =  technician_type.delete_user(login_a.id);
+            result.then((values) => {
+              if (values == "success") {
+                this.deleteStor();
+                this.props.navigation.popToTop();
+              }
+            });
+          }
+        }
+      ]
+    );
+  }
+
   customer() {
     var myStar = [
       <FontAwesome name="star" style={styles.icons} />,
@@ -211,6 +240,13 @@ class Profile_tradesman extends Component {
                 onPress={() => this.logout()}>{"Logout"}
               </Text>
             </View>
+            <View style={styles.box3}>
+                <AntDesign name="deleteuser"  style={styles.icons5}  />
+                <Text
+                  style={styles.text2}
+                  onPress={() => this.deletion()}>{"ลบบัญชี"}
+                </Text>
+              </View>
           </ScrollView>
         </SafeAreaView>
       </>
@@ -313,33 +349,13 @@ class Profile_tradesman extends Component {
                   onPress={() => this.logout()}>{"Logout"}
                 </Text>
               </View>
-              {/*  <View style={styles.box5}>
-                <Text style={styles.text3}>ผลงาน</Text>
+              <View style={styles.box3}>
+                <AntDesign name="deleteuser"  style={styles.icons5}  />
+                <Text
+                  style={styles.text2}
+                  onPress={() => this.deletion()}>{"ลบบัญชี"}
+                </Text>
               </View>
-              <View style={styles.box4}>
-                <View style={styles.boxhead}>
-                  <Pressable onPress={() => this.setModalVisible(true, "https://www.cdti.ac.th/uploads/images/image_750x422_5da3c6560cde8.jpg")}>
-                    <View>
-                      <Image
-                        style={styles.image1}
-                        source={{
-                          uri: "https://www.cdti.ac.th/uploads/images/image_750x422_5da3c6560cde8.jpg",
-                        }}
-                      />
-                    </View>
-                  </Pressable>
-                  <Pressable onPress={() => this.setModalVisible(true, "https://teerapong5839010009.files.wordpress.com/2017/04/011.jpg")}>
-                    <View>
-                      <Image
-                        style={styles.image1}
-                        source={{
-                          uri: "https://teerapong5839010009.files.wordpress.com/2017/04/011.jpg",
-                        }}
-                      />
-                    </View>
-                  </Pressable>
-                </View>
-              </View> */}
             </View>
           </ScrollView>
           <Modal
@@ -376,15 +392,6 @@ class Profile_tradesman extends Component {
   login() {
     return (
       <>
-        {/* <View>
-          <ImageBackground source={img1} resizeMode="cover" style={styles.image4}>
-            <View style={styles.container}>
-              <TouchableOpacity style={styles.box7} onPress={() => this.props.navigation.navigate("Login")}>
-                <Text style={styles.text4}>เข้าสู่ระบบ</Text>
-              </TouchableOpacity >
-            </View>
-          </ImageBackground>
-        </View> */}
          <SafeAreaView style={styles.container}>
           <ScrollView>
             <View style={styles.box}>

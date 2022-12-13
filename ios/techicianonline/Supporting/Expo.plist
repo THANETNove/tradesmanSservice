@@ -10,7 +10,9 @@
     <integer>0</integer>
     <key>EXUpdatesURL</key>
     <string>https://exp.host/@th-thanet/onthTechicianOnline</string>
-    <key>EXUpdatesRuntimeVersion</key>
+    <key/>
     <string>2.718</string>
+    <key>EXUpdatesSDKVersion</key>
+    <string>45.0.0</string>
   </dict>
 </plist>
