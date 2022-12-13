@@ -6835,6 +6835,11 @@
   "resolved" "https://registry.npmjs.org/redux-saga-effects/-/redux-saga-effects-1.1.0.tgz"
   "version" "1.1.0"
 
+"redux-saga@>=0.8.0 <0.15.0":
+  "integrity" "sha512-BalEND7oMtG7GWdhvgv1WZdarSBeQPpP41of1Dcn2ayeO+1b9VrbrnJ1641rtgC7mByeykq0e9mUG9VdBK3hxw=="
+  "resolved" "https://registry.npmjs.org/redux-saga/-/redux-saga-0.14.8.tgz"
+  "version" "0.14.8"
+
 "redux-thunk@^2.4.1":
   "integrity" "sha512-OOYGNY5Jy2TWvTL1KgAlVy6dcx3siPJ1wTq741EPyUKfn6W6nChdICjZwCd0p8AZBs5kWpZlbkXW2nE/zjUa+Q=="
   "resolved" "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.4.1.tgz"

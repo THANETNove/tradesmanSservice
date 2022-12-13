@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "techicianonline.app"
-               BlueprintName = "techicianonline"
-               ReferencedContainer = "container:techicianonline.xcodeproj">
+               BuildableName = "technicianonline.app"
+               BlueprintName = "technicianonline"
+               ReferencedContainer = "container:technicianonline.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "techicianonlineTests.xctest"
-               BlueprintName = "techicianonlineTests"
-               ReferencedContainer = "container:techicianonline.xcodeproj">
+               BuildableName = "technicianonlineTests.xctest"
+               BlueprintName = "technicianonlineTests"
+               ReferencedContainer = "container:technicianonline.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "techicianonline.app"
-            BlueprintName = "techicianonline"
-            ReferencedContainer = "container:techicianonline.xcodeproj">
+            BuildableName = "technicianonline.app"
+            BlueprintName = "technicianonline"
+            ReferencedContainer = "container:technicianonline.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "techicianonline.app"
-            BlueprintName = "techicianonline"
-            ReferencedContainer = "container:techicianonline.xcodeproj">
+            BuildableName = "technicianonline.app"
+            BlueprintName = "technicianonline"
+            ReferencedContainer = "container:technicianonline.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
