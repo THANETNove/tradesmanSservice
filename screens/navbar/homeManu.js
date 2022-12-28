@@ -173,14 +173,7 @@ const styles = StyleSheet.create({
     box: {
         height: 190,
         width: "100%",
-        backgroundColor: "#37C1FB",
         shadowColor: "#000",
-        shadowOpacity: 0.27,
-        shadowRadius: 4.65,
-        elevation: 6,
-        borderBottomLeftRadius: 60,
-        borderBottomRightRadius: 60,
-
     },
     box3: {
         height: "auto",
