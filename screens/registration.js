@@ -261,9 +261,9 @@ const Registration = ({ navigation: { popToTop } }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View /* style={{display: 'none'}} */>
+    {/*   <View style={{display: 'none'}}>
       <Notifications />
-      </View>
+      </View> */}
 
       </ScrollView>
     </SafeAreaView>

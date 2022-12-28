@@ -15,6 +15,7 @@ import Payment from '../payment';
 import Privacypolicy from '../privacypolicy';
 import ResetPassword from '../reset_password';
 import Deletion from '../deletion';
+import AddImageHome from '../addImageHome';
 
 
 const HomeStack = createNativeStackNavigator();
@@ -59,6 +60,10 @@ function App() {
       <HomeStack.Screen name="Deletion" component={Deletion} 
       options={{
         title: 'Deletion',
+      }} />
+      <HomeStack.Screen name="ImageHome" component={AddImageHome} 
+      options={{
+        title: 'ImageHome',
       }} />
 
     </HomeStack.Navigator>

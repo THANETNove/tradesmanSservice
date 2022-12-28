@@ -17,6 +17,7 @@ import { MaterialCommunityIcons,AntDesign } from '@expo/vector-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
 import { connect } from "react-redux";
+import Carousel from "../carousel";
 import img1 from "../../assets/images/A-6.png";
 import { logoutStore } from "../logout";
 import shopImg from "../service/getService";
@@ -90,9 +91,10 @@ class homeManu extends Component {
                 <SafeAreaView style={styles.container}>
                     <ScrollView>
                         <View style={styles.box}>
-                            <View style={styles.box6}>
+                       {/*      <View style={styles.box6}>
                                 <Image style={styles.image3} source={require('../../assets/images/AAA.png')} />
-                            </View>
+                            </View> */}
+                            <Carousel />
 
                         </View>
                         <MarqueeView>

@@ -267,6 +267,7 @@ class Profile_tradesman extends Component {
         <FontAwesome name="star" style={styles.iconsGold} />
       );
     }
+/*     console.log("stausLogin",stausLogin && stausLogin.status_user); */
 
     return (
       <>
@@ -308,13 +309,25 @@ class Profile_tradesman extends Component {
                   onPress={() => this.props.navigation.navigate("Information")}>{"โปรไฟล์"}
                 </Text>
               </View>
+              {
+                  stausLogin && stausLogin.status_user === "admin" ? 
+                  <View style={styles.box3}>
+                  <FontAwesome name="user" style={styles.icons3} />
+                  <Text
+                    style={styles.text2}
+                    onPress={() => this.props.navigation.navigate("ImageHome")}>{"เพิ่มภาพ"}
+                  </Text>
+                </View>
+                :
+                null
+              }
+
               <View style={styles.box3}>
                 <FontAwesome5 name="file-image" style={styles.icons5} />
                 <Text style={styles.text2}
                   onPress={() => this.props.navigation.navigate("Workings")}>{"ผลงาน"}
                 </Text>
               </View>
-
               <View style={styles.box3}>
                 <FontAwesome5 name="address-book" style={styles.icons5} />
                 <Text

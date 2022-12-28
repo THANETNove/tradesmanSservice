@@ -238,6 +238,27 @@ const getShopImagesAll = async () => {
     });
   return getShopImg;
 }
+const getHomeImages = async () => {
+  const getShopImg = await axios.get(`${url}/getImageHome.php`, {
+
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8'
+    },
+  
+    params: {
+      isAdd: true,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return getShopImg;
+}
+
 const getShopImagesAll_Admin = async () => {
   const getShopImg = await axios.get(`${url}/getShopImagesAll_Admin.php`, {
 
@@ -811,6 +832,31 @@ const uplodeImagesShop = async (e,userId) => {
    return cershop;
  };
 
+const uplodeImagesHome = async (e,userId) => {
+
+  const formdata = new FormData();
+   formdata.append('image', {
+     uri: e.uri,
+     type: 'image/jpg',
+     name: e.uri.split('/').pop(),
+   })
+   formdata.append('nameImage', userId)
+ 
+   const cershop = await axios.post(`${url}/saveFileHome.php`, formdata, {
+     headers: {
+       'Content-Type': 'multipart/form-data;charset=utf-8',
+     }
+   }).then((result) => {
+
+     return "success";
+   })
+     .catch((error) => {
+
+       return error;
+     });
+   return cershop;
+ };
+
  const imageProfile = async (e,id_user) => {
   const formdata = new FormData();
    formdata.append('image', {
@@ -982,6 +1028,31 @@ const uplodeUpdateImagesShop = async (e,id,name) => {
    formdata.append('id', id)
    formdata.append('name', name)
    const upimgshop = await axios.post(`${url}/saveUpdateFileShop.php`, formdata, {
+     headers: {
+       'Content-Type': 'multipart/form-data;charset=utf-8',
+     }
+   }).then((result) => {
+
+     return "success";
+   })
+     .catch((error) => {
+
+       return null;
+     });
+   return upimgshop;
+ };
+
+const uplodeUpdateImagesHome = async (e,id,name) => {
+/* console.log("uplodeUpdateImagesHome",e,id,name); */
+  const formdata = new FormData();
+   formdata.append('image', {
+     uri: e.uri,
+     type: 'image/jpg',
+     name: e.uri.split('/').pop(),
+   })
+   formdata.append('id', id)
+   formdata.append('name', name)
+   const upimgshop = await axios.post(`${url}/saveUpdateFileHome.php`, formdata, {
      headers: {
        'Content-Type': 'multipart/form-data;charset=utf-8',
      }
@@ -1189,6 +1260,7 @@ export default {
   getMessage_technician,
   getMessage_technician_id,
   getShopImagesAll,
+  getHomeImages,
   getShopImagesAll_Admin,
   getRestPassword,
   getMessage_user_groupBy,
@@ -1196,11 +1268,13 @@ export default {
   getUserAddressid,
   getUser,
   getImageShop,
+  uplodeImagesHome,
   getShop,
   getAnnonceText,
   updateShop,
   updateBookBank,
   uplodeUpdateImagesShop,
+  uplodeUpdateImagesHome,
   uplodeImagesShop,
   updateMessage,
   updatePasswors,
