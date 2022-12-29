@@ -31,7 +31,7 @@ const ShareExample = () => {
                     :
                     <CountDown
                         until={60 * 60}
-                        size={30}
+                        size={20}
                         onFinish={() => setDateTimeMs(0)}
                         timeToShow={['M', 'S']}
                     timeLabels={{m: 'MM', s: 'SS'}}
