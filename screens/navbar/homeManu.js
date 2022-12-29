@@ -13,7 +13,7 @@ import {
     TouchableHighlight
 } from "react-native";
 import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo } from "@expo/vector-icons";
-import { MaterialCommunityIcons,AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
 import { connect } from "react-redux";
@@ -22,6 +22,11 @@ import img1 from "../../assets/images/A-6.png";
 import { logoutStore } from "../logout";
 import shopImg from "../service/getService";
 import MarqueeView from 'react-native-marquee-view';
+import Share from "../share";
+
+
+
+
 class homeManu extends Component {
 
     constructor(props) {
@@ -49,7 +54,7 @@ class homeManu extends Component {
     componentDidMount() {
         this.setUrl()
         this.getAnnonce()
-       
+
     }
     componentWillMount() {
         this.setState({
@@ -63,16 +68,17 @@ class homeManu extends Component {
         clearInterval(this.state.interval);
     }
 
-    getAnnonce = async() => {
+    getAnnonce = async () => {
         const annonce = await shopImg.getAnnonceText();
         if (annonce) {
             this.setState({
                 annonce: annonce
             })
         }
-       
+
     }
-    
+
+
 
 
 
@@ -85,13 +91,13 @@ class homeManu extends Component {
     }
 
     home() {
-        const { annonce } = this.state;
+        const { annonce, timeMs } = this.state;
         return (
             <>
                 <SafeAreaView style={styles.container}>
                     <ScrollView>
                         <View style={styles.box}>
-                       {/*      <View style={styles.box6}>
+                            {/*      <View style={styles.box6}>
                                 <Image style={styles.image3} source={require('../../assets/images/AAA.png')} />
                             </View> */}
                             <Carousel />
@@ -99,22 +105,21 @@ class homeManu extends Component {
                         </View>
                         <MarqueeView>
                             <View style={styles.marquee}>
-                            <Text style={styles.marqueeText} >
-                           
-                                {
-                                 
-                                   annonce &&  annonce.map((index,j) =>
+                                <Text style={styles.marqueeText} >
+
                                     {
-                                       /*  console.log("index",index); */
-                                        const text =  (
-                                            <Text style={styles.marqueeText2}>    <AntDesign name="notification" style={styles.icons4} />  ประกาศ: <Text style={styles.marqueeText}> {index.announce}</Text> </Text>  
-                                            
+
+                                        annonce && annonce.map((index, j) => {
+                                            /*  console.log("index",index); */
+                                            const text = (
+                                                <Text style={styles.marqueeText2}>    <AntDesign name="notification" style={styles.icons4} />  ประกาศ: <Text style={styles.marqueeText}> {index.announce}</Text> </Text>
+
+                                            )
+                                            return text
+                                        }
                                         )
-                                        return text
                                     }
-                                   )
-                                }
-                            </Text>
+                                </Text>
                             </View>
                         </MarqueeView>
                         <View style={styles.top}>
@@ -134,6 +139,10 @@ class homeManu extends Component {
                                     <Text style={styles.text2}>{"เพิ่มสินร้านค้า"}
                                     </Text>
                                 </TouchableOpacity>
+                                <TouchableOpacity style={{ marginLeft: 20, marginRight: 20 }} >
+                                    <Share />
+                                </TouchableOpacity>
+
                             </View>
                         </View>
                     </ScrollView>
@@ -142,7 +151,7 @@ class homeManu extends Component {
             </>
         )
     }
-    
+
     render() {
 
         return (
@@ -235,19 +244,19 @@ const styles = StyleSheet.create({
     marquee: {
         marginTop: 20,
         backgroundColor: '#37C1FB',
-        paddingTop:5,
-        paddingLeft:10,
-        paddingRight:10,
-        paddingBottom:5,
+        paddingTop: 5,
+        paddingLeft: 10,
+        paddingRight: 10,
+        paddingBottom: 5,
         borderRadius: 5,
     },
     marqueeText: {
         color: "#fff",
-        fontSize:18
+        fontSize: 18
     },
     marqueeText2: {
         color: "red",
-        fontSize:18
+        fontSize: 18
     }
 });
 

@@ -58,7 +58,7 @@ export default class SwiperComponent extends Component {
       })
       .catch((err) => {
         console.error(err);
-      });;
+      });
 
 
   }
