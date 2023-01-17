@@ -14,22 +14,45 @@ import HomeShop from '../homeShop';
 import Add_shopping from '../add_shopping';
 import Add_product from '../add_product';
 import Shop_user from '../shop_user';
+import Notify_repair_work from '../notify_repair_work';
+import Notify_repair_work_user from '../notify_repair_work_user';
+import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 
 
 const HomeStack = createNativeStackNavigator();
 
 function App() {
+
+
   return (
 
-    <HomeStack.Navigator>
+    <HomeStack.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ color, size }) => {
+          /*  const icons = {
+             Home: 'home',
+             Profile: 'account',
+           }; */
+
+          return (
+            <MaterialCommunityIcons
+              name="home"
+              color="red"
+              size={size}
+            />
+          );
+        },
+      })}
+    >
       <HomeStack.Screen name="HomeManu" component={HomeManu}
         options={{
-          title: 'Manu',
+          title: 'Manu'
         }}
       />
       <HomeStack.Screen name="Home" component={Home} />
-      <HomeStack.Screen name="Tradesman" component={Tradesman} />
+      <HomeStack.Screen name="Tradesman" component={Tradesman}
+      />
       <HomeStack.Screen name="Profile" component={Profile} />
       <HomeStack.Screen name="Profile_tras_user" component={profile_tras_user}
         options={{
@@ -62,9 +85,18 @@ function App() {
         options={{
           title: 'รายละเอียด',
         }} />
+      <HomeStack.Screen name="Notify_repair_work" component={Notify_repair_work}
+        options={{
+          title: 'เเจ้งงานซ่อม',
+        }} />
+      <HomeStack.Screen name="Notify_repair_work_user" component={Notify_repair_work_user}
+        options={{
+          title: 'รายการ เเจ้งงานซ่อม',
+        }} />
     </HomeStack.Navigator>
   );
 }
+
 
 export default function RouterHome() {
   return (

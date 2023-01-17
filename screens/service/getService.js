@@ -780,6 +780,26 @@ const createBookBank = async (e) => {
     });
   return bookBank;
 };
+const createRepairWork = async (id, name, phone, repair_work, address) => {
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id_user', id);
+  formdata.append('name', name);
+  formdata.append('phone',phone);
+  formdata.append('repair_work', repair_work);
+  formdata.append('address', address);
+  const bookBank = await axios.post(`${url}/addRepairWork.php`,formdata,{
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+    return "success";
+  })
+    .catch((error) => {
+      return error;
+    });
+  return bookBank;
+};
 
 
 const uplodeImages = async (e,id_user) => {
@@ -1245,6 +1265,7 @@ export default {
   createBookBank,
   searchUser,
   createAddress_user,
+  createRepairWork,
   getLogin,
   technician_type,
   getAddress,

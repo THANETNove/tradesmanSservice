@@ -12,7 +12,7 @@ import {
     TouchableOpacity,
     TouchableHighlight
 } from "react-native";
-import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo } from "@expo/vector-icons";
+import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo,Octicons,Fontisto } from "@expo/vector-icons";
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
@@ -139,6 +139,16 @@ class homeManu extends Component {
                                     <Text style={styles.text2}>{"เพิ่มสินร้านค้า"}
                                     </Text>
                                 </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Notify_repair_work")}>
+                                    <Octicons name="report" style={styles.icons3}  />
+                                    <Text style={styles.text2}>{"เเจ้งงานซ่อม"}
+                                    </Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate("Notify_repair_work_user")}>
+                                    <Fontisto name="file-1" style={styles.icons3} />
+                                    <Text style={styles.text2}>{"รายการ เเจ้งงานซ่อม"}
+                                    </Text>
+                                </TouchableOpacity>
                                 <TouchableOpacity style={{ marginLeft: 20, marginRight: 20 }} >
                                     <Share />
                                 </TouchableOpacity>
@@ -227,7 +237,7 @@ const styles = StyleSheet.create({
         fontSize: 26,
         color: "#37C1FB",
         borderRadius: 10,
-        paddingTop: 12,
+        paddingTop: 15,
         paddingLeft: 13,
     },
     icons4: {
@@ -265,6 +275,7 @@ const mapStateToProps = (state) => {
         posts: state
     }
 }
+
 export default connect(mapStateToProps, null)(homeManu);
 
 

@@ -10,7 +10,7 @@ function App() {
     return (
 
         <HomeStack.Navigator>
-             <HomeStack.Screen name="Message" component={Message} />
+             <HomeStack.Screen name="Message" component={Message}/>
              <HomeStack.Screen name="Chat" component={Chat} />
              <HomeStack.Screen name="Login" component={Login} />
         </HomeStack.Navigator>
