@@ -12,10 +12,11 @@ import {
     Alert,
     Dimensions
 } from "react-native";
-import { connect } from "react-redux";
 import repairWork from "./service/getService";
+import { connect } from "react-redux";
 
-class Notify_repair_work extends Component {
+class JobDescription extends Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -26,19 +27,35 @@ class Notify_repair_work extends Component {
             repair_work: null,
             address: null,
             statusSave: true,
+            editStatus: false,
         };
     }
-    componentDidMount() {
-        const { login } = this.props.posts;
-        if (this.props.posts.login === null) {
-            this.props.navigation.navigate("Login")
-        } else {
-            this.setState({
-                id: login.id
-            });
-        }
-    }
 
+    componentDidMount() {
+        const { jobDescription } = this.props.posts;
+        if (jobDescription.statusAdmin == null) {
+            this.setState({
+                editStatus: true,
+
+            })
+        }
+        this.setState({
+            id: jobDescription.id,
+            name: jobDescription.name,
+            phone: jobDescription.name,
+            nameRepairWork: jobDescription.nameRepairWork,
+            repair_work: jobDescription.repair_work,
+            address: jobDescription.address,
+        })
+        this.props.dispatch({
+            type: 'DELETE_JOB',
+            payload: null
+        })
+        this.props.dispatch({
+            type: 'DELETE_NOTIFICATIONSREPAIRWORK',
+            payload: null
+        })
+    }
 
 
     handleChange(fieldName, text) {
@@ -54,17 +71,53 @@ class Notify_repair_work extends Component {
         this.setState({
             statusSave: false
         })
-        const result = await repairWork.createRepairWork(id, name, phone, nameRepairWork, repair_work, address);
+        const result = await repairWork.updateRepairWork(id, name, phone, nameRepairWork, repair_work, address);
         if (result === "success") {
-            await Alert.alert("บันทึกสำเร็จ");
+            this.props.dispatch({
+                type: 'DELETE_JOB',
+                payload: null
+            })
+            Alert.alert("บันทึกสำเร็จ");
             await this.props.navigation.goBack();
         } else {
             Alert.alert("บันทึกไม่สำเร็จ");
         }
     }
 
-    render() {
-        const { id, name, phone, nameRepairWork, repair_work, address, statusSave } = this.state;
+
+    dataJob() {
+        const { name, phone, nameRepairWork, repair_work, address } = this.state;
+
+        return (
+            <SafeAreaView>
+                <ScrollView style={styles.areaView}>
+                    <View style={styles.viewRightTnput}>
+                        <Text style={styles.textRightTnput}>ชื่อลูกค้า</Text>
+                        <Text style={styles.text}>{name}</Text>
+                    </View>
+                    <View style={styles.viewRightTnput}>
+                        <Text style={styles.textRightTnput}>เบอร์โทร</Text>
+                        <Text style={styles.text}>{phone}</Text>
+                    </View>
+                    <View style={styles.viewRightTnput}>
+                        <Text style={styles.textRightTnput}>ประเภทงาน</Text>
+                        <Text style={styles.text}>{nameRepairWork}</Text>
+                    </View>
+                    <View style={styles.viewRightTnput}>
+                        <Text style={styles.textRightTnput}>ลักษณะงาน</Text>
+                        <Text style={styles.text}>{repair_work}</Text>
+                    </View>
+                    <View style={styles.viewRightTnput}>
+                        <Text style={styles.textRightTnput}>ที่อยู่</Text>
+                        <Text style={styles.text}>{address}</Text>
+                    </View>
+                </ScrollView>
+            </SafeAreaView>
+        )
+    }
+
+    editDataJob() {
+        const { statusSave, name, phone, nameRepairWork, repair_work, address } = this.state;
         return (
             <SafeAreaView>
                 <ScrollView style={styles.areaView}>
@@ -74,6 +127,7 @@ class Notify_repair_work extends Component {
                             style={styles.input}
                             onChangeText={(text) => this.handleChange("name", text)}
                             placeholder="กรุณาระบุ"
+                            value={name}
                         />
                     </View>
                     <View style={styles.viewRightTnput}>
@@ -82,6 +136,7 @@ class Notify_repair_work extends Component {
                             style={styles.input}
                             onChangeText={(text) => this.handleChange("phone", text)}
                             placeholder="กรุณาระบุ"
+                            value={phone}
                             keyboardType="numeric"
                         />
                     </View>
@@ -91,6 +146,7 @@ class Notify_repair_work extends Component {
                             style={styles.input}
                             onChangeText={(text) => this.handleChange("nameRepairWork", text)}
                             placeholder="กรุณาระบุ"
+                            value={nameRepairWork}
                             keyboardType="numeric"
                         />
                     </View>
@@ -100,7 +156,7 @@ class Notify_repair_work extends Component {
                             editable
                             multiline
 
-
+                            value={repair_work}
                             style={styles.inputTextarea}
                             onChangeText={(text) => this.handleChange("repair_work", text)}
                             placeholder="กรุณาระบุ"
@@ -111,29 +167,44 @@ class Notify_repair_work extends Component {
                         <TextInput
                             editable
                             multiline
-
-
+                            value={address}
                             style={styles.inputTextarea}
                             onChangeText={(text) => this.handleChange("address", text)}
                             placeholder="กรุณาระบุ"
                         />
                     </View>
                     <View>
-                        {statusSave === true ?
-                            <TouchableOpacity style={styles.button} onPress={() => this.serve()}>
-                                <Text style={styles.text3}>บันทึกข้อมูล</Text>
-                            </TouchableOpacity>
-                            :
-                            <TouchableOpacity style={styles.button}>
-                                <Text style={styles.text3}>กำลังบันทึกข้อมูล</Text>
-                            </TouchableOpacity>
+                        {
+                            statusSave === true ?
+                                <TouchableOpacity style={styles.button} onPress={() => this.serve()}>
+                                    <Text style={styles.text3}>บันทึกข้อมูล</Text>
+                                </TouchableOpacity>
+                                :
+                                <TouchableOpacity style={styles.button}>
+                                    <Text style={styles.text3}>กำลังบันทึกข้อมูล</Text>
+                                </TouchableOpacity>
                         }
                     </View>
                 </ScrollView>
             </SafeAreaView>
         )
     }
+
+    render() {
+        const { editStatus } = this.state;
+        return (
+            <>
+                {
+                    editStatus === true ?
+                        this.editDataJob()
+                        :
+                        this.dataJob()
+                }
+            </>
+        )
+    }
 }
+
 const styles = StyleSheet.create({
     container: {
         width: "100%",
@@ -143,6 +214,7 @@ const styles = StyleSheet.create({
     },
     areaView: {
         paddingTop: 20,
+        backgroundColor: "#FFFFFF",
         height: "100%",
 
     },
@@ -155,6 +227,7 @@ const styles = StyleSheet.create({
     textRightTnput: {
         marginBottom: 5,
         fontSize: 16,
+        fontWeight: "bold",
         color: "#2A323C",
     },
     input: {
@@ -196,6 +269,13 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: 60,
     },
+    text: {
+        paddingLeft: 10,
+        fontSize: 16,
+        marginTop: 5,
+        /* backgroundColor: "#F8F8F8",
+        borderRadius: 8, */
+    },
     text3: {
         flex: 1,
         textAlign: "center",
@@ -205,9 +285,9 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => {
+
     return {
         posts: state
     }
 }
-export default connect(mapStateToProps, null)(Notify_repair_work);
-
+export default connect(mapStateToProps, null)(JobDescription);

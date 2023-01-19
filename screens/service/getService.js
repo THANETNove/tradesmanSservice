@@ -2,7 +2,7 @@ import axios from "axios";
 /* import { getToken } from '../hooks/useToken'; */
 /*  const  url = 'https://reqres.in';  */
 /*  const url = 'http://192.168.1.12/project/api-database';  */  //หน่วย
-   const url = 'https://th-projet.com/api-database';    // ยอน 
+const url = 'https://th-projet.com/api-database';    // ยอน 
 /* const getUser = async () => {
 
   const rse = await axios.get(`${url}/getUsers`).then((result) => {
@@ -93,7 +93,7 @@ const image  =  await axios.post(`${url}/uplodeImages`,formdata, {
 
 /**
  * ! ส่วนของ get 
-*/ 
+*/
 
 
 
@@ -224,7 +224,7 @@ const getShopImagesAll = async () => {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8'
     },
-  
+
     params: {
       isAdd: true,
     }
@@ -244,7 +244,7 @@ const getHomeImages = async () => {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8'
     },
-  
+
     params: {
       isAdd: true,
     }
@@ -265,7 +265,7 @@ const getShopImagesAll_Admin = async () => {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8'
     },
-  
+
     params: {
       isAdd: true,
     }
@@ -340,7 +340,7 @@ const getUserAddressid = async (e) => {
 
       return error;
     });
-  
+
   return getUserID;
 };
 
@@ -434,8 +434,8 @@ const getMessage_user = async (e) => {
     },
     params: {
       isAdd: true,
-      id:e,
- 
+      id: e,
+
     }
   }).then((result) => {
 
@@ -447,7 +447,7 @@ const getMessage_user = async (e) => {
     });
   return seaUser;
 };
-const getMessage_user_id = async (id_user,id_tech) => {
+const getMessage_user_id = async (id_user, id_tech) => {
   const seaUser = await axios.get(`${url}/getMessage_user_id.php`, {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8',
@@ -509,7 +509,7 @@ const getMessage_technician = async (e) => {
   return seaUser;
 };
 
-const getMessage_technician_id = async (id_user,id_tech) => {
+const getMessage_technician_id = async (id_user, id_tech) => {
   const seaUser = await axios.get(`${url}/getMessage_technician_id.php`, {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8',
@@ -610,11 +610,53 @@ const getBookBank = async (e) => {
   return bookbank;
 };
 
+// ดึง 'งานของ repairWork User' 
+const getRepairWork = async (e) => {
+  const seaUser = await axios.get(`${url}/getRepairWork.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+      id: e,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return seaUser;
+};
+
+// ดึง 'งานของ repairWork User ที่ผ่านการอนุมัติ' 
+const getRepairWorkUser = async (e) => {
+  const seaUser = await axios.get(`${url}/getRepairWorkUser.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+      id: e,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return seaUser;
+};
+
 
 
 /**
  * ! ส่วนของ post 
-*/ 
+*/
 
 // สมัครสมาชิก
 const createUser = async (e) => {
@@ -740,14 +782,14 @@ const createAddress_user = async (e) => {
 
 const addMessage = async (e) => {
 
-const formdata = new FormData();
+  const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id_user', e[0]);
   formdata.append('id', e[1]);
   formdata.append('message', e[2]);
   formdata.append('status_read', e[3]);
   formdata.append('status_user', e[4]);
-  const message = await axios.post(`${url}/addMessage.php`,formdata,{
+  const message = await axios.post(`${url}/addMessage.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -757,7 +799,7 @@ const formdata = new FormData();
     .catch((error) => {
       return error;
     });
-  return message; 
+  return message;
 };
 
 const createBookBank = async (e) => {
@@ -768,7 +810,7 @@ const createBookBank = async (e) => {
   formdata.append('name', e[1]);
   formdata.append('number_bank', e[2]);
   formdata.append('bank', e[3]);
-  const bookBank = await axios.post(`${url}/addBank.php`,formdata,{
+  const bookBank = await axios.post(`${url}/addBank.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -780,15 +822,16 @@ const createBookBank = async (e) => {
     });
   return bookBank;
 };
-const createRepairWork = async (id, name, phone, repair_work, address) => {
+const createRepairWork = async (id, name, phone, nameRepairWork, repair_work, address) => {
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id_user', id);
   formdata.append('name', name);
-  formdata.append('phone',phone);
+  formdata.append('phone', phone);
+  formdata.append('nameRepairWork', nameRepairWork);
   formdata.append('repair_work', repair_work);
   formdata.append('address', address);
-  const bookBank = await axios.post(`${url}/addRepairWork.php`,formdata,{
+  const bookBank = await axios.post(`${url}/addRepairWork.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -802,104 +845,104 @@ const createRepairWork = async (id, name, phone, repair_work, address) => {
 };
 
 
-const uplodeImages = async (e,id_user) => {
+const uplodeImages = async (e, id_user) => {
   const formdata = new FormData();
-   formdata.append('image', {
-     uri: e.uri,
-     type: 'image/jpg',
-     name: e.uri.split('/').pop(),
-   })
-   formdata.append('id_user', id_user)
- 
-   const cerimg = await axios.post(`${url}/saveFile.php`, formdata, {
-     headers: {
-       'Content-Type': 'multipart/form-data;charset=utf-8',
-     }
-   }).then((result) => {
+  formdata.append('image', {
+    uri: e.uri,
+    type: 'image/jpg',
+    name: e.uri.split('/').pop(),
+  })
+  formdata.append('id_user', id_user)
 
-     return "success";
-   })
-     .catch((error) => {
+  const cerimg = await axios.post(`${url}/saveFile.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
 
-       return error;
-     });
-   return cerimg;
- };
+    return "success";
+  })
+    .catch((error) => {
 
-const uplodeImagesShop = async (e,userId) => {
+      return error;
+    });
+  return cerimg;
+};
 
-  const formdata = new FormData();
-   formdata.append('image', {
-     uri: e.uri,
-     type: 'image/jpg',
-     name: e.uri.split('/').pop(),
-   })
-   formdata.append('id_user', userId[0])
-   formdata.append('nameImage', userId[1])
- 
-   const cershop = await axios.post(`${url}/saveFileShop.php`, formdata, {
-     headers: {
-       'Content-Type': 'multipart/form-data;charset=utf-8',
-     }
-   }).then((result) => {
-
-     return "success";
-   })
-     .catch((error) => {
-
-       return error;
-     });
-   return cershop;
- };
-
-const uplodeImagesHome = async (e,userId) => {
+const uplodeImagesShop = async (e, userId) => {
 
   const formdata = new FormData();
-   formdata.append('image', {
-     uri: e.uri,
-     type: 'image/jpg',
-     name: e.uri.split('/').pop(),
-   })
-   formdata.append('nameImage', userId)
- 
-   const cershop = await axios.post(`${url}/saveFileHome.php`, formdata, {
-     headers: {
-       'Content-Type': 'multipart/form-data;charset=utf-8',
-     }
-   }).then((result) => {
+  formdata.append('image', {
+    uri: e.uri,
+    type: 'image/jpg',
+    name: e.uri.split('/').pop(),
+  })
+  formdata.append('id_user', userId[0])
+  formdata.append('nameImage', userId[1])
 
-     return "success";
-   })
-     .catch((error) => {
+  const cershop = await axios.post(`${url}/saveFileShop.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
 
-       return error;
-     });
-   return cershop;
- };
+    return "success";
+  })
+    .catch((error) => {
 
- const imageProfile = async (e,id_user) => {
+      return error;
+    });
+  return cershop;
+};
+
+const uplodeImagesHome = async (e, userId) => {
+
   const formdata = new FormData();
-   formdata.append('image', {
-     uri: e.uri,
-     type: 'image/jpg',
-     name: e.uri.split('/').pop(),
-   })
-   formdata.append('id_user', id_user)
- 
-   const cerimg = await axios.post(`${url}/saveFile_Profile.php`, formdata, {
-     headers: {
-       'Content-Type': 'multipart/form-data;charset=utf-8',
-     }
-   }).then((result) => {
+  formdata.append('image', {
+    uri: e.uri,
+    type: 'image/jpg',
+    name: e.uri.split('/').pop(),
+  })
+  formdata.append('nameImage', userId)
 
-     return "success";
-   })
-     .catch((error) => {
+  const cershop = await axios.post(`${url}/saveFileHome.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
 
-       return error;
-     });
-   return cerimg;
- };
+    return "success";
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return cershop;
+};
+
+const imageProfile = async (e, id_user) => {
+  const formdata = new FormData();
+  formdata.append('image', {
+    uri: e.uri,
+    type: 'image/jpg',
+    name: e.uri.split('/').pop(),
+  })
+  formdata.append('id_user', id_user)
+
+  const cerimg = await axios.post(`${url}/saveFile_Profile.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+
+    return "success";
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return cerimg;
+};
 
 
 
@@ -934,11 +977,11 @@ const updateAddress = async (e) => {
       return error;
     });
   return cerAdd;
-  
+
 }
 
 const updateAddress_user = async (e) => {
-  
+
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id', e[0]);
@@ -964,7 +1007,7 @@ const updateAddress_user = async (e) => {
       return error;
     });
   return upuser;
-  
+
 }
 
 const updateShop = async (e) => {
@@ -1009,118 +1052,118 @@ const updatePasswors = async (e) => {
       return error;
     });
   return upPass;
-  
+
 }
 
-const uplodeUpdateImages = async (e,id,name) => {
+const uplodeUpdateImages = async (e, id, name) => {
 
   const formdata = new FormData();
-   formdata.append('image', {
-     uri: e.uri,
-     type: 'image/jpg',
-     name: e.uri.split('/').pop(),
-   })
-   formdata.append('id', id)
-   formdata.append('name', name)
-   const upimg = await axios.post(`${url}/saveUpdateFile.php`, formdata, {
-     headers: {
-       'Content-Type': 'multipart/form-data;charset=utf-8',
-     }
-   }).then((result) => {
+  formdata.append('image', {
+    uri: e.uri,
+    type: 'image/jpg',
+    name: e.uri.split('/').pop(),
+  })
+  formdata.append('id', id)
+  formdata.append('name', name)
+  const upimg = await axios.post(`${url}/saveUpdateFile.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
 
-     return "success";
-   })
-     .catch((error) => {
+    return "success";
+  })
+    .catch((error) => {
 
-       return null;
-     });
-   return upimg;
- };
+      return null;
+    });
+  return upimg;
+};
 
-const uplodeUpdateImagesShop = async (e,id,name) => {
-
-  const formdata = new FormData();
-   formdata.append('image', {
-     uri: e.uri,
-     type: 'image/jpg',
-     name: e.uri.split('/').pop(),
-   })
-   formdata.append('id', id)
-   formdata.append('name', name)
-   const upimgshop = await axios.post(`${url}/saveUpdateFileShop.php`, formdata, {
-     headers: {
-       'Content-Type': 'multipart/form-data;charset=utf-8',
-     }
-   }).then((result) => {
-
-     return "success";
-   })
-     .catch((error) => {
-
-       return null;
-     });
-   return upimgshop;
- };
-
-const uplodeUpdateImagesHome = async (e,id,name) => {
-/* console.log("uplodeUpdateImagesHome",e,id,name); */
-  const formdata = new FormData();
-   formdata.append('image', {
-     uri: e.uri,
-     type: 'image/jpg',
-     name: e.uri.split('/').pop(),
-   })
-   formdata.append('id', id)
-   formdata.append('name', name)
-   const upimgshop = await axios.post(`${url}/saveUpdateFileHome.php`, formdata, {
-     headers: {
-       'Content-Type': 'multipart/form-data;charset=utf-8',
-     }
-   }).then((result) => {
-
-     return "success";
-   })
-     .catch((error) => {
-
-       return null;
-     });
-   return upimgshop;
- };
-
- 
-const uplodeUpdateImagesProfile = async (e,id,name) => {
+const uplodeUpdateImagesShop = async (e, id, name) => {
 
   const formdata = new FormData();
-   formdata.append('image', {
-     uri: e.uri,
-     type: 'image/jpg',
-     name: e.uri.split('/').pop(),
-   })
-   formdata.append('id', id)
-   formdata.append('name', name)
-   const upimg_pro = await axios.post(`${url}/saveUpdateFile_Profile.php`, formdata, {
-     headers: {
-       'Content-Type': 'multipart/form-data;charset=utf-8',
-     }
-   }).then((result) => {
+  formdata.append('image', {
+    uri: e.uri,
+    type: 'image/jpg',
+    name: e.uri.split('/').pop(),
+  })
+  formdata.append('id', id)
+  formdata.append('name', name)
+  const upimgshop = await axios.post(`${url}/saveUpdateFileShop.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
 
-     return "success";
-   })
-     .catch((error) => {
+    return "success";
+  })
+    .catch((error) => {
 
-       return null;
-     });
-   return upimg_pro;
- };
+      return null;
+    });
+  return upimgshop;
+};
 
- const updateBookBank = async (e) => {
+const uplodeUpdateImagesHome = async (e, id, name) => {
+  /* console.log("uplodeUpdateImagesHome",e,id,name); */
+  const formdata = new FormData();
+  formdata.append('image', {
+    uri: e.uri,
+    type: 'image/jpg',
+    name: e.uri.split('/').pop(),
+  })
+  formdata.append('id', id)
+  formdata.append('name', name)
+  const upimgshop = await axios.post(`${url}/saveUpdateFileHome.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+
+    return "success";
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return upimgshop;
+};
+
+
+const uplodeUpdateImagesProfile = async (e, id, name) => {
+
+  const formdata = new FormData();
+  formdata.append('image', {
+    uri: e.uri,
+    type: 'image/jpg',
+    name: e.uri.split('/').pop(),
+  })
+  formdata.append('id', id)
+  formdata.append('name', name)
+  const upimg_pro = await axios.post(`${url}/saveUpdateFile_Profile.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+
+    return "success";
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return upimg_pro;
+};
+
+const updateBookBank = async (e) => {
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id', e[0]);
   formdata.append('name', e[1]);
   formdata.append('number_bank', e[2]);
   formdata.append('bank', e[3]);
-  const upBookBank = await axios.post(`${url}/updateBank.php`,formdata,{
+  const upBookBank = await axios.post(`${url}/updateBank.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -1133,12 +1176,12 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
   return upBookBank;
 };
 
- const updataAnnonceText = async (e) => {
+const updataAnnonceText = async (e) => {
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id', e[0]);
   formdata.append('annonce', e[1]);
-  const upAnnonceText = await axios.post(`${url}/updataAnnonceText.php`,formdata,{
+  const upAnnonceText = await axios.post(`${url}/updataAnnonceText.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -1150,13 +1193,13 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
     });
   return upAnnonceText;
 };
- const UpDateStatusShop = async (e) => {
+const UpDateStatusShop = async (e) => {
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id', e[0]);
   formdata.append('status', e[1]);
   formdata.append('comment', e[2]);
-  const upBookBank = await axios.post(`${url}/upDateStatusShop.php`,formdata,{
+  const upBookBank = await axios.post(`${url}/upDateStatusShop.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -1169,12 +1212,12 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
   return upBookBank;
 };
 
- const updateMessage = async (id,value) => {
+const updateMessage = async (id, value) => {
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id', id);
   formdata.append('status_read', value);
-  const upBookBank = await axios.post(`${url}/updateMessage.php`,formdata,{
+  const upBookBank = await axios.post(`${url}/updateMessage.php`, formdata, {
     headers: {
       'Content-Type': 'multipart/form-data;charset=utf-8',
     }
@@ -1186,72 +1229,114 @@ const uplodeUpdateImagesProfile = async (e,id,name) => {
     });
   return upBookBank;
 };
- const deleteImagsShop = async (id,name) => {
-/*    const seaUser = await axios.get(`${url}/deleteImagsShop.php`, {
+const updateRepairWork = async (id, name, phone, nameRepairWork, repair_work, address) => {
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', id);
+  formdata.append('name', name);
+  formdata.append('phone', phone);
+  formdata.append('nameRepairWork', nameRepairWork);
+  formdata.append('repair_work', repair_work);
+  formdata.append('address', address);
+  const bookBank = await axios.post(`${url}/updateRepairWork.php`, formdata, {
     headers: {
-      'Content-Type': 'text/javascript;charset=utf-8',
-    },
-    params: {
-      isAdd: true,
-      id: id,
-      name:name
+      'Content-Type': 'multipart/form-data;charset=utf-8',
     }
   }).then((result) => {
     return "success";
   })
     .catch((error) => {
       return error;
-    }); */
-    const formdata = new FormData();
-    formdata.append('isAdd', true);
-    formdata.append('id', id);
-    formdata.append('name', name);
-    const deleteImg = await axios.post(`${url}/deleteImagsShop.php`,formdata,{
+    });
+  return bookBank;
+};
+const updateRepairWorkUser = async (id, statusAdmin, statusUser) => {
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', id);
+  formdata.append('statusAdmin', statusAdmin);
+  formdata.append('statusUser', statusUser);
+  const bookBank = await axios.post(`${url}/updateRepairWorkStarus.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+    return "success";
+  })
+    .catch((error) => {
+      return error;
+    });
+  return bookBank;
+};
+
+
+// delete
+const deleteImagsShop = async (id, name) => {
+  /*    const seaUser = await axios.get(`${url}/deleteImagsShop.php`, {
       headers: {
-        'Content-Type': 'multipart/form-data;charset=utf-8',
+        'Content-Type': 'text/javascript;charset=utf-8',
+      },
+      params: {
+        isAdd: true,
+        id: id,
+        name:name
       }
     }).then((result) => {
-      return result;
-    })
-      .catch((error) => {
-        return error;
-      });
-  return deleteImg;
-};
- const delete_Announced = async (id) => {
-  
-    const formdata = new FormData();
-    formdata.append('isAdd', true);
-    formdata.append('id', id);
-    const deleteImg = await axios.post(`${url}/delete_Announced.php`,formdata,{
-      headers: {
-        'Content-Type': 'multipart/form-data;charset=utf-8',
-      }
-    })
-    .then((result) => {
       return "success";
     })
       .catch((error) => {
         return error;
-      });
+      }); */
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', id);
+  formdata.append('name', name);
+  const deleteImg = await axios.post(`${url}/deleteImagsShop.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+    return result;
+  })
+    .catch((error) => {
+      return error;
+    });
   return deleteImg;
 };
- const delete_user = async (id) => {
-  console.log("id",id);
-    const formdata = new FormData();
-    formdata.append('isAdd', true);
-    formdata.append('id', id);
-    const deleteImg = await axios.post(`${url}/delete_user.php`,formdata,{
-      headers: {
-        'Content-Type': 'multipart/form-data;charset=utf-8',
-      }
-    })
+const delete_Announced = async (id) => {
+
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', id);
+  const deleteImg = await axios.post(`${url}/delete_Announced.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  })
     .then((result) => {
       return "success";
     })
-      .catch((error) => {
-        return error;
-      });
+    .catch((error) => {
+      return error;
+    });
+  return deleteImg;
+};
+const delete_user = async (id) => {
+  console.log("id", id);
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', id);
+  const deleteImg = await axios.post(`${url}/delete_user.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  })
+    .then((result) => {
+      return "success";
+    })
+    .catch((error) => {
+      return error;
+    });
   return deleteImg;
 };
 
@@ -1292,6 +1377,8 @@ export default {
   uplodeImagesHome,
   getShop,
   getAnnonceText,
+  getRepairWork,
+  getRepairWorkUser,
   updateShop,
   updateBookBank,
   uplodeUpdateImagesShop,
@@ -1306,6 +1393,8 @@ export default {
   uplodeUpdateImages,
   updateAddress_user,
   updataAnnonceText,
+  updateRepairWork,
+  updateRepairWorkUser,
   deleteImagsShop,
   delete_Announced,
   delete_user

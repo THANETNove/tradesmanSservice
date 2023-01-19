@@ -12,7 +12,7 @@ import {
   TouchableOpacity,
   TouchableHighlight
 } from "react-native";
-import {Ionicons, FontAwesome,FontAwesome5,MaterialIcons, MaterialCommunityIcons,AntDesign } from "@expo/vector-icons";
+import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, MaterialCommunityIcons, AntDesign } from "@expo/vector-icons";
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
 import { connect } from "react-redux";
@@ -42,7 +42,7 @@ class Profile_tradesman extends Component {
         name: this.props.posts.address
       });
     }
-    
+
     if (this.state.stausLogin === null) {
       this.setState({
         stausLogin: this.props.posts.login
@@ -84,7 +84,7 @@ class Profile_tradesman extends Component {
       urlImg: urlImg,
     });
   };
-   deleteStor() {
+  deleteStor() {
     this.props.dispatch({
       type: 'DELETE_LOGIN',
       payload: null
@@ -125,6 +125,10 @@ class Profile_tradesman extends Component {
       type: 'DELETE_SHOP',
       payload: null
     })
+    this.props.dispatch({
+      type: 'DELETE_JOB',
+      payload: null
+    })
   }
 
   async logout() {
@@ -134,11 +138,11 @@ class Profile_tradesman extends Component {
   }
 
   async deletion() {
- 
+
 
     Alert.alert(
       "deletion",
-      "คุณเเน่จะลบบัญชีของคุณ " ,
+      "คุณเเน่จะลบบัญชีของคุณ ",
       [
         {
           text: "Cancel",
@@ -148,8 +152,8 @@ class Profile_tradesman extends Component {
         {
           text: "OK", onPress: () => {
 
-            const login_a =  this.props.posts.login;
-            const result =  technician_type.delete_user(login_a.id);
+            const login_a = this.props.posts.login;
+            const result = technician_type.delete_user(login_a.id);
             result.then((values) => {
               if (values == "success") {
                 this.deleteStor();
@@ -177,33 +181,33 @@ class Profile_tradesman extends Component {
         <FontAwesome name="star" style={styles.iconsGold} />
       );
     }
-    const  { modalVisible, urlImg, image, name ,stausLogin} =  this.state;
+    const { modalVisible, urlImg, image, name, stausLogin } = this.state;
     return (
       <>
         <SafeAreaView style={styles.container}>
           <ScrollView>
             <View style={styles.box}>
-            <View style={styles.box1}>
+              <View style={styles.box1}>
                 <View style={styles.box6}>
                   {
                     image !== null ?
-                    <Image  style={styles.imgPro} source={{ uri: image[0].uri }}/>
+                      <Image style={styles.imgPro} source={{ uri: image[0].uri }} />
                       :
-                    <Image style={styles.image3} source={require('../../assets/images/AAA.png')}/>
-                     
+                      <Image style={styles.image3} source={require('../../assets/images/AAA.png')} />
+
                   }
                 </View>
                 {
                   name === null ?
-                  <Text style={styles.text}>TECHNICIAN ONLINE</Text>
+                    <Text style={styles.text}>TECHNICIAN ONLINE</Text>
                     :
                     <>
                       <Text style={styles.text}>{name.name}</Text>
                       <Text style={styles.text1}>เบอรติดต่อ {
-                      stausLogin !== null ?
-                      <>{stausLogin.phone}</>
-                       :
-                        null
+                        stausLogin !== null ?
+                          <>{stausLogin.phone}</>
+                          :
+                          null
                       }</Text>
                     </>
                 }
@@ -228,11 +232,11 @@ class Profile_tradesman extends Component {
               </View>
             </View>
             <View style={styles.box3}>
-                <MaterialIcons name="privacy-tip" style={styles.icons3} />
-                <Text style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"นโยบายความเป็นส่วนตัว"}
-                </Text>
-              </View>
+              <MaterialIcons name="privacy-tip" style={styles.icons3} />
+              <Text style={styles.text2}
+                onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"นโยบายความเป็นส่วนตัว"}
+              </Text>
+            </View>
             <View style={styles.box3}>
               <MaterialCommunityIcons name="logout" style={styles.icons5} />
               <Text
@@ -241,20 +245,20 @@ class Profile_tradesman extends Component {
               </Text>
             </View>
             <View style={styles.box3}>
-                <AntDesign name="deleteuser"  style={styles.icons5}  />
-                <Text
-                  style={styles.text2}
-                  onPress={() => this.deletion()}>{"ลบบัญชี"}
-                </Text>
-              </View>
+              <AntDesign name="deleteuser" style={styles.icons5} />
+              <Text
+                style={styles.text2}
+                onPress={() => this.deletion()}>{"ลบบัญชี"}
+              </Text>
+            </View>
           </ScrollView>
         </SafeAreaView>
       </>
     )
   }
 
-   tradesman ()  {
-    const  { modalVisible, urlImg, image, name ,stausLogin} =  this.state;
+  tradesman() {
+    const { modalVisible, urlImg, image, name, stausLogin } = this.state;
     var myStar = [
       <FontAwesome name="star" style={styles.icons} />,
       <FontAwesome name="star" style={styles.icons} />,
@@ -267,51 +271,51 @@ class Profile_tradesman extends Component {
         <FontAwesome name="star" style={styles.iconsGold} />
       );
     }
-/*     console.log("stausLogin",stausLogin && stausLogin.status_user); */
+    /*     console.log("stausLogin",stausLogin && stausLogin.status_user); */
 
     return (
       <>
-          <ScrollView s>
-            <View style={styles.box}>
-              <View style={styles.box1}>
-                <View style={styles.box6}>
-                  {
-                    image !== null ?
-                    <Image  style={styles.imgPro} source={{ uri: image[0].uri }}/>
-                      :
-                    <Image style={styles.image3} source={require('../../assets/images/AAA.png')}/>
-                     
-                  }
-                </View>
+        <ScrollView s>
+          <View style={styles.box}>
+            <View style={styles.box1}>
+              <View style={styles.box6}>
                 {
-                  name === null ?
-                  <Text style={styles.text}>TECHNICIAN ONLINE</Text>
+                  image !== null ?
+                    <Image style={styles.imgPro} source={{ uri: image[0].uri }} />
                     :
-                    <>
-                      <Text style={styles.text}>{name.name}</Text>
-                      <Text style={styles.text1}>เบอรติดต่อ {
-                      stausLogin !== null ?
-                      <>{stausLogin.phone}</>
-                       :
-                        null
-                      }</Text>
-                    </>
+                    <Image style={styles.image3} source={require('../../assets/images/AAA.png')} />
+
                 }
               </View>
-            </View>
-
-            <View style={styles.top}>
-
-              <View style={styles.box3}>
-                <FontAwesome name="user" style={styles.icons3} />
-                <Text
-                  style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Information")}>{"โปรไฟล์"}
-                </Text>
-              </View>
               {
-                  stausLogin && stausLogin.status_user === "admin" ? 
-                  <View style={styles.box3}>
+                name === null ?
+                  <Text style={styles.text}>TECHNICIAN ONLINE</Text>
+                  :
+                  <>
+                    <Text style={styles.text}>{name.name}</Text>
+                    <Text style={styles.text1}>เบอรติดต่อ {
+                      stausLogin !== null ?
+                        <>{stausLogin.phone}</>
+                        :
+                        null
+                    }</Text>
+                  </>
+              }
+            </View>
+          </View>
+
+          <View style={styles.top}>
+
+            <View style={styles.box3}>
+              <FontAwesome name="user" style={styles.icons3} />
+              <Text
+                style={styles.text2}
+                onPress={() => this.props.navigation.navigate("Information")}>{"โปรไฟล์"}
+              </Text>
+            </View>
+            {
+              stausLogin && stausLogin.status_user === "admin" ?
+                <View style={styles.box3}>
                   <FontAwesome name="user" style={styles.icons3} />
                   <Text
                     style={styles.text2}
@@ -320,83 +324,83 @@ class Profile_tradesman extends Component {
                 </View>
                 :
                 null
-              }
+            }
 
-              <View style={styles.box3}>
-                <FontAwesome5 name="file-image" style={styles.icons5} />
-                <Text style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Workings")}>{"ผลงาน"}
-                </Text>
-              </View>
-              <View style={styles.box3}>
-                <FontAwesome5 name="address-book" style={styles.icons5} />
-                <Text
-                  style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Servict_form")}>{"ข้อมูลการติดต่อ"}
-                </Text>
-              </View>
-              <View style={styles.box3}>
-                <FontAwesome5 name="cc-visa" style={styles.icons4} />
-                <Text
-                  style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Payment")}>{"ชำระเงิน"}
-                </Text>
-              </View>
-              <View style={styles.box3}>
-                <Ionicons name="card" style={styles.icons5} />
-                <Text
-                  style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Bank_account")}>{"บัญชีธนาคาร"}
-                </Text>
-              </View>
-              <View style={styles.box3}>
-                <MaterialIcons name="privacy-tip" style={styles.icons3} />
-                <Text style={styles.text2}
-                  onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"นโยบายความเป็นส่วนตัว"}
-                </Text>
-              </View>
-              <View style={styles.box3}>
-                <MaterialCommunityIcons name="logout" style={styles.icons5} />
-                <Text
-                  style={styles.text2}
-                  onPress={() => this.logout()}>{"Logout"}
-                </Text>
-              </View>
-              <View style={styles.box3}>
-                <AntDesign name="deleteuser"  style={styles.icons5}  />
-                <Text
-                  style={styles.text2}
-                  onPress={() => this.deletion()}>{"ลบบัญชี"}
-                </Text>
-              </View>
+            <View style={styles.box3}>
+              <FontAwesome5 name="file-image" style={styles.icons5} />
+              <Text style={styles.text2}
+                onPress={() => this.props.navigation.navigate("Workings")}>{"ผลงาน"}
+              </Text>
             </View>
-          </ScrollView>
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert("Modal has been closed.");
-              this.setModalVisible(!modalVisible);
-            }}
-          >
-            <View>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => this.setModalVisible(!modalVisible)}
-              >
-                <View>
-                  <Image
-                    style={styles.image2}
-                    source={{
-                      uri: `${urlImg}`,
-                    }}
-                  />
-                </View>
-              </Pressable>
+            <View style={styles.box3}>
+              <FontAwesome5 name="address-book" style={styles.icons5} />
+              <Text
+                style={styles.text2}
+                onPress={() => this.props.navigation.navigate("Servict_form")}>{"ข้อมูลการติดต่อ"}
+              </Text>
             </View>
-          </Modal>
-        </>
+            <View style={styles.box3}>
+              <FontAwesome5 name="cc-visa" style={styles.icons4} />
+              <Text
+                style={styles.text2}
+                onPress={() => this.props.navigation.navigate("Payment")}>{"ชำระเงิน"}
+              </Text>
+            </View>
+            <View style={styles.box3}>
+              <Ionicons name="card" style={styles.icons5} />
+              <Text
+                style={styles.text2}
+                onPress={() => this.props.navigation.navigate("Bank_account")}>{"บัญชีธนาคาร"}
+              </Text>
+            </View>
+            <View style={styles.box3}>
+              <MaterialIcons name="privacy-tip" style={styles.icons3} />
+              <Text style={styles.text2}
+                onPress={() => this.props.navigation.navigate("Privacypolicy")}>{"นโยบายความเป็นส่วนตัว"}
+              </Text>
+            </View>
+            <View style={styles.box3}>
+              <MaterialCommunityIcons name="logout" style={styles.icons5} />
+              <Text
+                style={styles.text2}
+                onPress={() => this.logout()}>{"Logout"}
+              </Text>
+            </View>
+            <View style={styles.box3}>
+              <AntDesign name="deleteuser" style={styles.icons5} />
+              <Text
+                style={styles.text2}
+                onPress={() => this.deletion()}>{"ลบบัญชี"}
+              </Text>
+            </View>
+          </View>
+        </ScrollView>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            Alert.alert("Modal has been closed.");
+            this.setModalVisible(!modalVisible);
+          }}
+        >
+          <View>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => this.setModalVisible(!modalVisible)}
+            >
+              <View>
+                <Image
+                  style={styles.image2}
+                  source={{
+                    uri: `${urlImg}`,
+                  }}
+                />
+              </View>
+            </Pressable>
+          </View>
+        </Modal>
+      </>
     )
   }
 
@@ -405,15 +409,15 @@ class Profile_tradesman extends Component {
   login() {
     return (
       <>
-         <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.container}>
           <ScrollView>
             <View style={styles.box}>
               <View style={styles.box1}>
-                  <View style={styles.box6}>
-                  <Image style={styles.image3} source={require('../../assets/images/AAA.png')}/>
-                  </View>
-                  <Text style={styles.text}>TECHNICIAN ONLINE</Text>
+                <View style={styles.box6}>
+                  <Image style={styles.image3} source={require('../../assets/images/AAA.png')} />
                 </View>
+                <Text style={styles.text}>TECHNICIAN ONLINE</Text>
+              </View>
             </View>
 
             <View style={styles.top}>
@@ -430,7 +434,7 @@ class Profile_tradesman extends Component {
                 </Text>
               </View>
             </View>
-            
+
           </ScrollView>
         </SafeAreaView>
 
@@ -439,14 +443,14 @@ class Profile_tradesman extends Component {
   }
 
 
-  render  () {
+  render() {
     const { modalVisible, urlImg, stausLogin, ckeckUserId } = this.state;
-    const login_a =  this.props.posts.login;
+    const login_a = this.props.posts.login;
 
-    return  (
+    return (
       <>
         {
-        login_a === null
+          login_a === null
             ?
             this.login()
             :
@@ -455,7 +459,7 @@ class Profile_tradesman extends Component {
               ?
               this.customer()
               :
-             this.tradesman()
+              this.tradesman()
 
         }
       </>
@@ -528,7 +532,7 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     marginBottom: 20,
   },
- 
+
   box1: {
     height: 250,
     width: "90%",
@@ -541,7 +545,7 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     marginRight: 45,
     marginTop: 25,
-    
+
   },
   box2: {
     height: 60,

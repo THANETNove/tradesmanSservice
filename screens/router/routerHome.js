@@ -16,6 +16,7 @@ import Add_product from '../add_product';
 import Shop_user from '../shop_user';
 import Notify_repair_work from '../notify_repair_work';
 import Notify_repair_work_user from '../notify_repair_work_user';
+import JobDescription from '../jobDescription';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 
 
@@ -92,6 +93,10 @@ function App() {
       <HomeStack.Screen name="Notify_repair_work_user" component={Notify_repair_work_user}
         options={{
           title: 'รายการ เเจ้งงานซ่อม',
+        }} />
+      <HomeStack.Screen name="JobDescription" component={JobDescription}
+        options={{
+          title: 'รายละเอียดงานซ่อม',
         }} />
     </HomeStack.Navigator>
   );
