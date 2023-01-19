@@ -129,6 +129,10 @@ class Profile_tradesman extends Component {
       type: 'DELETE_JOB',
       payload: null
     })
+    this.props.dispatch({
+      type: 'DELETE_NOTIFICATIONSREPAIRWORK',
+      payload: null
+    })
   }
 
   async logout() {

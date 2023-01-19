@@ -32,7 +32,7 @@ class JobDescription extends Component {
     }
 
     componentDidMount() {
-        const { jobDescription } = this.props.posts;
+        const { jobDescription, login } = this.props.posts;
         if (jobDescription.statusAdmin == null) {
             this.setState({
                 editStatus: true,
@@ -51,10 +51,48 @@ class JobDescription extends Component {
             type: 'DELETE_JOB',
             payload: null
         })
-        this.props.dispatch({
-            type: 'DELETE_NOTIFICATIONSREPAIRWORK',
-            payload: null
-        })
+        const result = repairWork.getRepairWorkUser(login.id);
+        result.then((values) => {
+            console.log("values", values);
+            if (values.length > 0) {
+                this.props.dispatch({
+                    type: 'ADD_NOTIFICATIONSREPAIRWORK',
+                    payload: values.length
+                })
+                console.log("1");
+            }
+        }).catch((error) => {
+            console.log("3");
+            this.props.dispatch({
+                type: 'DELETE_NOTIFICATIONSREPAIRWORK',
+                payload: null
+            })
+            console.log("3");
+        });
+
+
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        const { jobDescription, login } = this.props.posts;
+        if (prevProps.jobDescription !== jobDescription) {
+            const result = repairWork.getRepairWorkUser(login.id);
+            result.then((values) => {
+                this.props.dispatch({
+                    type: 'ADD_NOTIFICATIONSREPAIRWORK',
+                    payload: values.length
+                })
+                console.log("componentDidUpdate1");
+            }).catch((error) => {
+                console.log("componentDidUpdate3");
+                this.props.dispatch({
+                    type: 'DELETE_NOTIFICATIONSREPAIRWORK',
+                    payload: null
+                })
+
+            });
+        }
+
     }
 
 

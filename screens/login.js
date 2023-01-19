@@ -58,7 +58,7 @@ class Login extends Component {
     }
   }
 
-  
+
 
   getAddress_user = async (e) => {
     const result = await login.getAddress_user(e);
@@ -82,38 +82,38 @@ class Login extends Component {
     }
   }
 
-/*   set_State = async (e) => {
-    if (e !== null ) {
-      if (e[0].status_user === "ลูกค้าทั่วไป") {
-        const result = await login.getMessage_user(e[0].id);
-        const resultGrouBy = await login.getMessage_user_groupBy(e[0].id);
-        if (result && resultGrouBy) {
-          this.props.dispatch({
-            type: "ADD_MEASSAGE",
-            payload: result,
-          });
-          this.props.dispatch({
-            type: "ADD_MEASSAGEGROUBY",
-            payload: resultGrouBy,
-          });
-        }
-      } else {
-        const result1 = await login.getMessage_technician(e[0].id);
-        const resultGrouBy = await login.getMessage_technician_groupBy(e[0].id);
-        if (result1 && resultGrouBy) {
-          this.props.dispatch({
-            type: "ADD_MEASSAGE",
-            payload: result1,
-          });
-          this.props.dispatch({
-            type: "ADD_MEASSAGEGROUBY",
-            payload: resultGrouBy,
-          });
+  /*   set_State = async (e) => {
+      if (e !== null ) {
+        if (e[0].status_user === "ลูกค้าทั่วไป") {
+          const result = await login.getMessage_user(e[0].id);
+          const resultGrouBy = await login.getMessage_user_groupBy(e[0].id);
+          if (result && resultGrouBy) {
+            this.props.dispatch({
+              type: "ADD_MEASSAGE",
+              payload: result,
+            });
+            this.props.dispatch({
+              type: "ADD_MEASSAGEGROUBY",
+              payload: resultGrouBy,
+            });
+          }
+        } else {
+          const result1 = await login.getMessage_technician(e[0].id);
+          const resultGrouBy = await login.getMessage_technician_groupBy(e[0].id);
+          if (result1 && resultGrouBy) {
+            this.props.dispatch({
+              type: "ADD_MEASSAGE",
+              payload: result1,
+            });
+            this.props.dispatch({
+              type: "ADD_MEASSAGEGROUBY",
+              payload: resultGrouBy,
+            });
+          }
         }
       }
     }
-  }
- */
+   */
 
   getImge = async (e) => {
     const result1 = await login.getImageProfile(e);
@@ -134,41 +134,60 @@ class Login extends Component {
   }
 
 
-  
+
   login = async () => {
 
     let password = md5(this.state.password);
     const data = [this.state.username, password];
     const getLogin = await login.getLogin(data);
     if (getLogin !== null) {
-        //ส่วน login
-        let data2 = {
-          id: getLogin[0].id,
-          phone: getLogin[0].phone,
-          password: getLogin[0].password,
-          status_user: getLogin[0].status_user,
-          status_check: getLogin[0].status_check,
-        }
-        this.props.dispatch({
-          type: 'ADD_LOGIN',
-          payload: data2
-        })
-        
-    /*     this.props.dispatch({
-          type: 'ADD_URL',
-          payload: "http://192.168.1.5/project/api-database/images/"
-        }) */
+      //ส่วน login
+      let data2 = {
+        id: getLogin[0].id,
+        phone: getLogin[0].phone,
+        password: getLogin[0].password,
+        status_user: getLogin[0].status_user,
+        status_check: getLogin[0].status_check,
+      }
 
-        if (getLogin[0].status_user === "ช่าง") {
-          await this.getAddress(getLogin[0].id);
-        }else{
-          await this.getAddress_user(getLogin[0].id);
+
+      const result = login.getRepairWorkUser(getLogin[0].id);
+      result.then((values) => {
+        console.log("values", values);
+        if (values.length > 0) {
+          this.props.dispatch({
+            type: 'ADD_NOTIFICATIONSREPAIRWORK',
+            payload: values.length
+          })
         }
-/*         await this.set_State(getLogin) */
-      
-        await this.getImge(getLogin[0].id);
-  
-        await this.props.navigation.popToTop();
+
+      }).catch((error) => {
+        this.props.dispatch({
+          type: 'DELETE_NOTIFICATIONSREPAIRWORK',
+          payload: null
+        })
+      });
+
+      this.props.dispatch({
+        type: 'ADD_LOGIN',
+        payload: data2
+      })
+
+      /*     this.props.dispatch({
+            type: 'ADD_URL',
+            payload: "http://192.168.1.5/project/api-database/images/"
+          }) */
+
+      if (getLogin[0].status_user === "ช่าง") {
+        await this.getAddress(getLogin[0].id);
+      } else {
+        await this.getAddress_user(getLogin[0].id);
+      }
+      /*         await this.set_State(getLogin) */
+
+      await this.getImge(getLogin[0].id);
+
+      await this.props.navigation.popToTop();
     } else {
       await Alert.alert('User หรือ password ไม่ถูกต้องกรุณาลองใหม่');
     }
@@ -254,7 +273,7 @@ class Login extends Component {
               </TouchableOpacity>
             </View>
 
-    {/*         <View style={styles.boxIcon}>
+            {/*         <View style={styles.boxIcon}>
               <View style={styles.icons1}>
                 <FontAwesome name="facebook" size={35} color="#37C1FB" />
               </View>

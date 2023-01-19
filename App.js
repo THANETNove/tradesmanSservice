@@ -29,25 +29,10 @@ const Tab = createBottomTabNavigator();
 
 function MyStack() {
 
-  const [numberData, setNumberData] = useState(null);
   /*   const dispatch = useDispatch(azasd); */
   const login = useSelector((state) => state.login);
   const notificationsReWork = useSelector((state) => state.notificationsRepairWork);
 
-  if (login != "null" && (notificationsReWork == null)) {
-    const result = repairWork.getRepairWorkUser(login.id);
-    result.then((values) => {
-
-      setNumberData(values.length)
-      this.props.dispatch({
-        type: 'ADD_NOTIFICATIONSREPAIRWORK',
-        payload: values.length
-      })
-    }).catch((error) => {
-      return error
-    });
-
-  }
 
   return (
     <NavigationContainer>
@@ -82,7 +67,7 @@ function MyStack() {
         }
         <Tab.Screen name="Notifications" component={Notifications_repair_work}
           options={{
-            tabBarBadge: numberData,
+            tabBarBadge: notificationsReWork,
             tabBarIcon: ({ size, color }) => (<Ionicons name="notifications" color={color} size={size} />)
           }} />
         <Tab.Screen name="Profile" component={RouterProfile}
@@ -101,20 +86,25 @@ export default function App() {
 
   const [data, setData] = useState(null);
 
-
-
   function handleDeepLink(event) {
     let data = Linking.parse(event.url);
     setData(data);
   }
 
   useEffect(() => {
-    Linking.addEventListener("ur", handleDeepLink);
+    Linking.addEventListener("url", handleDeepLink);
     return () => {
       Linking.removeEventListener("url");
     }
 
   }, [])
+
+
+  /*   useEffect(() => {
+      console.log("888");
+  
+    }, [login])
+    console.log("login"); */
 
 
 
@@ -130,7 +120,3 @@ export default function App() {
 
   );
 }
-
-
-
-
