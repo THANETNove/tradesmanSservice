@@ -2,7 +2,7 @@
   "expo": {
     "name": "technician online",
     "slug": "onthTechicianOnline",
-    "version": "3.0.24",
+    "version": "3.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -28,7 +28,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.ththanet.techicianOnline",
-      "versionCode": 17,
+      "versionCode": 18,
       "permissions": [
         "android.permission.RECORD_AUDIO"
       ]
