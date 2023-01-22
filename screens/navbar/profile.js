@@ -32,11 +32,11 @@ class Profile_tradesman extends Component {
       image: null,
       name: null,
       stausLogin: null,
+      scoreUser: null
     };
   }
 
   componentDidMount() {
-
     if (this.state.name === null) {
       this.setState({
         name: this.props.posts.address
@@ -54,11 +54,20 @@ class Profile_tradesman extends Component {
         image: this.props.posts.imageProfile,
       });
     }
-
+    this.getUserScore()
 
   }
 
   componentDidUpdate() {
+    const { statusUpdate } = this.props.posts;
+    if ((statusUpdate === true)) {
+      this.getUserScore()
+      this.props.dispatch({
+        type: 'ADD_STATUSUPDATE',
+        payload: false
+      })
+    }
+
 
     if (this.props.posts.address !== this.state.name) {
       this.setState({
@@ -76,6 +85,16 @@ class Profile_tradesman extends Component {
         image: this.props.posts.imageProfile,
       });
     }
+  }
+
+  getUserScore = async () => {
+    const { login } = this.props.posts;
+
+    const user = await technician_type.getUser(login.id);
+    this.setState({
+      scoreUser: user[0].score
+    });
+
   }
 
   setModalVisible = (visible, urlImg) => {
@@ -189,7 +208,7 @@ class Profile_tradesman extends Component {
         <FontAwesome name="star" style={styles.iconsGold} />
       );
     }
-    const { modalVisible, urlImg, image, name, stausLogin } = this.state;
+    const { modalVisible, urlImg, image, name, stausLogin, scoreUser } = this.state;
     return (
       <>
         <SafeAreaView style={styles.container}>
@@ -211,12 +230,13 @@ class Profile_tradesman extends Component {
                     :
                     <>
                       <Text style={styles.text}>{name.name}</Text>
-                      <Text style={styles.text1}>เบอรติดต่อ {
+                      <Text style={styles.text1}>เบอร์ติดต่อ {
                         stausLogin !== null ?
                           <>{stausLogin.phone}</>
                           :
                           null
                       }</Text>
+                      <Text style={styles.textScore}>คะเเนน  {scoreUser} </Text>
                     </>
                 }
               </View>
@@ -266,7 +286,7 @@ class Profile_tradesman extends Component {
   }
 
   tradesman() {
-    const { modalVisible, urlImg, image, name, stausLogin } = this.state;
+    const { modalVisible, urlImg, image, name, stausLogin, scoreUser } = this.state;
     var myStar = [
       <FontAwesome name="star" style={styles.icons} />,
       <FontAwesome name="star" style={styles.icons} />,
@@ -301,12 +321,16 @@ class Profile_tradesman extends Component {
                   :
                   <>
                     <Text style={styles.text}>{name.name}</Text>
-                    <Text style={styles.text1}>เบอรติดต่อ {
+                    <Text style={styles.text1}>เบอร์ติดต่อ {
                       stausLogin !== null ?
                         <>{stausLogin.phone}</>
                         :
                         null
                     }</Text>
+                    <View style={styles.viewScore}>
+                      <Text style={styles.textScore}>คะเเนน {scoreUser} </Text>
+                    </View>
+
                   </>
               }
             </View>
@@ -522,7 +546,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   box: {
-    height: 260,
+    height: "auto",
     width: "100%",
     backgroundColor: "#37C1FB",
     shadowColor: "#000",
@@ -531,7 +555,7 @@ const styles = StyleSheet.create({
     elevation: 6,
     borderBottomLeftRadius: 60,
     borderBottomRightRadius: 60,
-
+    marginBottom: 35
   },
   centerProfile: {
     display: "flex",
@@ -649,6 +673,20 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 18,
     paddingTop: 15,
+  },
+  textScore: {
+    fontWeight: "bold",
+    fontSize: 20,
+    color: "#FFFFFF",
+  },
+  viewScore: {
+    marginTop: 35,
+    paddingHorizontal: 40,
+    paddingVertical: 5,
+    marginLeft: "auto",
+    marginRight: "auto",
+    backgroundColor: "#FF8C00",
+    borderRadius: 2
   },
   text1: {
     marginLeft: "auto",
