@@ -4,6 +4,7 @@ import AdminApp from '../admin_app';
 import ShopAdmin from '../shop_admin';
 import Announce from '../announce';
 import notify_repair_work_Admin from '../notify_repair_work_Admin';
+import jobDescriptionAdmin from '../jobDescriptionAdmin';
 
 
 const HomeStack = createNativeStackNavigator();
@@ -27,6 +28,10 @@ function App() {
       <HomeStack.Screen name="notify_repair_work_Admin" component={notify_repair_work_Admin}
         options={{
           title: 'งานทั้งหมด',
+        }} />
+      <HomeStack.Screen name="jobDescriptionAdmin" component={jobDescriptionAdmin}
+        options={{
+          title: 'รายละเอียดงานทั้งหมด',
         }} />
 
     </HomeStack.Navigator>

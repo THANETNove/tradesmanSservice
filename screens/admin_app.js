@@ -45,7 +45,7 @@ class AdminApp extends Component {
     }
     componentDidUpdate() {
         const { login, statusUpdate } = this.props.posts;
-        if (statusUpdate === true) {
+        if (statusUpdate == true) {
             this.getRepairWork()
             //ADD_STATUSUPDATE
             this.props.dispatch({

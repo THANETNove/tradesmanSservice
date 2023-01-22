@@ -57,26 +57,26 @@ class notify_repair_work_Admin extends Component {
             this.setState({
                 repair_work: result
             })
+        } else {
+            this.setState({
+                repair_work: null
+            })
         }
     }
 
     clickJob = async (e) => {
 
-        /*     const { id } = this.state;
-        
-            const result = await repairWork.updateRepairWorkUser(e.id, "null", "1");
-            if (result === "success") {
-                this.props.dispatch({
-                    type: 'ADD_JOB',
-                    payload: e
-                })
-        
-                this.props.navigation.navigate("jobDescriptionTechnician")
-            } */
+
+        this.props.dispatch({
+            type: 'ADD_DATAJOB',
+            payload: e
+        })
+
+        this.props.navigation.navigate("jobDescriptionAdmin")
+
     }
     render() {
         const { repair_work } = this.state;
-        console.log("repair_work", repair_work);
         return (
             <SafeAreaView>
                 <ScrollView style={styles.areaView}>

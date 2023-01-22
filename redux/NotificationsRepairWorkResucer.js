@@ -33,4 +33,15 @@ export const statusUpdate = (state = true, action) => {
     }
 
 }
+export const dataJob = (state = null, action) => {
+    switch (action.type) {
+        case 'ADD_DATAJOB': //ADD_DATAJOB
+            return action.payload
+        case 'DELETE_DATAJOB':
+            return action.payload
+        default:
+            return state;
+    }
+
+}
 
