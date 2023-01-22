@@ -68,12 +68,7 @@ class JobDescription extends Component {
             })
 
         });
-        /*         this.props.dispatch({
-                    type: 'DELETE_JOB',
-                    payload: null
-                }) */
 
-        console.log("9999");
     }
 
     componentDidUpdate(prevProps, prevState) {

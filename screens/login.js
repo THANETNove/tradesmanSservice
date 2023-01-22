@@ -153,7 +153,7 @@ class Login extends Component {
 
       const result = login.getRepairWorkUser(getLogin[0].id);
       result.then((values) => {
-        console.log("values", values);
+
         if (values.length > 0) {
           this.props.dispatch({
             type: 'ADD_NOTIFICATIONSREPAIRWORK',

@@ -56,6 +56,7 @@ class Notifications_repair_work extends Component {
             this.setState({
                 repair_work: result
             })
+
             if (result != null) {
                 this.props.dispatch({
                     type: 'ADD_NOTIFICATIONSREPAIRWORK',
@@ -113,7 +114,8 @@ const styles = StyleSheet.create({
         marginBottom: 50
     },
     areaView: {
-        height: "100%",
+        marginTop: "10%",
+        /*  height: "100%", */
     },
     repairWorkApprove: {
         justifyContent: "space-between",
