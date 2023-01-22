@@ -57,7 +57,7 @@ class Notify_repair_work_user extends Component {
   }
 
   clickJob(e) {
-    console.log("e", e);
+
     this.props.dispatch({
       type: 'ADD_JOB',
       payload: e

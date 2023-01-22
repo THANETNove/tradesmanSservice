@@ -65,11 +65,16 @@ function MyStack() {
             :
             null
         }
-        <Tab.Screen name="Notifications" component={Notifications_repair_work}
-          options={{
-            tabBarBadge: notificationsReWork,
-            tabBarIcon: ({ size, color }) => (<Ionicons name="notifications" color={color} size={size} />)
-          }} />
+        {
+          (login && login.status_user) !== "admin" ?
+            <Tab.Screen name="Notifications" component={Notifications_repair_work}
+              options={{
+                tabBarBadge: notificationsReWork,
+                tabBarIcon: ({ size, color }) => (<Ionicons name="notifications" color={color} size={size} />)
+              }} />
+            : null
+        }
+
         <Tab.Screen name="Profile" component={RouterProfile}
           options={{
             tabBarIcon: ({ size, color }) => (<FontAwesome name="user" color={color} size={size} />)

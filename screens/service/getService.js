@@ -630,6 +630,26 @@ const getRepairWork = async (e) => {
     });
   return seaUser;
 };
+// ดึง 'งานของ repairWork ช่าง' 
+const getRepairWorkTechnician = async (e) => {
+  const seaUser = await axios.get(`${url}/getRepairWorkTechnician.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
+      id: e,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return seaUser;
+};
 
 // ดึง 'งานของ repairWork User ที่ผ่านการอนุมัติ' 
 const getRepairWorkUser = async (e) => {
@@ -1379,6 +1399,7 @@ export default {
   getAnnonceText,
   getRepairWork,
   getRepairWorkUser,
+  getRepairWorkTechnician,
   updateShop,
   updateBookBank,
   uplodeUpdateImagesShop,

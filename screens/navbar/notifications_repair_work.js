@@ -38,7 +38,13 @@ class Notifications_repair_work extends Component {
                 repair_work: result,
                 id: login.id,
             })
-            console.log("componentDidMount");
+            if (result != null) {
+                this.props.dispatch({
+                    type: 'ADD_NOTIFICATIONSREPAIRWORK',
+                    payload: result.length
+                })
+            }
+
         }
 
         /*  this.setState({
@@ -56,7 +62,6 @@ class Notifications_repair_work extends Component {
             this.setState({
                 repair_work: result
             })
-
             if (result != null) {
                 this.props.dispatch({
                     type: 'ADD_NOTIFICATIONSREPAIRWORK',
