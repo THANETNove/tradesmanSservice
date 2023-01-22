@@ -12,7 +12,7 @@ import {
     TouchableOpacity,
     TouchableHighlight
 } from "react-native";
-import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo,Octicons,Fontisto } from "@expo/vector-icons";
+import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo, Octicons, Fontisto } from "@expo/vector-icons";
 import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
@@ -79,15 +79,16 @@ class homeManu extends Component {
     }
 
 
-
-
-
     add_shopping() {
         if (this.props.posts.login !== null) {
             this.props.navigation.navigate("add_shopping")
         } else {
             this.props.navigation.navigate("Login")
         }
+    }
+
+    shareLink = async () => {
+        console.log("5555");
     }
 
     home() {
@@ -140,7 +141,7 @@ class homeManu extends Component {
                                     </Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate("Notify_repair_work")}>
-                                    <Octicons name="report" style={styles.icons3}  />
+                                    <Octicons name="report" style={styles.icons3} />
                                     <Text style={styles.text2}>{"เเจ้งงานซ่อม"}
                                     </Text>
                                 </TouchableOpacity>
@@ -149,10 +150,13 @@ class homeManu extends Component {
                                     <Text style={styles.text2}>{"รายการ เเจ้งงานซ่อม"}
                                     </Text>
                                 </TouchableOpacity>
-                                <TouchableOpacity style={{ marginLeft: 20, marginRight: 20 }} >
+                                <TouchableOpacity style={{ marginLeft: 20, marginRight: 20 }}>
                                     <Share />
                                 </TouchableOpacity>
 
+                            </View>
+                            <View style={styles.viewImage} >
+                                <Image style={styles.image4} source={require('../../assets/images/1674388625511.jpeg')} />
                             </View>
                         </View>
                     </ScrollView>
@@ -181,10 +185,22 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
     },
     image3: {
-        width: 145,
-        height: 145,
-        marginTop: -5,
-        marginLeft: -5,
+        /*  width: 145,
+         height: 145,
+         marginTop: -5,
+         marginLeft: -5, */
+    },
+    image4: {
+        width: "90%",
+        height: "60%",
+        zIndex: 4,
+        paddingBottom: 160
+    },
+    viewImage: {
+        alignItems: "center",
+        marginTop: 20,
+        width: "100%",
+        paddingBottom: 160
     },
     top: {
         marginTop: 15,

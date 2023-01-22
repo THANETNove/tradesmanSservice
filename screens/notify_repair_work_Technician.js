@@ -57,10 +57,10 @@ class Notifications_repair_work extends Component {
     }
 
     componentDidUpdate = async (prevProps, prevState) => {
-        const { id, repair_work } = this.state;
-        const { jobDescription, login } = this.props.posts;
 
-        if (login !== null) {
+        const { id, repair_work } = this.state;
+        const { jobDescription, login, statusUpdate } = this.props.posts;
+        if (statusUpdate === true) {
             const result = await repairWork.getRepairWorkTechnician();
 
             this.setState({
@@ -72,7 +72,11 @@ class Notifications_repair_work extends Component {
                     payload: result.length
                 })
             }
-            /*  }) */
+            this.props.dispatch({
+                type: 'ADD_STATUSUPDATE',
+                payload: false
+            })
+
         }
     }
 

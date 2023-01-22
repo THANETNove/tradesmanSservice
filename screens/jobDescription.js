@@ -68,7 +68,10 @@ class JobDescription extends Component {
             })
 
         });
-
+        this.props.dispatch({
+            type: 'ADD_STATUSUPDATE',
+            payload: true
+        })
     }
 
     componentDidUpdate(prevProps, prevState) {

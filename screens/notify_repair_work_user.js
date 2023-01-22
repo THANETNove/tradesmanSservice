@@ -41,11 +41,15 @@ class Notify_repair_work_user extends Component {
 
   componentDidUpdate = async (prevProps, prevState) => {
     const { id } = this.state;
-    const { jobDescription } = this.props.posts;
-    if (prevProps.jobDescription == jobDescription && (jobDescription == null)) {
+    const { jobDescription, statusUpdate } = this.props.posts;
+    if (statusUpdate === true) {
       const result = await repairWork.getRepairWork(id);
       this.setState({
         repair_work: result
+      })
+      this.props.dispatch({
+        type: 'ADD_STATUSUPDATE',
+        payload: false
       })
 
     }
@@ -64,7 +68,7 @@ class Notify_repair_work_user extends Component {
 
   render() {
     const { repair_work } = this.state;
-
+    console.log("999");
     return (
       <SafeAreaView>
         <ScrollView style={styles.areaView}>

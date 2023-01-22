@@ -41,7 +41,10 @@ class jobDescriptionTechnician extends Component {
             repair_work: jobDescription.repair_work,
             address: jobDescription.address,
         })
-
+        this.props.dispatch({
+            type: 'ADD_STATUSUPDATE',
+            payload: true
+        })
 
     }
 
