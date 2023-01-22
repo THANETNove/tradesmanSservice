@@ -38,6 +38,7 @@ class Notifications_repair_work extends Component {
                 repair_work: result,
                 id: login.id,
             })
+            console.log("componentDidMount");
         }
 
         /*  this.setState({
@@ -55,30 +56,18 @@ class Notifications_repair_work extends Component {
             this.setState({
                 repair_work: result
             })
-            this.props.dispatch({
-                type: 'ADD_JOB',
-                payload: "loding"
-            })
+            if (result != null) {
+                this.props.dispatch({
+                    type: 'ADD_NOTIFICATIONSREPAIRWORK',
+                    payload: result.length
+                })
+            }
         }
-
-        if ((login != null) && (repair_work === null)) {
-
-            const result = await repairWork.getRepairWorkUser(login.id);
-            console.log("result", result);
-            this.setState({
-                repair_work: result
-            })
-            this.props.dispatch({
-                type: 'ADD_JOB',
-                payload: "loding"
-            })
-        }
-        console.log("jobDescription", jobDescription);
-
     }
 
     clickJob = async (e) => {
         const { id } = this.state;
+
         const result = await repairWork.updateRepairWorkUser(e.id, "null", "1");
         if (result === "success") {
             this.props.dispatch({
@@ -91,7 +80,7 @@ class Notifications_repair_work extends Component {
     }
     render() {
         const { repair_work } = this.state;
-        console.log("repair_work", repair_work);
+
         return (
             <SafeAreaView>
                 <ScrollView style={styles.areaView}>

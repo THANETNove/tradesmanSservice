@@ -59,40 +59,45 @@ class JobDescription extends Component {
                     type: 'ADD_NOTIFICATIONSREPAIRWORK',
                     payload: values.length
                 })
-                console.log("1");
             }
         }).catch((error) => {
-            console.log("3");
+
             this.props.dispatch({
                 type: 'DELETE_NOTIFICATIONSREPAIRWORK',
                 payload: null
             })
-            console.log("3");
+
         });
+        /*         this.props.dispatch({
+                    type: 'DELETE_JOB',
+                    payload: null
+                }) */
 
-
+        console.log("9999");
     }
 
     componentDidUpdate(prevProps, prevState) {
         const { jobDescription, login } = this.props.posts;
-        if (prevProps.jobDescription !== jobDescription) {
+
+        if (prevProps.jobDescription !== jobDescription && (jobDescription === null)) {
             const result = repairWork.getRepairWorkUser(login.id);
             result.then((values) => {
                 this.props.dispatch({
                     type: 'ADD_NOTIFICATIONSREPAIRWORK',
                     payload: values.length
                 })
-                console.log("componentDidUpdate1");
             }).catch((error) => {
-                console.log("componentDidUpdate3");
+
                 this.props.dispatch({
                     type: 'DELETE_NOTIFICATIONSREPAIRWORK',
                     payload: null
                 })
-
             });
         }
-
+        this.props.dispatch({
+            type: 'DELETE_JOB',
+            payload: null
+        })
     }
 
 
