@@ -13,17 +13,61 @@ import {
     TouchableHighlight
 } from "react-native";
 import { Ionicons, FontAwesome, FontAwesome5, MaterialIcons, Entypo } from "@expo/vector-icons";
-import { MaterialCommunityIcons,AntDesign } from '@expo/vector-icons';
+import { MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
 import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 import { Button } from "react-native-web";
 import { connect } from "react-redux";
+import repairWork from "./service/getService";
 
 
 class AdminApp extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            repair_work: null,
+        };
+    }
+
+    componentDidMount = async () => {
+        const { login, } = this.props.posts;
+        if (login === null) {
+            this.props.navigation.navigate("Login")
+        } else {
+            this.getRepairWork()
 
 
+        }
+
+        /*  this.setState({
+             repair_work: jobDescription,
+         }) */
+        //getRepairWorkUser
+    }
+    componentDidUpdate() {
+        const { login, statusUpdate } = this.props.posts;
+        if (statusUpdate === true) {
+            this.getRepairWork()
+            //ADD_STATUSUPDATE
+            this.props.dispatch({
+                type: 'ADD_STATUSUPDATE',
+                payload: false
+            })
+        }
+    }
+
+
+    getRepairWork = async () => {
+        const result = await repairWork.getRepairWorkAdmin();
+        if (result != null) {
+            this.setState({
+                repair_work: result.length
+            })
+        }
+
+    }
 
     home() {
+        const { repair_work } = this.state;
         return (
             <>
                 <SafeAreaView style={styles.container}>
@@ -32,7 +76,7 @@ class AdminApp extends Component {
                             <View style={styles.box6}>
                                 <Image style={styles.image3} source={require('../assets/images/AAA.png')} />
                             </View>
-                           
+
                         </View>
 
                         <View style={styles.top}>
@@ -47,10 +91,19 @@ class AdminApp extends Component {
                                     <Text style={styles.text2}>{"ประกาศ"}
                                     </Text>
                                 </TouchableOpacity>
+                                <TouchableOpacity onPress={() => this.props.navigation.navigate("notify_repair_work_Admin")}>
+                                    <AntDesign name="wordfile1" style={styles.icons3} />
+                                    <Text style={styles.text2}>{"อนุมัติงาน"}  {
+                                        repair_work && repair_work != null ?
+                                            <View style={styles.view3}><Text style={styles.text3}> {repair_work}</Text></View>
+                                            : null
+                                    }
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
                         </View>
-                    </ScrollView>
-                </SafeAreaView>
+                    </ScrollView >
+                </SafeAreaView >
 
             </>
         )
@@ -59,7 +112,7 @@ class AdminApp extends Component {
         return (
             <>
                 {
-                this.home()
+                    this.home()
                 }
             </>
         );
@@ -127,6 +180,22 @@ const styles = StyleSheet.create({
         marginLeft: 55,
         fontSize: 20,
         marginTop: -35,
+    },
+    text3: {
+        color: "#FFFF",
+        marginRight: 4
+    },
+    view3: {
+
+        alignItems: "center",
+        justifyContent: "center",
+        position: "relative",
+        color: "red",
+        backgroundColor: "red",
+        width: 20,
+        height: 20,
+        border: 5,
+        borderRadius: 100,
     },
     icons3: {
         width: 50,

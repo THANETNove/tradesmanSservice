@@ -22,3 +22,15 @@ export const NotificationsRepairWorkResucerTec = (state = null, action) => {
 
 }
 
+export const statusUpdate = (state = true, action) => {
+    switch (action.type) {
+        case 'ADD_STATUSUPDATE': //DELETE_NOTIFICATIONSREPAIRWORKTCE
+            return action.payload
+        case 'DELETE_STATUSUPDATE':
+            return action.payload
+        default:
+            return state;
+    }
+
+}
+

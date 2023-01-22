@@ -20,7 +20,7 @@ import { shopReducer } from './shopReducer';
 import { shopAllReducer } from './shopAllReducer';
 import { idShopReducer } from './idShopReducer';
 import { jobDescriptionReducer } from './jobDescriptionReducer';
-import { NotificationsRepairWorkResucer, NotificationsRepairWorkResucerTec } from './NotificationsRepairWorkResucer';
+import { NotificationsRepairWorkResucer, NotificationsRepairWorkResucerTec, statusUpdate } from './NotificationsRepairWorkResucer';
 
 const persistConfig = {
   key: "root",
@@ -48,6 +48,7 @@ const rootReducer = combineReducers({
   jobDescription: jobDescriptionReducer,
   notificationsRepairWork: NotificationsRepairWorkResucer,
   notificationsRepairWorkTec: NotificationsRepairWorkResucerTec,
+  statusUpdate: statusUpdate,
 
 });
 
