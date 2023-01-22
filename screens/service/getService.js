@@ -140,6 +140,8 @@ const getUser = async (e) => {
     });
   return seaUser;
 };
+
+
 const getAnnonceText = async () => {
   const seaUser = await axios.get(`${url}/getAnnonceText.php`, {
     headers: {
@@ -1306,6 +1308,24 @@ const updateRepairWorkUser = async (id, statusAdmin, statusUser) => {
     });
   return bookBank;
 };
+const updateScoreUser = async (id, score) => {
+  console.log("id, score", id, score);
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', id);
+  formdata.append('score', score);
+  const bookBank = await axios.post(`${url}/updateScoreUser.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+    return "success";
+  })
+    .catch((error) => {
+      return error;
+    });
+  return bookBank;
+};
 
 
 // delete
@@ -1435,6 +1455,7 @@ export default {
   updataAnnonceText,
   updateRepairWork,
   updateRepairWorkUser,
+  updateScoreUser,
   deleteImagsShop,
   delete_Announced,
   delete_user

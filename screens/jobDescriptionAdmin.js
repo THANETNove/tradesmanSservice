@@ -21,6 +21,7 @@ class jobDescriptionAdmin extends Component {
         super(props);
         this.state = {
             id: null,
+            id_user: null,
             name: null,
             phone: null,
             nameRepairWork: null,
@@ -28,25 +29,45 @@ class jobDescriptionAdmin extends Component {
             address: null,
             statusSave: true,
             editStatus: false,
+            scoreUser: null
         };
     }
 
     componentDidMount() {
         const { dataJob, login } = this.props.posts;
+        this.getUser()
         this.setState({
             id: dataJob.id,
+            id_user: dataJob.id_user,
             name: dataJob.name,
             phone: dataJob.name,
             nameRepairWork: dataJob.nameRepairWork,
             repair_work: dataJob.repair_work,
             address: dataJob.address,
         })
+    }
 
+    getUser = async () => {
+        const { dataJob, login } = this.props.posts;
+        const user = await repairWork.getUser(dataJob.id_user);
+        this.setState({
+            scoreUser: user[0].score
 
+        })
     }
 
     clickJob = async (e) => {
-        const { id } = this.state
+        const { id, id_user, scoreUser } = this.state;
+        console.log("user", scoreUser);
+
+        if (e == "1") {
+            if (scoreUser != null) {
+                let score = Number(scoreUser) + 1;
+                const result = await repairWork.updateScoreUser(id_user, score);
+            } else {
+                const result = await repairWork.updateScoreUser(id_user, "1");
+            }
+        }
         const result = await repairWork.updateRepairWorkUser(id, e, "null");
         console.log("e", e);
         if (result === "success") {

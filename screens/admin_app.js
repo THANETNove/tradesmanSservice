@@ -58,6 +58,7 @@ class AdminApp extends Component {
 
     getRepairWork = async () => {
         const result = await repairWork.getRepairWorkAdmin();
+
         if (result != null) {
             this.setState({
                 repair_work: result.length
