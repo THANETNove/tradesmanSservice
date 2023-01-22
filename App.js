@@ -84,8 +84,9 @@ function MyStack() {
               options={{
 
                 tabBarBadge: notificationsRepairWorkTec,
-                tabBarIcon: ({ size, color }) => (<Ionicons name="notifications" color={color} size={size} />)
+                tabBarIcon: ({ size, color }) => (<MaterialIcons name="notifications-on" color={color} size={size} />)
               }} />
+
             : null
         }
 
