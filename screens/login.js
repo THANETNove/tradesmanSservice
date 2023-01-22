@@ -153,7 +153,6 @@ class Login extends Component {
 
       const result = login.getRepairWorkUser(getLogin[0].id);
       result.then((values) => {
-
         if (values.length > 0) {
           this.props.dispatch({
             type: 'ADD_NOTIFICATIONSREPAIRWORK',
@@ -164,6 +163,22 @@ class Login extends Component {
       }).catch((error) => {
         this.props.dispatch({
           type: 'DELETE_NOTIFICATIONSREPAIRWORK',
+          payload: null
+        })
+      });
+
+      const resultTec = login.getRepairWorkTechnician();
+      resultTec.then((values) => {
+        if (values.length > 0) {
+          this.props.dispatch({
+            type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
+            payload: values.length
+          })
+        }
+
+      }).catch((error) => {
+        this.props.dispatch({
+          type: 'DELETE_NOTIFICATIONSREPAIRWORKTCE',
           payload: null
         })
       });

@@ -7,11 +7,14 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import RouterHome from './screens/router/routerHome';
 import RouterShop from './screens/router/routerShop';
-import RouterNotifications from './screens/router/notifications';
+/* import RouterNotifications from './screens/router/notifications'; */
 import RouterMessge from './screens/router/routerMessge';
+import RouterNotifications from './screens/router/RouterNotifications';
+import RouterNotifications_Technician from './screens/router/RouterNotifications_Technician';
 import RouterProfile from './screens/router/routerProfile';
 import RouterAdmin from './screens/router/routerAdmin';
-import Notifications_repair_work from './screens/navbar/notifications_repair_work';
+
+import notify_repair_work_Technician from './screens/notify_repair_work_Technician';
 import { createStore } from 'redux';
 /* import allReducer from './redux/index';aa */
 import { Provider } from "react-redux";
@@ -32,6 +35,7 @@ function MyStack() {
   /*   const dispatch = useDispatch(azasd); */
   const login = useSelector((state) => state.login);
   const notificationsReWork = useSelector((state) => state.notificationsRepairWork);
+  const notificationsRepairWorkTec = useSelector((state) => state.notificationsRepairWorkTec);
 
 
   return (
@@ -67,9 +71,19 @@ function MyStack() {
         }
         {
           (login && login.status_user) !== "admin" ?
-            <Tab.Screen name="Notifications" component={Notifications_repair_work}
+            <Tab.Screen name="Notifications" component={RouterNotifications}
               options={{
                 tabBarBadge: notificationsReWork,
+                tabBarIcon: ({ size, color }) => (<Ionicons name="notifications" color={color} size={size} />)
+              }} />
+            : null
+        }
+        {
+          (login && login.status_user) === "ช่าง" ?
+            <Tab.Screen name="งานทั้งหมด" component={RouterNotifications_Technician}
+              options={{
+
+                tabBarBadge: notificationsRepairWorkTec,
                 tabBarIcon: ({ size, color }) => (<Ionicons name="notifications" color={color} size={size} />)
               }} />
             : null

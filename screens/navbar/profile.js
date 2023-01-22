@@ -133,6 +133,10 @@ class Profile_tradesman extends Component {
       type: 'DELETE_NOTIFICATIONSREPAIRWORK',
       payload: null
     })
+    this.props.dispatch({
+      type: 'DELETE_NOTIFICATIONSREPAIRWORKTCE',
+      payload: null
+    })
   }
 
   async logout() {

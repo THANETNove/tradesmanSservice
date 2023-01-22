@@ -631,14 +631,13 @@ const getRepairWork = async (e) => {
   return seaUser;
 };
 // ดึง 'งานของ repairWork ช่าง' 
-const getRepairWorkTechnician = async (e) => {
+const getRepairWorkTechnician = async () => {
   const seaUser = await axios.get(`${url}/getRepairWorkTechnician.php`, {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8',
     },
     params: {
       isAdd: true,
-      id: e,
     }
   }).then((result) => {
 

@@ -14,7 +14,7 @@ import {
     TouchableHighlight
 } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
-import repairWork from "../service/getService";
+import repairWork from "./service/getService";
 import { connect } from "react-redux";
 
 class Notifications_repair_work extends Component {
@@ -29,21 +29,24 @@ class Notifications_repair_work extends Component {
 
 
     componentDidMount = async () => {
-        const { login, } = this.props.posts;
+        const { login, notificationsRepairWorkTec } = this.props.posts;
         if (this.props.posts.login === null) {
             this.props.navigation.navigate("Login")
         } else {
-            const result = await repairWork.getRepairWorkUser(login.id);
+
+            const result = await repairWork.getRepairWorkTechnician();
+            /*   result.then((values) => { */
             this.setState({
                 repair_work: result,
-                id: login.id,
             })
             if (result != null) {
                 this.props.dispatch({
-                    type: 'ADD_NOTIFICATIONSREPAIRWORK',
+                    type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
                     payload: result.length
                 })
             }
+            /*      }) */
+
 
         }
 
@@ -57,21 +60,24 @@ class Notifications_repair_work extends Component {
         const { id, repair_work } = this.state;
         const { jobDescription, login } = this.props.posts;
 
-        if ((prevProps.jobDescription !== jobDescription) && (jobDescription === null)) {
-            const result = await repairWork.getRepairWorkUser(login.id);
+        if (login !== null) {
+            const result = await repairWork.getRepairWorkTechnician();
+
             this.setState({
-                repair_work: result
+                repair_work: result,
             })
             if (result != null) {
                 this.props.dispatch({
-                    type: 'ADD_NOTIFICATIONSREPAIRWORK',
+                    type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
                     payload: result.length
                 })
             }
+            /*  }) */
         }
     }
 
     clickJob = async (e) => {
+
         const { id } = this.state;
 
         const result = await repairWork.updateRepairWorkUser(e.id, "null", "1");
@@ -81,12 +87,12 @@ class Notifications_repair_work extends Component {
                 payload: e
             })
 
-            this.props.navigation.navigate("JobDescription")
+            this.props.navigation.navigate("jobDescriptionTechnician")
         }
     }
     render() {
         const { repair_work } = this.state;
-
+        console.log("88");
         return (
             <SafeAreaView>
                 <ScrollView style={styles.areaView}>
@@ -119,7 +125,7 @@ const styles = StyleSheet.create({
         marginBottom: 50
     },
     areaView: {
-        marginTop: "10%",
+
         /*  height: "100%", */
     },
     repairWorkApprove: {
