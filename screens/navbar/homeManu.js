@@ -56,7 +56,7 @@ class homeManu extends Component {
         this.getAnnonce()
 
     }
-    componentWillMount() {
+    /* componentWillMount() {
         this.setState({
             interval: setInterval(() => {
                 this.getAnnonce()
@@ -66,7 +66,9 @@ class homeManu extends Component {
 
     componentWillUnmount() {
         clearInterval(this.state.interval);
-    }
+    } */
+    //  const result1 = await technician_type.getAddress_user(e);
+
 
     getAnnonce = async () => {
         const annonce = await shopImg.getAnnonceText();
@@ -92,7 +94,8 @@ class homeManu extends Component {
     }
 
     home() {
-        const { annonce, timeMs } = this.state;
+        const { annonce, timeMs, interval } = this.state;
+        console.log("999", interval);
         return (
             <>
                 <SafeAreaView style={styles.container}>
@@ -188,7 +191,8 @@ const styles = StyleSheet.create({
         /*  width: 145,
          height: 145,
          marginTop: -5,
-         marginLeft: -5, */
+         marginLeft: -5,
+         924 - 1460 */
     },
     image4: {
         width: "90%",

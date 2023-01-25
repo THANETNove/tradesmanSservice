@@ -44,6 +44,13 @@ export default class SwiperComponent extends Component {
     this.getImage()
   }
 
+  /*   componentDidUpdate(prevProps, prevState){
+      if (condition) {
+        
+      }
+  
+    } */
+
   getImage() {
     shopImg.getHomeImages()
       .then((value) => {
@@ -91,8 +98,9 @@ export default class SwiperComponent extends Component {
 
 
     const { image1, image2, image3, image4 } = this.state;
+    console.log("55");
     return (
-      <Swiper style={styles.wrapper} showsButtons={false}  autoplay={true} >
+      <Swiper style={styles.wrapper} index={0} showsButtons={false} autoplay={true} loop={true}>
 
         <View style={styles.slide1}>
           <Image source={{ uri: `https://th-projet.com/api-database/images/home/${image1}` }} style={styles.image} />

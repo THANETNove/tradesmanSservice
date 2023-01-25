@@ -58,20 +58,26 @@ class Profile_tradesman extends Component {
 
   }
 
-  componentDidUpdate() {
+  componentDidUpdate = async (prevProps, prevState) => {
     const { statusUpdate } = this.props.posts;
+    const { name } = this.state;
     if ((statusUpdate === true)) {
       this.getUserScore()
       this.props.dispatch({
         type: 'ADD_STATUSUPDATE',
         payload: false
       })
+
     }
 
 
-    if (this.props.posts.address !== this.state.name) {
+
+    if ((this.props.posts.address == null) && (name == null)) {
+      /*   console.log("this.props.posts.login", this.props.posts.login.id);
+        console.log("aaa"); */
+      const result1 = await technician_type.getAddress_user(this.props.posts.login.id);
       this.setState({
-        name: this.props.posts.address
+        name: result1[0]
       });
     }
 
@@ -209,6 +215,7 @@ class Profile_tradesman extends Component {
       );
     }
     const { modalVisible, urlImg, image, name, stausLogin, scoreUser } = this.state;
+    console.log("66", name);
     return (
       <>
         <SafeAreaView style={styles.container}>
@@ -316,7 +323,7 @@ class Profile_tradesman extends Component {
                 }
               </View>
               {
-                name === null ?
+                name == null ?
                   <Text style={styles.text}>TECHNICIAN ONLINE</Text>
                   :
                   <>
@@ -476,9 +483,9 @@ class Profile_tradesman extends Component {
 
 
   render() {
-    const { modalVisible, urlImg, stausLogin, ckeckUserId } = this.state;
+    const { modalVisible, urlImg, stausLogin, ckeckUserId, name } = this.state;
     const login_a = this.props.posts.login;
-
+    console.log("login_a", login_a);
     return (
       <>
         {
