@@ -44,12 +44,6 @@ export default class SwiperComponent extends Component {
     this.getImage()
   }
 
-  /*   componentDidUpdate(prevProps, prevState){
-      if (condition) {
-        
-      }
-  
-    } */
 
   getImage() {
     shopImg.getHomeImages()
