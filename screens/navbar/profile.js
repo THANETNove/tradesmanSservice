@@ -62,6 +62,7 @@ class Profile_tradesman extends Component {
     const { statusUpdate } = this.props.posts;
     const { name } = this.state;
     if ((statusUpdate === true)) {
+
       this.getUserScore()
       this.props.dispatch({
         type: 'ADD_STATUSUPDATE',
@@ -72,10 +73,11 @@ class Profile_tradesman extends Component {
 
 
 
-    if ((this.props.posts.address == null) && (name == null)) {
+    if ((this.props.posts.address == null) && (name == null) || (prevState.name !== prevState)) {
       /*   console.log("this.props.posts.login", this.props.posts.login.id);
         console.log("aaa"); */
       const result1 = await technician_type.getAddress_user(this.props.posts.login.id);
+
       this.setState({
         name: result1[0]
       });
@@ -97,9 +99,16 @@ class Profile_tradesman extends Component {
     const { login } = this.props.posts;
 
     const user = await technician_type.getUser(login.id);
-    this.setState({
-      scoreUser: user[0].score
-    });
+    if (user[0].score != null) {
+      this.setState({
+        scoreUser: user[0].score
+      });
+    } else {
+      this.setState({
+        scoreUser: 0
+      });
+    }
+
 
   }
 
@@ -215,7 +224,6 @@ class Profile_tradesman extends Component {
       );
     }
     const { modalVisible, urlImg, image, name, stausLogin, scoreUser } = this.state;
-    console.log("66", name);
     return (
       <>
         <SafeAreaView style={styles.container}>
@@ -237,13 +245,15 @@ class Profile_tradesman extends Component {
                     :
                     <>
                       <Text style={styles.text}>{name.name}</Text>
-                      <Text style={styles.text1}>เบอร์ติดต่อ {
+                      <Text style={styles.text1}>เบอร์ติดต่อ  {
                         stausLogin !== null ?
                           <>{stausLogin.phone}</>
                           :
                           null
                       }</Text>
-                      <Text style={styles.textScore}>คะเเนน  {scoreUser} </Text>
+                      <View style={styles.viewScore}>
+                        <Text style={styles.textScore}>คะเเนน {scoreUser} </Text>
+                      </View>
                     </>
                 }
               </View>
@@ -485,7 +495,6 @@ class Profile_tradesman extends Component {
   render() {
     const { modalVisible, urlImg, stausLogin, ckeckUserId, name } = this.state;
     const login_a = this.props.posts.login;
-    console.log("login_a", login_a);
     return (
       <>
         {
