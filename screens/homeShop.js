@@ -23,6 +23,7 @@ class HomeShop extends Component {
   }
 
   componentDidMount() {
+
     this.props.dispatch({
       type: 'DELETE_SHOPALL',
       payload: null
@@ -55,14 +56,14 @@ class HomeShop extends Component {
     }
   }
 
- clikShop(e){
+  clikShop(e) {
 
-  this.props.dispatch({
-    type: 'ADD_IDSHOP',
-    payload: e
-  })
-  this.props.navigation.navigate("shop_user")
- }
+    this.props.dispatch({
+      type: 'ADD_IDSHOP',
+      payload: e
+    })
+    this.props.navigation.navigate("shop_user")
+  }
 
   allShop() {
     const { shopImage, url } = this.state;
@@ -71,10 +72,10 @@ class HomeShop extends Component {
         <ScrollView style={styles.container}>
           <View style={styles.row}>
             {
-            (shopImage && shopImage !== null) ?
+              (shopImage && shopImage !== null) ?
                 <>
                   {
-                  shopImage && shopImage.map((index) => {
+                    shopImage && shopImage.map((index) => {
                       const image = (
                         <TouchableWithoutFeedback onPress={(e) => this.clikShop(index.id_shop)}>
                           <View style={styles.box}>
@@ -85,7 +86,7 @@ class HomeShop extends Component {
                             </View>
                             <View>
                               <Text style={styles.heading}>{index.heading !== "null" ? index.heading : null}</Text>
-                              <Text style={styles.detail}>{index.detail !== "null" ? index.detail.substr(0,100)+'...' : null}</Text>
+                              <Text style={styles.detail}>{index.detail !== "null" ? index.detail.substr(0, 100) + '...' : null}</Text>
                             </View>
                           </View>
                         </TouchableWithoutFeedback>
@@ -94,7 +95,7 @@ class HomeShop extends Component {
                     })
                   }
                 </>
-                :  null
+                : null
 
             }
           </View>
@@ -119,7 +120,7 @@ const styles = StyleSheet.create({
   row: {
     marginTop: 20,
     display: "flex",
-    justifyContent: "left",
+    marginRight: 10,
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginBottom: 20,
@@ -135,9 +136,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     backgroundColor: "#4BC7FB",
   },
-/*   img: {
-    height:
-  }, */
+
   image: {
     width: "100%",
     height: 110,
@@ -152,16 +151,16 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
     paddingTop: 20,
     paddingBottom: 10,
-    paddingRight:10,
+    paddingRight: 10,
     fontSize: 16,
     color: "#fff"
   },
   detail: {
     color: "##373737",
-    fontSize:12,
-    paddingLeft:10,
-    paddingRight:10,
-    paddingBottom:10
+    fontSize: 12,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingBottom: 10
   }
 });
 const mapStateToProps = (state) => {
