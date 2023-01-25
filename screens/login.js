@@ -187,6 +187,10 @@ class Login extends Component {
         type: 'ADD_LOGIN',
         payload: data2
       })
+      this.props.dispatch({
+        type: 'ADD_STATUSUPDATE',
+        payload: true
+      })
 
       /*     this.props.dispatch({
             type: 'ADD_URL',
