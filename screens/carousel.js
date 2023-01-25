@@ -98,7 +98,6 @@ export default class SwiperComponent extends Component {
 
 
     const { image1, image2, image3, image4 } = this.state;
-    console.log("55");
     return (
       <Swiper style={styles.wrapper} index={0} showsButtons={false} autoplay={true} loop={true}>
 

@@ -95,7 +95,7 @@ class homeManu extends Component {
 
     home() {
         const { annonce, timeMs, interval } = this.state;
-        console.log("999", interval);
+
         return (
             <>
                 <SafeAreaView style={styles.container}>
