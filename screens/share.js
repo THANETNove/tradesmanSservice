@@ -27,7 +27,7 @@ const ShareExample = () => {
             }
             if (id_user != null) {
                 const user = await repairWork.getUser(id_user.id);
-                console.log(user);
+
                 if (user && user[0].score != null) {
                     let score = Number(user[0].score) + 1;
                     const result = await repairWork.updateScoreUser(id_user.id, score);
@@ -49,7 +49,7 @@ const ShareExample = () => {
             alert(error.message);
 
         }
-        console.log("id_user", id_user);
+
 
 
     };
