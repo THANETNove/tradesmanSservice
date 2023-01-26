@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Share, View, TextInput, Button } from 'react-native';
+import { Share, View, TextInput, Button, Platform } from 'react-native';
 import CountDown from 'react-native-countdown-component';
 import { useSelector, useDispatch } from "react-redux";
 import repairWork from "./service/getService";
@@ -15,8 +15,13 @@ const ShareExample = () => {
     const onShare = async () => {
 
         try {
+            //      (Platform.OS === 'ios') &&
+            const message = (Platform.OS == 'ios') ? `https://apps.apple.com/th/app/technician-online/id1637943361` : `https://play.google.com/store/apps/details?id=com.ththanet.techicianOnline&hl=th`;
+
+            console.log("message", message);
             const result = await Share.share({
-                message: `https://play.google.com/store/apps/details?id=com.ththanet.techicianOnline&hl=th`,
+
+                message: message,
             });
 
             if (result.action === Share.sharedAction) {
