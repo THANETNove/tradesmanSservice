@@ -410,7 +410,7 @@ const getAddress = async (e) => {
 };
 
 const getAddress_user = async (e) => {
-  const seaUser = await axios.get(`${url}/getAddress_user.php`, {
+  const seaUser = await axios.get(`${url}/getAddress.php`, {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8',
     },

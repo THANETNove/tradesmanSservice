@@ -57,7 +57,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     if (result2) {
       result2.map((index) => {
         if (index.nameImage === "image1") {
-            console.log("img1",index.id);
+          console.log("img1", index.id);
           setIdImage1({
             id: index.id,
             name: index.url_shop
@@ -67,7 +67,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
           })
         }
         if (index.nameImage === "image2") {
-            console.log("img2",index.id);
+          console.log("img2", index.id);
           setIdImage2({
             id: index.id,
             name: index.url_shop
@@ -77,7 +77,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
           })
         }
         if (index.nameImage === "image3") {
-            console.log("img3",index.id);
+          console.log("img3", index.id);
           setIdImage3({
             id: index.id,
             name: index.url_shop
@@ -87,7 +87,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
           })
         }
         if (index.nameImage === "image4") {
-            console.log("img4",index.id);
+          console.log("img4", index.id);
           setIdImage4({
             id: index.id,
             name: index.url_shop
@@ -120,7 +120,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
         setImage3(result);
       } else {
         setImage4(result);
-      } 
+      }
     }
   };
   const serve = async (e) => {
@@ -136,7 +136,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
         result = result1;
       } else {
         if (image1.type) {
-          const result1 = await shopImg.uplodeUpdateImagesHome(image1, idImage1.id,  idImage1.name);
+          const result1 = await shopImg.uplodeUpdateImagesHome(image1, idImage1.id, idImage1.name);
           result = result1;
         }
       }
@@ -162,7 +162,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
         result = result2;
       } else {
         if (image3.type) {
-          const result1 = await shopImg.uplodeUpdateImagesHome(image3,idImage3.id,  idImage3.name);
+          const result1 = await shopImg.uplodeUpdateImagesHome(image3, idImage3.id, idImage3.name);
           result = result1;
         }
       }
@@ -239,10 +239,10 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
             </View>
             <View style={styles.box6}>
               <View style={styles.box2}>
-                <Text style={styles.text1}>รูปสินค้า</Text>
+                <Text style={styles.text1}>ภาพโฆษณา</Text>
               </View>
               <View style={styles.box3}>
-                <Text style={styles.text1}>ภาพที่ 1 จะเป็นภาพหลัก</Text>
+                <Text style={styles.text1}>ภาพโฆษณา 1 จะเป็นภาพหลัก</Text>
                 <Text style={styles.text}>ขนาดภาพเเนะนำ 720*720</Text>
               </View>
               <View style={styles.boxhead}>

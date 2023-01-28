@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     box: {
-        height: 190,
+        height: 200,
         width: "100%",
         shadowColor: "#000",
     },

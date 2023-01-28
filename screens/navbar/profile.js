@@ -59,7 +59,7 @@ class Profile_tradesman extends Component {
   }
 
   componentDidUpdate = async (prevProps, prevState) => {
-    const { statusUpdate } = this.props.posts;
+    const { statusUpdate, login } = this.props.posts;
     const { name } = this.state;
     if ((statusUpdate === true)) {
 
@@ -69,23 +69,38 @@ class Profile_tradesman extends Component {
         payload: false
       })
 
+
+      if ((this.props.posts.address == null) && (this.props.posts.login != null)) {
+        let id_login = this.props.posts.login.id;
+
+        const result1 = await technician_type.getAddress_user(this.props.posts.login.id);
+        console.log('result1', result1, login, id_login);
+        if (result1 != null) {
+          this.setState({
+            name: result1[0]
+          });
+        } else {
+          this.setState({
+            name: null
+          });
+        }
+      }
     }
 
+    /*     console.log("this.props.posts.address", this.props.posts.address); */
 
 
-    if ((this.props.posts.address == null) && (name == null) || (prevState.name !== prevState)) {
-      /*   console.log("this.props.posts.login", this.props.posts.login.id);
-        console.log("aaa"); */
-      const result1 = await technician_type.getAddress_user(this.props.posts.login.id);
 
-      this.setState({
-        name: result1[0]
-      });
-    }
+
 
     if (this.props.posts.login !== this.state.stausLogin) {
       this.setState({
         stausLogin: this.props.posts.login
+      });
+    }
+    if (this.props.posts.login == null) {
+      this.setState({
+        stausLogin: null
       });
     }
     if (this.props.posts.imageProfile !== this.state.image) {
@@ -317,7 +332,7 @@ class Profile_tradesman extends Component {
       );
     }
     /*     console.log("stausLogin",stausLogin && stausLogin.status_user); */
-
+    /*     console.log("stausLogin", stausLogin, this.props.posts.login); */
     return (
       <>
         <ScrollView s>
@@ -368,7 +383,7 @@ class Profile_tradesman extends Component {
                   <FontAwesome name="user" style={styles.icons3} />
                   <Text
                     style={styles.text2}
-                    onPress={() => this.props.navigation.navigate("ImageHome")}>{"เพิ่มภาพ"}
+                    onPress={() => this.props.navigation.navigate("ImageHome")}>{"ภาพโฆษณา"}
                   </Text>
                 </View>
                 :

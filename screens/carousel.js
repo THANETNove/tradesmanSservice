@@ -93,7 +93,7 @@ export default class SwiperComponent extends Component {
 
     const { image1, image2, image3, image4 } = this.state;
     return (
-      <Swiper style={styles.wrapper} index={0} showsButtons={false} autoplay={true} loop={true}>
+      <Swiper style={styles.wrapper} index={0} showsButtons={false} autoplay={true} loop={true} autoplayTimeout={8}>
 
         <View style={styles.slide1}>
           <Image source={{ uri: `https://th-projet.com/api-database/images/home/${image1}` }} style={styles.image} />
