@@ -37,6 +37,7 @@ class Profile_tradesman extends Component {
   }
 
   componentDidMount() {
+    console.log("9999");
     if (this.state.name === null) {
       this.setState({
         name: this.props.posts.address
@@ -59,7 +60,7 @@ class Profile_tradesman extends Component {
   }
 
   componentDidUpdate = async (prevProps, prevState) => {
-    const { statusUpdate, login } = this.props.posts;
+    const { statusUpdate, login, address } = this.props.posts;
     const { name } = this.state;
     if ((statusUpdate === true)) {
 
@@ -69,13 +70,13 @@ class Profile_tradesman extends Component {
         payload: false
       })
 
+      if ((prevProps.address != address)) {
 
-      if ((this.props.posts.address == null) && (this.props.posts.login != null)) {
-        let id_login = this.props.posts.login.id;
 
-        const result1 = await technician_type.getAddress_user(this.props.posts.login.id);
-        console.log('result1', result1, login, id_login);
-        if (result1 != null) {
+        const result1 = await technician_type.getAddress_user(login.id);
+        console.log('result1', result1, login);
+        if (result1.length > 0) {
+          console.log("99999");
           this.setState({
             name: result1[0]
           });
@@ -239,6 +240,7 @@ class Profile_tradesman extends Component {
       );
     }
     const { modalVisible, urlImg, image, name, stausLogin, scoreUser } = this.state;
+    console.log("111");
     return (
       <>
         <SafeAreaView style={styles.container}>

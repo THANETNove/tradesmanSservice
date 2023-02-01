@@ -83,7 +83,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
       });
       const name = regionName[0];
       const address = JSON.stringify(name?.["subregion"]);
-      setAddress(address);
+      setAddress(null);
     }
   };
 
@@ -240,6 +240,11 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
         type: "ADD_ADDRESS",
         payload: data3,
       });
+      dispatch({
+        type: 'ADD_STATUSUPDATE',
+        payload: true
+      });
+
     }
   };
 

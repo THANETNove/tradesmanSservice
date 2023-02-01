@@ -36,6 +36,8 @@ class Login extends Component {
 
   getAddress = async (e) => {
     const result = await login.getAddress(e);
+    console.log("result Login", result);
+
     if (result !== null) {
       let data3 = {
         id: result[0].id,
