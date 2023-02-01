@@ -45,9 +45,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   const [idPhone, setIdPhone] = useState(
     useSelector((state) => state.login.id)
   );
-  const [statusAddress, setStatusAddress] = useState(
-    useSelector((state) => state.addressUser)
-  );
+  const [statusAddress, setStatusAddress] = useState(null);
   const [statusEdit, setStatusEdit] = useState(false);
   const [id, setId] = useState(null);
   const [seveEdit, setSeveEdit] = useState(true);
@@ -82,6 +80,20 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
       setAddress(address);
     }
   };
+
+
+  //componentDidMount เปิดมาครั้งเเลกเเล้วทำงาน 1 ครั้ง
+  useEffect(() => {
+
+    if (id == null) {
+      console.log("id", id);
+      getAddress_user(idPhone);
+    }
+    /* if (!location) {
+      getAddress_user(idPhone);
+    } */
+
+  })
 
   const map = () => {
     return (
@@ -149,22 +161,25 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     const result = await technician_type.createAddress_user(data);
 
     if (result === "success") {
+      console.log("idPhone", idPhone);
       await getAddress_user(idPhone);
-      await Alert.alert("บันทึกสำเร็จ");
-      setStatusAddress(true);
+      Alert.alert("บันทึกสำเร็จ");
+
       await popToTop();
     } else {
-      await Alert.alert("บันทึกไม่สำเร็จ กรุณาลองใหม่");
+      Alert.alert("บันทึกไม่สำเร็จ กรุณาลองใหม่");
     }
   };
 
   const getAddress_user = async (e) => {
     const result1 = await technician_type.getAddress_user(e);
 
+    console.log("result1", result1);
 
-    if (result1 !== null) {
-
-      let data3 = {
+    if (result1) {
+      setStatusAddress(result1[0])
+      setId(result1[0].id)
+      var data3 = {
         id: result1[0].id,
         name: result1[0].name,
         phone_number: result1[0].phone_number,
@@ -181,11 +196,18 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
         type: "ADD_ADDRESS_USER",
         payload: data3,
       });
+      dispatch({
+        type: 'ADD_STATUSUPDATE',
+        payload: true
+      });
+
     }
   };
 
   const edit = async () => {
+
     setStatusEdit(true);
+    setSeveEdit(true)
     setId(statusAddress.id);
     setName(statusAddress.name);
     setPhone_number(statusAddress.phone_number);
@@ -215,28 +237,22 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
       zipcode,
       location,
     ];
+
+
     setSeveEdit(false)
     const result = await technician_type.updateAddress_user(data);
-
+    console.log("999", result);
     if (result === "success") {
       await getAddress_user(idPhone);
+
+      Alert.alert("เเก้ไขสำเร็จ");
       setStatusEdit(false);
-      await Alert.alert("เเก้ไขสำเร็จ");
-      setStatusAddress(true);
-      await popToTop();
+      /*  await popToTop(); */
     } else {
-      await Alert.alert("เเก้ไขไม่สำเร็จ กรุณาลองใหม่");
+      Alert.alert("เเก้ไขไม่สำเร็จ กรุณาลองใหม่");
     }
   };
 
-  //componentDidMount เปิดมาครั้งเเลกเเล้วทำงาน 1 ครั้ง
-  useEffect(() => {
-
-    if (location.latitude === null) {
-      getLocation();
-    }
-
-  })
 
   // componentDidUpdate ถ้าข้อมูลใน start มีการเปลี่ยนเเปลง ถึงจะอัพเดต
   /*   useEffect(() => {
@@ -253,9 +269,9 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
        
       }
     } */
-
-  /*   const url = useSelector(state => ({...state}));
-    console.log("url",url); */
+  /* 
+    const url = useSelector(state => ({ ...state }));
+    console.log("url", url); */
   const image = {
     uri: "https://www.roojai.com/wp-content/uploads/2018/07/how-to-choose-garage-car-mechanic-cover.jpg",
   };
@@ -395,6 +411,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   };
 
   const showAddress = () => {
+
     return (
       <>
         <ScrollView>
@@ -622,8 +639,8 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     );
   };
 
-  /*   console.log(useSelector((state) => ({ ...state })));*/
-
+  /* console.log(useSelector((state) => ({ ...state }))); */
+  console.log("statusAddress", statusAddress);
   return (
     <>
       {statusAddress === null

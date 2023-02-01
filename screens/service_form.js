@@ -751,7 +751,6 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
   /*    console.log(useSelector((state) => ({ ...state }))); */
 
-
   return (
     <>
       {statusAddress === null

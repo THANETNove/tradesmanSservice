@@ -410,7 +410,7 @@ const getAddress = async (e) => {
 };
 
 const getAddress_user = async (e) => {
-  const seaUser = await axios.get(`${url}/getAddress.php`, {
+  const seaUser = await axios.get(`${url}/getUserAddress.php`, {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8',
     },
@@ -791,7 +791,6 @@ const createAddress = async (e) => {
   return cerAdd;
 }
 const createAddress_user = async (e) => {
-
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('idPhone', e[0]);

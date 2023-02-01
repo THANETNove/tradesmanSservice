@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, StyleSheet, TextInput, Text, TouchableWithoutFeedback, View, Image, ScrollView,ImageBackground } from 'react-native';
+import { SafeAreaView, StyleSheet, TextInput, Text, TouchableWithoutFeedback, View, Image, ScrollView, ImageBackground } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons';
 import { connect } from "react-redux";
 import get_technician from './service/getService';
@@ -22,8 +22,8 @@ class Home_tar extends Component {
     const name = this.props.posts.technician;
     this.technicianAndUser(name);
   }
-  
-  
+
+
 
   technicianAndUser = async (e) => {
     const result1 = await get_technician.gettechnician(e);
@@ -39,12 +39,13 @@ class Home_tar extends Component {
       type: 'ADD_IDTECHNICAN',
       payload: e
     })
-   this.props.navigation.navigate("Profile_tras_user")
+    this.props.navigation.navigate("Profile_tras_user")
   }
 
 
   render() {
-    const { technician,urlImg } = this.state;
+
+    const { technician, urlImg } = this.state;
     return (
       <SafeAreaView style={styles.container}>
         <ScrollView>
@@ -86,36 +87,36 @@ class Home_tar extends Component {
                       const name = (
                         <TouchableWithoutFeedback onPress={() => this.ClickU(va.idPhone)}>
                           <View style={styles.box}>
-                       {/*    <ImageBackground style={styles.image2} source={require('../assets/images/A-4.jpg')}> */}
-                            { va.file_src !== null ? 
-                            
-                            <>
-                              <Image style={styles.image} source={{ uri: `${urlImg}profile/${va.file_src}` }}/>
-                              {/* <Image style={styles.image1}  source={{ uri: `${urlImg}profile/${va.file_src}` }}/> */}
-                            </>
-                            :
-                            <>
-                              <Image style={styles.image3} source={{ uri: `${urlImg}profile/logo_technician.png` }}/>
-                           {/*    <Image style={styles.image1}  source={{ uri: `${urlImg}profile/logo_technician.png` }}/> */}
-                            </>
+                            {/*    <ImageBackground style={styles.image2} source={require('../assets/images/A-4.jpg')}> */}
+                            {va.file_src !== null ?
+
+                              <>
+                                <Image style={styles.image} source={{ uri: `${urlImg}profile/${va.file_src}` }} />
+                                {/* <Image style={styles.image1}  source={{ uri: `${urlImg}profile/${va.file_src}` }}/> */}
+                              </>
+                              :
+                              <>
+                                <Image style={styles.image3} source={{ uri: `${urlImg}profile/logo_technician.png` }} />
+                                {/*    <Image style={styles.image1}  source={{ uri: `${urlImg}profile/logo_technician.png` }}/> */}
+                              </>
                             }
                             <View style={styles.text}>
-                            <Text style={styles.text1}>ชื่อ : {
-                              va.name !== "null" ? va.name : null
-                            }</Text>
-                            <Text style={styles.text2}>ประเภทงาน :  {
-                              va.technician_1 !== "null" ? va.technician_1 :null
-                            }</Text>
-                            <Text style={styles.text3}>ประเภทงาน : {
-                               va.technician_2 !== "null" ? va.technician_2 :null
-                            } </Text>
-                            <Text style={styles.text4}>จังหวัด : {
-                              va.province !=="null" ? va.province : null
-                            }</Text>
+                              <Text style={styles.text1}>ชื่อ : {
+                                va.name !== "null" ? va.name : null
+                              }</Text>
+                              <Text style={styles.text2}>ประเภทงาน :  {
+                                va.technician_1 !== "null" ? va.technician_1 : null
+                              }</Text>
+                              <Text style={styles.text3}>ประเภทงาน : {
+                                va.technician_2 !== "null" ? va.technician_2 : null
+                              } </Text>
+                              <Text style={styles.text4}>จังหวัด : {
+                                va.province !== "null" ? va.province : null
+                              }</Text>
                             </View>
-                           {/* </ImageBackground> */}
+                            {/* </ImageBackground> */}
                           </View>
-                          
+
                         </TouchableWithoutFeedback>
                       )
                       return name;
@@ -142,9 +143,9 @@ class Home_tar extends Component {
                 </>
                 :
                 <View style={styles.box1}>
-                    <Text style={styles.text5}>ไม่มีข้อมูลมูลช่าง</Text>
+                  <Text style={styles.text5}>ไม่มีข้อมูลมูลช่าง</Text>
                 </View>
-                
+
             }
 
 
@@ -178,7 +179,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6.27,
     marginBottom: 5,
     paddingBottom: 10,
-    paddingRight:5,
+    paddingRight: 5,
   },
   box1: {
     height: 40,
@@ -201,7 +202,7 @@ const styles = StyleSheet.create({
     marginTop: 15,
     borderRadius: 10,
     marginLeft: 35,
-    position:"absolute"
+    position: "absolute"
   },
   image3: {
     width: 140,
@@ -209,7 +210,7 @@ const styles = StyleSheet.create({
     marginTop: -7,
     borderRadius: 10,
     marginLeft: 12,
-    position:"absolute"
+    position: "absolute"
   },
   image1: {
     width: 24,
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
     marginTop: 120,
     marginLeft: 15,
     borderRadius: 50,
-    position:"absolute"
+    position: "absolute"
   },
   image2: {
     width: '100%',
@@ -239,7 +240,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 15,
     marginTop: 5,
-    
+
   },
   text3: {
     fontSize: 13,
