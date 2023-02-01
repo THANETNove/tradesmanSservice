@@ -174,8 +174,6 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   const getAddress_user = async (e) => {
     const result1 = await technician_type.getAddress_user(e);
 
-    console.log("result1", result1);
-
     if (result1) {
       setStatusAddress(result1[0])
       setId(result1[0].id)
@@ -640,7 +638,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   };
 
   /* console.log(useSelector((state) => ({ ...state }))); */
-  console.log("statusAddress", statusAddress);
+
   return (
     <>
       {statusAddress === null
