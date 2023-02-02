@@ -175,19 +175,19 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     const result1 = await technician_type.getAddress_user(e);
 
     if (result1) {
-      setStatusAddress(result1[0])
-      setId(result1[0].id)
+      setStatusAddress(result1)
+      setId(result1.id)
       var data3 = {
-        id: result1[0].id,
-        name: result1[0].name,
-        phone_number: result1[0].phone_number,
-        email: result1[0].email,
-        addressUser: result1[0].address,
-        subdistrict: result1[0].subdistrict,
-        district: result1[0].district,
-        province: result1[0].province,
-        zipcode: result1[0].zipcode,
-        location: JSON.parse(result1[0].location),
+        id: result1.id,
+        name: result1.name,
+        phone_number: result1.phone_number,
+        email: result1.email,
+        addressUser: result1.address,
+        subdistrict: result1.subdistrict,
+        district: result1.district,
+        province: result1.province,
+        zipcode: result1.zipcode,
+        location: JSON.parse(result1.location),
       };
 
       dispatch({

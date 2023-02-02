@@ -39,14 +39,21 @@ class Profile_tradesman extends Component {
 
   getName = () => {
     const { login, address, addressUser } = this.props.posts;
+    console.log("address", address, addressUser);
     if (login.status_user == "ช่าง") {
-      this.setState({
-        name: address.name
-      });
+      if (address) {
+        this.setState({
+          name: address.name
+        });
+      }
+
     } else {
-      this.setState({
-        name: addressUser.name
-      });
+      if (addressUser) {
+        this.setState({
+          name: addressUser.name
+        });
+      }
+
     }
   }
   componentDidMount() {
@@ -126,7 +133,7 @@ class Profile_tradesman extends Component {
     if (login.status_user == "ช่าง") {
       const result1 = await technician_type.gettechnicianAddressid(login.id);
       console.log("result1 8888;", result1);
-      if (result1) {
+      if (result1.name) {
         console.log("xx9999xxx");
         this.setState({
           name: result1.name
@@ -139,10 +146,10 @@ class Profile_tradesman extends Component {
       }
     } else {
       const result1 = await technician_type.getAddress_user(login.id);
-      console.log("result1", result1);
+
       if (result1) {
         this.setState({
-          name: result1[0].name
+          name: result1.name
         });
       } else {
         this.setState({

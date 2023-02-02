@@ -314,8 +314,12 @@ const gettechnicianAddressid = async (e) => {
       id: e,
     }
   }).then((result) => {
+    if (result.data) {
+      return result.data[0];
+    } else {
+      return result.data;
+    }
 
-    return result.data[0];
   })
     .catch((error) => {
 
@@ -325,7 +329,7 @@ const gettechnicianAddressid = async (e) => {
 };
 /* ดึงข้อมูลลูกค้า เเต่ละคน */
 const getUserAddressid = async (e) => {
-
+  console.log("ee", e);
   const getUserID = await axios.get(`${url}/getUserAddress.php`, {
     headers: {
       'Content-Type': 'text/javascript;charset=utf-8',
@@ -335,8 +339,11 @@ const getUserAddressid = async (e) => {
       id: e,
     }
   }).then((result) => {
+    console.log("result.data", result.data);
 
     return result.data;
+
+
   })
     .catch((error) => {
 
@@ -419,8 +426,12 @@ const getAddress_user = async (e) => {
       id: e,
     }
   }).then((result) => {
+    if (result.data) {
+      return result.data[0];
+    } else {
+      return result.data;
+    }
 
-    return result.data;
   })
     .catch((error) => {
 

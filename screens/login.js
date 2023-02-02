@@ -40,18 +40,18 @@ class Login extends Component {
 
     if (result !== null) {
       let data3 = {
-        id: result[0].id,
-        name: result[0].name,
-        phone_number: result[0].phone_number,
-        email: result[0].email,
-        addressUser: result[0].address,
-        subdistrict: result[0].subdistrict,
-        district: result[0].district,
-        province: result[0].province,
-        zipcode: result[0].zipcode,
-        location: JSON.parse(result[0].location),
-        technician_1: result[0].technician_1,
-        technician_2: result[0].technician_2,
+        id: result.id,
+        name: result.name,
+        phone_number: result.phone_number,
+        email: result.email,
+        addressUser: result.address,
+        subdistrict: result.subdistrict,
+        district: result.district,
+        province: result.province,
+        zipcode: result.zipcode,
+        location: JSON.parse(result.location),
+        technician_1: result.technician_1,
+        technician_2: result.technician_2,
       }
       this.props.dispatch({
         type: 'ADD_ADDRESS',
@@ -64,19 +64,19 @@ class Login extends Component {
 
   getAddress_user = async (e) => {
     const result = await login.getAddress_user(e);
-    if (result != null) {
+    if (result !== null) {
 
       let data3 = {
-        id: result[0].id,
-        name: result[0].name,
-        phone_number: result[0].phone_number,
-        email: result[0].email,
-        addressUser: result[0].address,
-        subdistrict: result[0].subdistrict,
-        district: result[0].district,
-        province: result[0].province,
-        zipcode: result[0].zipcode,
-        location: JSON.parse(result[0].location),
+        id: result.id,
+        name: result.name,
+        phone_number: result.phone_number,
+        email: result.email,
+        addressUser: result.address,
+        subdistrict: result.subdistrict,
+        district: result.district,
+        province: result.province,
+        zipcode: result.zipcode,
+        location: JSON.parse(result.location),
       }
       this.props.dispatch({
         type: 'ADD_ADDRESS_USER',
