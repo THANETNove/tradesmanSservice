@@ -239,7 +239,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
 
     setSeveEdit(false)
     const result = await technician_type.updateAddress_user(data);
-    console.log("999", result);
+    /*  console.log("999", result); */
     if (result === "success") {
       await getAddress_user(idPhone);
 
