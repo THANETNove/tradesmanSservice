@@ -49,9 +49,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
   const [idPhone, setIdPhone] = useState(
     useSelector((state) => state.login.id)
   );
-  const [statusAddress, setStatusAddress] = useState(
-    useSelector((state) => state.address)
-  );
+  const [statusAddress, setStatusAddress] = useState(null);
   const [statusEdit, setStatusEdit] = useState(false);
   const [id, setId] = useState(null);
   const [seveEdit, setSeveEdit] = useState(true);
@@ -153,11 +151,11 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     const result = await technician_type.createAddress(data);
     if (result === "success") {
       await getAddress(idPhone);
-      await Alert.alert("บันทึกสำเร็จ");
-      setStatusAddress(true);
+      Alert.alert("บันทึกสำเร็จ");
+
       await popToTop();
     } else {
-      await Alert.alert("บันทึกไม่สำเร็จ กรุณาลองใหม่");
+      Alert.alert("บันทึกไม่สำเร็จ กรุณาลองใหม่");
     }
   };
   const update = async () => {
@@ -175,16 +173,18 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
       technician_1,
       technician_2,
     ];
-    setSeveEdit(false)
+
     const result = await technician_type.updateAddress(data);
-    if (result === "success") {
+
+    if (result == "success") {
       await getAddress(idPhone);
+
+      Alert.alert("เเก้ไขสำเร็จ");
+
       setStatusEdit(false);
-      await Alert.alert("เเก้ไขสำเร็จ");
-      setStatusAddress(true);
-      await popToTop();
+      //await popToTop();
     } else {
-      await Alert.alert("เเก้ไขไม่สำเร็จ กรุณาลองใหม่");
+      Alert.alert("เเก้ไขไม่สำเร็จ กรุณาลองใหม่");
     }
   };
 
@@ -219,22 +219,24 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
   const getAddress = async (e) => {
 
-    const result = await technician_type.getAddress(e);
+    const result = await technician_type.gettechnicianAddressid(e);
 
     if (result !== null) {
+      console.log("result Get", result);
+      setStatusAddress(result)
       let data3 = {
-        id: result[0].id,
-        name: result[0].name,
-        phone_number: result[0].phone_number,
-        email: result[0].email,
-        addressUser: result[0].address,
-        subdistrict: result[0].subdistrict,
-        district: result[0].district,
-        province: result[0].province,
-        zipcode: result[0].zipcode,
-        location: JSON.parse(result[0].location),
-        technician_1: result[0].technician_1,
-        technician_2: result[0].technician_2,
+        id: result.id,
+        name: result.name,
+        phone_number: result.phone_number,
+        email: result.email,
+        addressUser: result.address,
+        subdistrict: result.subdistrict,
+        district: result.district,
+        province: result.province,
+        zipcode: result.zipcode,
+        location: JSON.parse(result.location),
+        technician_1: result.technician_1,
+        technician_2: result.technician_2,
       };
       dispatch({
         type: "ADD_ADDRESS",
@@ -250,6 +252,10 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
 
 
   useEffect(() => {
+
+    if (statusAddress == null) {
+      getAddress(idPhone)
+    }
     if (location.latitude === null) {
       getLocation();
     }
@@ -750,7 +756,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
   };
 
   /*    console.log(useSelector((state) => ({ ...state }))); */
-
+  console.log("getTechnicianAddress",);
   return (
     <>
       {statusAddress === null
