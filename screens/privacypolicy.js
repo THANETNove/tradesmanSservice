@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 
-class privacypolicy extends Component {
+class Privacypolicy extends Component {
     render() {
         return (
             <ScrollView>
@@ -64,4 +64,4 @@ const styles = StyleSheet.create({
     },
 
 });
-export default privacypolicy;
+export default Privacypolicy;

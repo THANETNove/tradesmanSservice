@@ -29,41 +29,41 @@ class Profile_tras_user extends Component {
 
 
   componentDidMount() {
-    
+
     var id = this.props.posts.id;
     this.setState({
       login: this.props.posts.login,
     })
     if (this.props.posts.login.status_user === "ช่าง") {
       this.andUsers(id);
-    }else{
+    } else {
       this.technicianAndUser(id);
     }
   }
-  componentDidUpdate(prevProps, prevState) {
-    const {id} = this.props.posts;
-
-
-    if(prevProps.id !== this.state.id){
-      if (this.props.posts.login.status_user === "ช่าง") {
-        this.andUsers(id);
-      }else{
-        this.technicianAndUser(id);
-      }
-    }
-  
-  }
-  componentDidUpdate(prevProps, prevState) {
-    const {technician} = this.state;
-    if(prevProps.technician != technician || technician === null){
-      const {id} = this.props.posts;
-      if (this.props.posts.login.status_user === "ช่าง") {
-        this.andUsers(id);
-      }else{
-        this.technicianAndUser(id);
-      }
-    }
-  }
+  /*  componentDidUpdate(prevProps, prevState) {
+     const {id} = this.props.posts;
+ 
+ 
+     if(prevProps.id !== this.state.id){
+       if (this.props.posts.login.status_user === "ช่าง") {
+         this.andUsers(id);
+       }else{
+         this.technicianAndUser(id);
+       }
+     }
+   
+   }
+   componentDidUpdate(prevProps, prevState) {
+     const {technician} = this.state;
+     if(prevProps.technician != technician || technician === null){
+       const {id} = this.props.posts;
+       if (this.props.posts.login.status_user === "ช่าง") {
+         this.andUsers(id);
+       }else{
+         this.technicianAndUser(id);
+       }
+     }
+   } */
 
   technicianAndUser = async (e) => {
     const result1 = await get_technician.gettechnicianAddressid(e);
@@ -76,7 +76,7 @@ class Profile_tras_user extends Component {
   andUsers = async (e) => {
     const result2 = await get_technician.getUserAddressid(e);
     this.setState({
-      technician:  result2[0],
+      technician: result2[0],
       urlImg: this.props.posts.urlImage,
     })
 
@@ -110,14 +110,14 @@ class Profile_tras_user extends Component {
                     <Text style={styles.text}>{technician.name}</Text>
                     :
                     <>
-                    <Text style={styles.text}>TECHNICIAN ONLINE</Text>
+                      <Text style={styles.text}>TECHNICIAN ONLINE</Text>
                       <Text style={styles.text1}>ยังไม่มีขูมูล</Text>
                     </>
                   :
-                <>
+                  <>
                     <Text style={styles.text}>TECHNICIAN ONLINE</Text>
-                  <Text style={styles.text1}>ยังไม่มีขูมูล</Text>
-                </>
+                    <Text style={styles.text1}>ยังไม่มีขูมูล</Text>
+                  </>
 
               }
 
@@ -156,7 +156,7 @@ class Profile_tras_user extends Component {
 
             {this.props.posts.login.status_user === "ลูกค้าทั่วไป" ?
               <>
-                   <View style={styles.box3}>
+                <View style={styles.box3}>
                   <Ionicons name="card" style={styles.icons5} />
                   <Text
                     style={styles.text2}
@@ -167,7 +167,7 @@ class Profile_tras_user extends Component {
               :
               null
             }
-         
+
 
           </View>
         </ScrollView>
@@ -270,7 +270,7 @@ const styles = StyleSheet.create({
     marginLeft: "auto",
     marginRight: "auto",
     fontWeight: "bold",
-    fontSize:16,
+    fontSize: 16,
   },
 
   text2: {

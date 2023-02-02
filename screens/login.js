@@ -35,8 +35,8 @@ class Login extends Component {
   }
 
   getAddress = async (e) => {
-    const result = await login.getAddress(e);
-    console.log("result Login", result);
+    const result = await login.gettechnicianAddressid(e);
+
 
     if (result !== null) {
       let data3 = {
@@ -64,7 +64,8 @@ class Login extends Component {
 
   getAddress_user = async (e) => {
     const result = await login.getAddress_user(e);
-    if (result !== null) {
+    if (result != null) {
+
       let data3 = {
         id: result[0].id,
         name: result[0].name,
@@ -199,7 +200,7 @@ class Login extends Component {
             payload: "http://192.168.1.5/project/api-database/images/"
           }) */
 
-      if (getLogin[0].status_user === "ช่าง") {
+      if (getLogin[0].status_user == "ช่าง") {
         await this.getAddress(getLogin[0].id);
       } else {
         await this.getAddress_user(getLogin[0].id);

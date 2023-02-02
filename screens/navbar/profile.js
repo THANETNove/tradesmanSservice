@@ -19,6 +19,7 @@ import { connect } from "react-redux";
 import img1 from "../../assets/images/A-6.png";
 import { logoutStore } from "../logout";
 import technician_type from "../service/getService";
+import login from "../login";
 
 
 class Profile_tradesman extends Component {
@@ -36,13 +37,23 @@ class Profile_tradesman extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log("9999");
-    if (this.state.name === null) {
+  getName = () => {
+    const { login, address, addressUser } = this.props.posts;
+    if (login.status_user == "ช่าง") {
       this.setState({
-        name: this.props.posts.address
+        name: address.name
+      });
+    } else {
+      this.setState({
+        name: addressUser.name
       });
     }
+  }
+  componentDidMount() {
+    if (this.state.name === null) {
+      this.getName()
+    }
+
 
     if (this.state.stausLogin === null) {
       this.setState({
@@ -56,42 +67,41 @@ class Profile_tradesman extends Component {
       });
     }
     this.getUserScore()
-
   }
+
 
   componentDidUpdate = async (prevProps, prevState) => {
     const { statusUpdate, login, address } = this.props.posts;
     const { name } = this.state;
-    if ((statusUpdate === true)) {
 
+    if ((statusUpdate === true)) {
       this.getUserScore()
+      this.getUserName()
       this.props.dispatch({
         type: 'ADD_STATUSUPDATE',
         payload: false
       })
 
-      if ((prevProps.address != address)) {
 
-
-        const result1 = await technician_type.getAddress_user(login.id);
-        console.log('result1', result1, login);
-        if (result1.length > 0) {
-          console.log("99999");
-          this.setState({
-            name: result1[0]
-          });
-        } else {
-          this.setState({
-            name: null
-          });
-        }
-      }
+      /*    if ((prevProps.address !== address) && (!login)) {
+           let id_login = this.props.posts.login.id;
+   
+           const result1 = await technician_type.getAddress_user(login.id);
+           console.log('result1', result1, login, id_login);
+           if (!result1) {
+             console.log();
+             this.setState({
+               name: result1[0]
+             });
+           } else {
+             this.setState({
+               name: null
+             });
+           }
+         } */
     }
 
     /*     console.log("this.props.posts.address", this.props.posts.address); */
-
-
-
 
 
     if (this.props.posts.login !== this.state.stausLogin) {
@@ -108,6 +118,37 @@ class Profile_tradesman extends Component {
       this.setState({
         image: this.props.posts.imageProfile,
       });
+    }
+  }
+
+  getUserName = async () => {
+    const { login } = this.props.posts;
+    if (login.status_user == "ช่าง") {
+      const result1 = await technician_type.gettechnicianAddressid(login.id);
+      console.log("result1 8888;", result1);
+      if (result1) {
+        console.log("xx9999xxx");
+        this.setState({
+          name: result1.name
+        });
+      } else {
+        this.setState({
+          name: null
+        });
+
+      }
+    } else {
+      const result1 = await technician_type.getAddress_user(login.id);
+      console.log("result1", result1);
+      if (result1) {
+        this.setState({
+          name: result1[0].name
+        });
+      } else {
+        this.setState({
+          name: null
+        });
+      }
     }
   }
 
@@ -240,7 +281,6 @@ class Profile_tradesman extends Component {
       );
     }
     const { modalVisible, urlImg, image, name, stausLogin, scoreUser } = this.state;
-    console.log("111");
     return (
       <>
         <SafeAreaView style={styles.container}>
@@ -261,7 +301,7 @@ class Profile_tradesman extends Component {
                     <Text style={styles.text}>TECHNICIAN ONLINE</Text>
                     :
                     <>
-                      <Text style={styles.text}>{name.name}</Text>
+                      <Text style={styles.text}>{name}</Text>
                       <Text style={styles.text1}>เบอร์ติดต่อ  {
                         stausLogin !== null ?
                           <>{stausLogin.phone}</>
@@ -354,7 +394,7 @@ class Profile_tradesman extends Component {
                   <Text style={styles.text}>TECHNICIAN ONLINE</Text>
                   :
                   <>
-                    <Text style={styles.text}>{name.name}</Text>
+                    <Text style={styles.text}>{name}</Text>
                     <Text style={styles.text1}>เบอร์ติดต่อ {
                       stausLogin !== null ?
                         <>{stausLogin.phone}</>
@@ -512,6 +552,7 @@ class Profile_tradesman extends Component {
   render() {
     const { modalVisible, urlImg, stausLogin, ckeckUserId, name } = this.state;
     const login_a = this.props.posts.login;
+    console.log("name", name);
     return (
       <>
         {
