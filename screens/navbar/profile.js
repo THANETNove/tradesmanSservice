@@ -40,17 +40,18 @@ class Profile_tradesman extends Component {
   getName = () => {
     const { login, address, addressUser } = this.props.posts;
     console.log("address", address, addressUser);
-    if (login.status_user == "ช่าง") {
-      if (address) {
-        this.setState({
-          name: address.name
-        });
-      }
-
-    } else {
+    if (login && login.status_user == "ลูกค้าทั่วไป") {
       if (addressUser) {
         this.setState({
           name: addressUser.name
+        });
+      }
+
+
+    } else {
+      if (address) {
+        this.setState({
+          name: address.name
         });
       }
 
@@ -130,9 +131,19 @@ class Profile_tradesman extends Component {
 
   getUserName = async () => {
     const { login } = this.props.posts;
-    if (login.status_user == "ช่าง") {
+    if (login && login.status_user == "ลูกค้าทั่วไป") {
+      const result1 = await technician_type.getAddress_user(login.id);
+      if (result1) {
+        this.setState({
+          name: result1.name
+        });
+      } else {
+        this.setState({
+          name: null
+        });
+      }
+    } else {
       const result1 = await technician_type.gettechnicianAddressid(login.id);
-      console.log("result1 8888;", result1);
       if (result1.name) {
         console.log("xx9999xxx");
         this.setState({
@@ -144,18 +155,9 @@ class Profile_tradesman extends Component {
         });
 
       }
-    } else {
-      const result1 = await technician_type.getAddress_user(login.id);
 
-      if (result1) {
-        this.setState({
-          name: result1.name
-        });
-      } else {
-        this.setState({
-          name: null
-        });
-      }
+
+
     }
   }
 

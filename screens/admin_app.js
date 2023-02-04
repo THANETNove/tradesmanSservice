@@ -46,12 +46,13 @@ class AdminApp extends Component {
     componentDidUpdate() {
         const { login, statusUpdate } = this.props.posts;
         if (statusUpdate == true) {
-            this.getRepairWork()
-            //ADD_STATUSUPDATE
-            this.props.dispatch({
-                type: 'ADD_STATUSUPDATE',
-                payload: false
-            })
+            console.log("222");
+            /*       this.getRepairWork()
+                  //ADD_STATUSUPDATE
+                  this.props.dispatch({
+                      type: 'ADD_STATUSUPDATE',
+                      payload: false
+                  }) */
         }
     }
 
@@ -62,6 +63,10 @@ class AdminApp extends Component {
         if (result != null) {
             this.setState({
                 repair_work: result.length
+            })
+        } else {
+            this.setState({
+                repair_work: null
             })
         }
 
@@ -110,6 +115,7 @@ class AdminApp extends Component {
         )
     }
     render() {
+
         return (
             <>
                 {
