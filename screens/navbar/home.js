@@ -11,7 +11,7 @@ class Home extends Component {
       address: null,
       technician: null,
       urlImg: null,
-/*       login: null, */
+      /*       login: null, */
       startApp: null,
     };
   }
@@ -27,8 +27,8 @@ class Home extends Component {
 
   }
   componentDidUpdate(prevProps, prevState) {
-    const { login,startApp } = this.props.posts;
-    if (prevProps.login !== login && this.state.login  !== null) {
+    const { login, startApp } = this.props.posts;
+    if (prevProps.login !== login && this.state.login !== null) {
       setTimeout(() => {
         this.getTechnician_type();
       }, 6000);
@@ -48,17 +48,17 @@ class Home extends Component {
       technician: result,
       address: this.props.posts.address,
       urlImg: this.props.posts.urlImage,
-/*       login: this.props.posts.login, */
+      /*       login: this.props.posts.login, */
     });
   }
 
 
-/*   setUrl = () => {
-    this.props.dispatch({
-      type: 'ADD_URL',
-      payload: "https://th-projet.com/api-database/images/"
-    })
-  } */
+  /*   setUrl = () => {
+      this.props.dispatch({
+        type: 'ADD_URL',
+        payload: "https://th-projet.com/api-database/images/"
+      })
+    } */
 
   deleteSarte() {
 
@@ -103,7 +103,7 @@ class Home extends Component {
                   source={require('../../assets/images/AAA.png')}
                 />
               </View>
-              <Text style={styles.text}>รายละเอียดงาน</Text>
+              <Text style={styles.text}>รายละเอียดงาน 2222</Text>
             </View>
             <View style={styles.boxhead}>
               {technician && technician.map((index) => {
@@ -113,8 +113,8 @@ class Home extends Component {
                 const image = (
                   <TouchableWithoutFeedback onPress={() => this.setLogin(name)}>
                     <View style={styles.box3}>
-                      <Image style={styles.image3} source={require('../../assets/images/A-9.jpg')} />
-                      <Text style={styles.text1}>{name}</Text>
+                      {/*    <Image style={styles.image3} source={require('../../assets/images/A-9.jpg')} /> */}
+                      {/*  <Text style={styles.text1}>{name}</Text> */}
                       {
                         nameImage !== null ?
                           <Image style={styles.image1} source={{ uri: `${urlImg}image_tradesman/${nameImage}` }} />
@@ -240,8 +240,8 @@ class Home extends Component {
                     const image = (
                       <TouchableWithoutFeedback>
                         <View style={styles.box3}>
-                          <Image style={styles.image3} source={require('../../assets/images/A-9.jpg')} />
-                          <Text style={styles.text1}>{name}</Text>
+                          {/* <Image style={styles.image3} source={require('../../assets/images/A-9.jpg')} />
+                          <Text style={styles.text1}>{name}</Text> */}
                           {
                             nameImage !== null ?
                               <Image style={styles.image1} source={{ uri: `${urlImg}image_tradesman/${nameImage}` }} />
@@ -315,26 +315,26 @@ class Home extends Component {
   render() {
 
     const login_props = this.props.posts.login;
-    const {startApp} = this.state;
+    const { startApp } = this.state;
     return (
       <>
         {
-          
-            startApp !== null ? 
-              login_props !== null ?
+
+          startApp !== null ?
+            login_props !== null ?
               login_props.status_user === "ช่าง" ?
                 this.customer()
                 :
                 this.customer()
-                :
+              :
               this.customer()
             :
             this.getStarted()
-          
 
-        
+
+
         }
-        
+
       </>
     );
   }
@@ -348,7 +348,7 @@ const styles = StyleSheet.create({
 
   },
   boxhead: {
-    
+    backgroundColor: "#FFFFFF",
     display: "flex",
     justifyContent: "center",
     flexDirection: 'row',
@@ -386,17 +386,18 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     marginBottom: 4,
     padding: -10,
-    paddingBottom: 50
+    paddingBottom: 50,
   },
   box3: {
-    width: 160,
+    width: 170,
     height: 100,
-    marginTop: 10,
-    marginLeft: 12,
+    marginTop: 16,
+    marginLeft: 10,
+    marginRight: 10,
     borderRadius: 10,
     shadowColor: "#000",
-    shadowOpacity: 0.34,
-    shadowRadius: 6.27,
+    shadowOpacity: 1.34,
+    shadowRadius: 1.27,
   },
   image: {
     width: 300,
@@ -407,10 +408,9 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
   },
   image1: {
-    width: 120,
-    height: 70,
-    marginTop: 20,
-    marginLeft: 20,
+
+    width: "100%",
+    height: "100%",
     position: "absolute"
   },
   image2: {
