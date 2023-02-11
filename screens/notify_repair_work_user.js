@@ -74,20 +74,33 @@ class Notify_repair_work_user extends Component {
           {repair_work &&
             repair_work.map((index) => {
               if (index.statusAdmin != null) {
-                return (
-                  <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
-                    <View style={styles.repairWorkApprove}>
-                      <Text>ชื่อ: {index.name}   ลักษณะงาน  {index.nameRepairWork} </Text>
-                      <AntDesign name="checkcircle" style={styles.iconCheckcircle} />
-                    </View>
-                  </TouchableWithoutFeedback>
+                if (index.statusAdmin == 1) {
+                  return (
+                    <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
+                      <View style={styles.repairWorkApprove}>
+                        <Text>ชื่อ: {index.name}   ลักษณะงาน  {index.nameRepairWork} </Text>
+                        <AntDesign name="checkcircle" style={styles.iconCheckcircle} />
+                      </View>
+                    </TouchableWithoutFeedback>
 
-                )
+                  )
+                } else {
+                  return (
+                    <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
+                      <View style={styles.repairWorkApprove}>
+                        <Text>ชื่อ: {index.name}   ลักษณะงาน  {index.nameRepairWork} </Text>
+                        <AntDesign name="closecircle" style={styles.iconCheckcircleRed} />
+                      </View>
+                    </TouchableWithoutFeedback>
+
+                  )
+                }
+
               } else {
                 return (
                   <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
                     <View style={styles.repairWorkApprove}>
-                      <Text>ชื่อ: {index.name}   ลักษณะงาน  {index.nameRepairWork} </Text>
+                      <Text>ชื่อ: {index.name}   ลักษณะงาน Null  {index.nameRepairWork} </Text>
                       <View>
                         <AntDesign name="edit" style={styles.iconEdit} />
                         {/*                         <AntDesign name="exclamationcircle" style={styles.iconExclamationcircle} /> */}
@@ -134,6 +147,10 @@ const styles = StyleSheet.create({
   },
   iconCheckcircle: {
     color: "#33CC00",
+    fontSize: 24,
+  },
+  iconCheckcircleRed: {
+    color: "red",
     fontSize: 24,
   },
   iconExclamationcircle: {
