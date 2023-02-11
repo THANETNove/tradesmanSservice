@@ -17,6 +17,8 @@ import { AntDesign } from '@expo/vector-icons';
 import repairWork from "./service/getService";
 import { connect } from "react-redux";
 
+
+
 class Notifications_repair_work extends Component {
 
     constructor(props) {
@@ -50,6 +52,7 @@ class Notifications_repair_work extends Component {
 
         }
 
+
         /*  this.setState({
              repair_work: jobDescription,
          }) */
@@ -60,7 +63,9 @@ class Notifications_repair_work extends Component {
 
         const { id, repair_work } = this.state;
         const { jobDescription, login, statusUpdate, notificationsRepairWorkTec } = this.props.posts;
+
         if (statusUpdate === true) {
+            console.log("adsas");
             const result = await repairWork.getRepairWorkTechnician();
             this.setState({
                 repair_work: result,
@@ -76,7 +81,10 @@ class Notifications_repair_work extends Component {
                 payload: false
             })
         }
-
+        const result = await repairWork.getRepairWorkTechnician();
+        this.setState({
+            repair_work: result,
+        })
         if (prevProps.notificationsRepairWorkTec !== notificationsRepairWorkTec) {
             const result = await repairWork.getRepairWorkTechnician();
             if (result != null) {
@@ -85,7 +93,10 @@ class Notifications_repair_work extends Component {
                     payload: result.length
                 })
             }
-            console.log("asdasda");
+
+
+
+
         }
     }
 

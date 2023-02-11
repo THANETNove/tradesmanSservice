@@ -51,7 +51,6 @@ class jobDescriptionTechnician extends Component {
         const { id } = this.state;
         const { login } = this.props.posts;
         let re = await repairWork.updatenRepairWorkIdTechnician(id, login.id)
-        console.log("asdas", re);
         if (re === "success") {
             Alert.alert("รับงานเรียบร้อย");
             this.props.dispatch({
