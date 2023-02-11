@@ -75,21 +75,35 @@ class Notify_repair_work_user extends Component {
             repair_work.map((index) => {
               if (index.statusAdmin != null) {
                 if (index.statusAdmin == 1) {
-                  return (
-                    <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
-                      <View style={styles.repairWorkApprove}>
-                        <Text>ชื่อ: {index.name}   ลักษณะงาน  {index.nameRepairWork} </Text>
-                        <AntDesign name="checkcircle" style={styles.iconCheckcircle} />
-                      </View>
-                    </TouchableWithoutFeedback>
+                  if (index.idTechnician == "0") {
+                    return (
+                      <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
+                        <View style={styles.repairWorkApprove}>
+                          <Text>ชื่อ: {index.name}   ลักษณะงาน  {index.nameRepairWork} </Text>
+                          <AntDesign name="minuscircle" style={styles.iconCheckcircleMinuscircle} />
 
-                  )
+                        </View>
+                      </TouchableWithoutFeedback>
+
+                    )
+                  } else {
+                    return (
+                      <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
+                        <View style={styles.repairWorkApprove}>
+                          <Text>ชื่อ: {index.name}   ลักษณะงาน  {index.nameRepairWork} </Text>
+                          <AntDesign name="checkcircle" style={styles.iconCheckcircle} />
+                        </View>
+                      </TouchableWithoutFeedback>
+
+                    )
+                  }
+
                 } else {
                   return (
                     <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
                       <View style={styles.repairWorkApprove}>
                         <Text>ชื่อ: {index.name}   ลักษณะงาน  {index.nameRepairWork} </Text>
-                        <AntDesign name="closecircle" style={styles.iconCheckcircleRed} />
+                        <AntDesign name="closecircle" style={styles.iconCheckcircleClosecircle} />
                       </View>
                     </TouchableWithoutFeedback>
 
@@ -100,7 +114,7 @@ class Notify_repair_work_user extends Component {
                 return (
                   <TouchableWithoutFeedback onPress={() => this.clickJob(index)}>
                     <View style={styles.repairWorkApprove}>
-                      <Text>ชื่อ: {index.name}   ลักษณะงาน Null  {index.nameRepairWork} </Text>
+                      <Text>ชื่อ: {index.name}   ลักษณะงาน   {index.nameRepairWork} </Text>
                       <View>
                         <AntDesign name="edit" style={styles.iconEdit} />
                         {/*                         <AntDesign name="exclamationcircle" style={styles.iconExclamationcircle} /> */}
@@ -149,8 +163,12 @@ const styles = StyleSheet.create({
     color: "#33CC00",
     fontSize: 24,
   },
-  iconCheckcircleRed: {
+  iconCheckcircleClosecircle: {
     color: "red",
+    fontSize: 24,
+  },
+  iconCheckcircleMinuscircle: {
+    color: "#686868",
     fontSize: 24,
   },
   iconExclamationcircle: {

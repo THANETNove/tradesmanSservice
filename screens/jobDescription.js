@@ -33,7 +33,8 @@ class JobDescription extends Component {
             status: null,
             statusidTechnician: null,
             nameTechnician: null,
-            telTechnician: null
+            telTechnician: null,
+
         };
     }
 
@@ -51,7 +52,7 @@ class JobDescription extends Component {
             this.setState({
                 id: jobDescription.id,
                 name: jobDescription.name,
-                phone: jobDescription.name,
+                phone: jobDescription.phone,
                 nameRepairWork: jobDescription.nameRepairWork,
                 repair_work: jobDescription.repair_work,
                 address: jobDescription.address,
@@ -176,21 +177,29 @@ class JobDescription extends Component {
                     </View>
                     {
                         status == "1" ?
-                            <View>
-                                <TouchableOpacity style={styles.button2} onPress={() => this.ClickU(statusidTechnician)}>
-                                    <Text style={{ color: "#FFFFFF", fontSize: 20, textAlign: "center", }} >
-                                        {nameTechnician != null ?
-                                            <Text>ช่าง {nameTechnician} รับงานคุณเเล้ว</Text>
-                                            :
-                                            <Text>มีช่างรับงานคุณเเล้ว</Text>}
-                                    </Text>
-                                </TouchableOpacity>
-                                {telTechnician && telTechnician != null ?
-                                    <Pressable style={styles.button3} onPress={() => Linking.openURL(`tel:${telTechnician}`)}>
-                                        <Text style={{ color: "#FFFFFF", fontSize: 20, textAlign: "center" }}>โทร- {telTechnician}</Text>
-                                    </Pressable>
-                                    : null}
-                            </View>
+                            statusidTechnician && (statusidTechnician == 0) ?
+                                <>
+                                    <Text style={{ color: "#707070", fontSize: 20, textAlign: "center", marginTop: 20 }}>ไม่มีช่างรับงานเเละ</Text>
+                                    <Text style={{ color: "#707070", fontSize: 20, textAlign: "center", marginTop: 0 }}>คำว่าจ้างของคุณนานเกินไป</Text>
+                                </>
+                                :
+                                statusidTechnician && (statusidTechnician > 0) ?
+                                    <View>
+                                        <TouchableOpacity style={styles.button2} onPress={() => this.ClickU(statusidTechnician)}>
+                                            <Text style={{ color: "#FFFFFF", fontSize: 20, textAlign: "center", }} >
+                                                {nameTechnician != null ?
+                                                    <Text>ช่าง {nameTechnician} รับงานคุณเเล้ว</Text>
+                                                    :
+                                                    <Text>มีช่างรับงานคุณเเล้ว</Text>}
+                                            </Text>
+                                        </TouchableOpacity>
+                                        {telTechnician && telTechnician != null ?
+                                            <Pressable style={styles.button3} onPress={() => Linking.openURL(`tel:${telTechnician}`)}>
+                                                <Text style={{ color: "#FFFFFF", fontSize: 20, textAlign: "center" }}>โทร- {telTechnician}</Text>
+                                            </Pressable>
+                                            : null}
+                                    </View>
+                                    : null
                             :
                             <Text style={{ color: "red", fontSize: 28, textAlign: "center", marginTop: 20 }}>ไม่ผ่านการอนุมัติ</Text>
                     }
@@ -378,7 +387,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         height: 50,
         width: "auto",
-        backgroundColor: "#0000FF",
+        backgroundColor: "#3399FF",
         shadowColor: "#000",
         shadowOpacity: 0.3,
         shadowRadius: 8,
