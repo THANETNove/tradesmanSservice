@@ -9,6 +9,8 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
+    Pressable,
+    Linking,
     Alert,
     Dimensions
 } from "react-native";
@@ -29,30 +31,37 @@ class JobDescription extends Component {
             statusSave: true,
             editStatus: false,
             status: null,
-            statusidTechnician: null
+            statusidTechnician: null,
+            nameTechnician: null,
+            telTechnician: null
         };
     }
 
     componentDidMount() {
         const { jobDescription, login } = this.props.posts;
-        if (jobDescription.statusAdmin == null) {
+        if (jobDescription && jobDescription.statusAdmin == null) {
             this.setState({
                 editStatus: true,
 
             })
         }
 
-        console.log("jobDescription", jobDescription);
-        this.setState({
-            id: jobDescription.id,
-            name: jobDescription.name,
-            phone: jobDescription.name,
-            nameRepairWork: jobDescription.nameRepairWork,
-            repair_work: jobDescription.repair_work,
-            address: jobDescription.address,
-            status: jobDescription.statusAdmin,
-            statusidTechnician: jobDescription.idTechnician,
-        })
+
+        if (jobDescription) {
+            this.setState({
+                id: jobDescription.id,
+                name: jobDescription.name,
+                phone: jobDescription.name,
+                nameRepairWork: jobDescription.nameRepairWork,
+                repair_work: jobDescription.repair_work,
+                address: jobDescription.address,
+                status: jobDescription.statusAdmin,
+                statusidTechnician: jobDescription.idTechnician,
+                nameTechnician: jobDescription.nameTechnician,
+                telTechnician: jobDescription.telTechnician,
+            })
+        }
+
         this.props.dispatch({
             type: 'DELETE_JOB',
             payload: null
@@ -131,9 +140,16 @@ class JobDescription extends Component {
         }
     }
 
+    ClickU(e) {
+        this.props.dispatch({
+            type: 'ADD_IDTECHNICAN',
+            payload: e
+        })
+        this.props.navigation.navigate("Profile_tras_user")
+    }
 
     dataJob() {
-        const { name, phone, nameRepairWork, repair_work, address, status, statusidTechnician } = this.state;
+        const { name, phone, nameRepairWork, repair_work, address, status, statusidTechnician, nameTechnician, telTechnician } = this.state;
 
         return (
             <SafeAreaView>
@@ -161,8 +177,19 @@ class JobDescription extends Component {
                     {
                         status == "1" ?
                             <View>
-                                <Text>มีช่างรับเเล้ว</Text>
-                                <Text>คลิก</Text>
+                                <TouchableOpacity style={styles.button2} onPress={() => this.ClickU(statusidTechnician)}>
+                                    <Text style={{ color: "#FFFFFF", fontSize: 20, textAlign: "center", }} >
+                                        {nameTechnician != null ?
+                                            <Text>ช่าง {nameTechnician} รับงานคุณเเล้ว</Text>
+                                            :
+                                            <Text>มีช่างรับงานคุณเเล้ว</Text>}
+                                    </Text>
+                                </TouchableOpacity>
+                                {telTechnician && telTechnician != null ?
+                                    <Pressable style={styles.button3} onPress={() => Linking.openURL(`tel:${telTechnician}`)}>
+                                        <Text style={{ color: "#FFFFFF", fontSize: 20, textAlign: "center" }}>โทร- {telTechnician}</Text>
+                                    </Pressable>
+                                    : null}
                             </View>
                             :
                             <Text style={{ color: "red", fontSize: 28, textAlign: "center", marginTop: 20 }}>ไม่ผ่านการอนุมัติ</Text>
@@ -325,6 +352,44 @@ const styles = StyleSheet.create({
         paddingLeft: 15,
         marginTop: 30,
         marginBottom: 60,
+    },
+    button2: {
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 20,
+        height: 50,
+        width: "auto",
+        backgroundColor: "#37C1FB",
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 4,
+        borderRadius: 30,
+        marginLeft: "auto",
+        marginRight: "auto",
+        fontSize: 18,
+        paddingLeft: 15,
+        marginTop: 30,
+        marginBottom: 60,
+    },
+    button3: {
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 20,
+        height: 50,
+        width: "auto",
+        backgroundColor: "#0000FF",
+        shadowColor: "#000",
+        shadowOpacity: 0.3,
+        shadowRadius: 8,
+        elevation: 4,
+        borderRadius: 30,
+        marginLeft: "auto",
+        marginRight: "auto",
+        fontSize: 18,
+        marginTop: -40,
+        paddingLeft: 15,
+
     },
     text: {
         paddingLeft: 10,
