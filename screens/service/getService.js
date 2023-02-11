@@ -1337,6 +1337,27 @@ const updateScoreUser = async (id, score) => {
   return bookBank;
 };
 
+const updatenRepairWorkIdTechnician = async (e, k) => {
+  const formdata = new FormData();
+  formdata.append('isAdd', true);
+  formdata.append('id', e);
+  formdata.append('id_user', k);
+
+
+  const upuser = await axios.post(`${url}/updateRepairWorkIdTechnician.php`, formdata, {
+    headers: {
+      'Content-Type': 'multipart/form-data;charset=utf-8',
+    }
+  }).then((result) => {
+
+    return "success";
+  })
+    .catch((error) => {
+
+      return error;
+    });
+  return upuser;
+}
 
 // delete
 const deleteImagsShop = async (id, name) => {
@@ -1466,6 +1487,7 @@ export default {
   updateRepairWork,
   updateRepairWorkUser,
   updateScoreUser,
+  updatenRepairWorkIdTechnician,
   deleteImagsShop,
   delete_Announced,
   delete_user

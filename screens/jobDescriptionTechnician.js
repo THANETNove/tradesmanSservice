@@ -47,7 +47,22 @@ class jobDescriptionTechnician extends Component {
         })
 
     }
+    receiveJob = async () => {
+        const { id } = this.state;
+        const { login } = this.props.posts;
+        let re = await repairWork.updatenRepairWorkIdTechnician(id, login.id)
+        console.log("asdas", re);
+        if (re === "success") {
+            Alert.alert("รับงานเรียบร้อย");
+            this.props.dispatch({
+                type: 'ADD_STATUSUPDATE',
+                payload: true
+            })
+            /*    await this.props.navigation.goBack(); */
+            await this.props.navigation.navigate("Notify_repair_work_Technician")
+        }
 
+    }
 
 
 
@@ -78,6 +93,11 @@ class jobDescriptionTechnician extends Component {
                         <Text style={styles.textRightTnput}>ที่อยู่</Text>
                         <Text style={styles.text}>{address}</Text>
                     </View>
+                    <TouchableOpacity style={styles.button} onPress={() => this.receiveJob()}>
+                        <Text style={styles.textButton}>
+                            รับงาน
+                        </Text>
+                    </TouchableOpacity>
                 </ScrollView>
             </SafeAreaView>
         )
@@ -143,6 +163,8 @@ const styles = StyleSheet.create({
     },
     button: {
         textAlign: "center",
+        alignItems: "center",
+        justifyContent: "center",
         height: 50,
         width: 280,
         backgroundColor: "#37C1FB",
@@ -154,7 +176,6 @@ const styles = StyleSheet.create({
         marginLeft: "auto",
         marginRight: "auto",
         fontSize: 18,
-        paddingLeft: 15,
         marginTop: 30,
         marginBottom: 60,
     },
@@ -170,6 +191,10 @@ const styles = StyleSheet.create({
         textAlign: "center",
         fontSize: 20,
         marginTop: 12,
+    },
+    textButton: {
+        color: "#FFFFFF",
+        fontSize: 20
     },
 });
 
