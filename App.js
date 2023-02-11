@@ -48,7 +48,6 @@ function MyStack() {
      */
   }, [notificationsRepairWorkTec])
 
-  console.log("555", notificationsRepairWorkTec);
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{ headerShown: false }}
@@ -121,7 +120,7 @@ export default function App() {
 
   useEffect(() => {
 
-    console.log("555");
+    /*  console.log("555"); */
   }, [])
 
 

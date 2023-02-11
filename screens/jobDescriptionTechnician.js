@@ -45,7 +45,13 @@ class jobDescriptionTechnician extends Component {
             type: 'ADD_STATUSUPDATE',
             payload: true
         })
+        this.getUpdateRepairWork()
 
+    }
+
+    getUpdateRepairWork = async () => {
+        var re = await repairWork.getUpdateRepairWorkTime();
+        console.log(re);
     }
     receiveJob = async () => {
         const { id } = this.state;
@@ -79,33 +85,35 @@ class jobDescriptionTechnician extends Component {
 
         return (
             <SafeAreaView>
-                <ScrollView style={styles.areaView}>
-                    <View style={styles.viewRightTnput}>
-                        <Text style={styles.textRightTnput}>ชื่อลูกค้า</Text>
-                        <Text style={styles.text}>{name}</Text>
-                    </View>
-                    <View style={styles.viewRightTnput}>
-                        <Text style={styles.textRightTnput}>เบอร์โทร</Text>
-                        <Text style={styles.text}>{phone}</Text>
-                    </View>
-                    <View style={styles.viewRightTnput}>
-                        <Text style={styles.textRightTnput}>ประเภทงาน</Text>
-                        <Text style={styles.text}>{nameRepairWork}</Text>
-                    </View>
-                    <View style={styles.viewRightTnput}>
-                        <Text style={styles.textRightTnput}>ลักษณะงาน</Text>
-                        <Text style={styles.text}>{repair_work}</Text>
-                    </View>
-                    <View style={styles.viewRightTnput}>
-                        <Text style={styles.textRightTnput}>ที่อยู่</Text>
-                        <Text style={styles.text}>{address}</Text>
-                    </View>
+                <View style={styles.areaView}>
+                    <ScrollView>
+                        <View style={styles.viewRightTnput}>
+                            <Text style={styles.textRightTnput}>ชื่อลูกค้า</Text>
+                            <Text style={styles.text}>{name}</Text>
+                        </View>
+                        <View style={styles.viewRightTnput}>
+                            <Text style={styles.textRightTnput}>เบอร์โทร</Text>
+                            <Text style={styles.text}>{phone}</Text>
+                        </View>
+                        <View style={styles.viewRightTnput}>
+                            <Text style={styles.textRightTnput}>ประเภทงาน</Text>
+                            <Text style={styles.text}>{nameRepairWork}</Text>
+                        </View>
+                        <View style={styles.viewRightTnput}>
+                            <Text style={styles.textRightTnput}>ลักษณะงาน</Text>
+                            <Text style={styles.text}>{repair_work}</Text>
+                        </View>
+                        <View style={styles.viewRightTnput}>
+                            <Text style={styles.textRightTnput}>ที่อยู่</Text>
+                            <Text style={styles.text}>{address}</Text>
+                        </View>
+                    </ScrollView>
                     <TouchableOpacity style={styles.button} onPress={() => this.receiveJob()}>
                         <Text style={styles.textButton}>
                             รับงาน
                         </Text>
                     </TouchableOpacity>
-                </ScrollView>
+                </View>
             </SafeAreaView>
         )
     }
@@ -132,6 +140,7 @@ const styles = StyleSheet.create({
         paddingTop: 20,
         backgroundColor: "#FFFFFF",
         height: "100%",
+        justifyContent: "space-between",
 
     },
     viewRightTnput: {

@@ -64,27 +64,19 @@ class Notifications_repair_work extends Component {
         const { id, repair_work } = this.state;
         const { jobDescription, login, statusUpdate, notificationsRepairWorkTec } = this.props.posts;
 
-        if (statusUpdate === true) {
-            console.log("adsas");
-            const result = await repairWork.getRepairWorkTechnician();
-            this.setState({
-                repair_work: result,
-            })
-            if (result != null) {
-                this.props.dispatch({
-                    type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
-                    payload: result.length
-                })
-            }
-            this.props.dispatch({
-                type: 'ADD_STATUSUPDATE',
-                payload: false
-            })
-        }
+
         const result = await repairWork.getRepairWorkTechnician();
         this.setState({
             repair_work: result,
         })
+        if (result != null) {
+            this.props.dispatch({
+                type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
+                payload: result.length
+            })
+        }
+
+
         if (prevProps.notificationsRepairWorkTec !== notificationsRepairWorkTec) {
             const result = await repairWork.getRepairWorkTechnician();
             if (result != null) {

@@ -113,6 +113,7 @@ const searchUser = async (e) => {
   }).then((result) => {
 
     return result.data;
+
   })
     .catch((error) => {
 
@@ -691,6 +692,25 @@ const getRepairWorkUser = async (e) => {
     params: {
       isAdd: true,
       id: e,
+    }
+  }).then((result) => {
+
+    return result.data;
+  })
+    .catch((error) => {
+
+      return null;
+    });
+  return seaUser;
+};
+
+const getUpdateRepairWorkTime = async () => {
+  const seaUser = await axios.get(`${url}/getUpdateRepairWorkTime.php`, {
+    headers: {
+      'Content-Type': 'text/javascript;charset=utf-8',
+    },
+    params: {
+      isAdd: true,
     }
   }).then((result) => {
 
@@ -1472,6 +1492,7 @@ export default {
   getRepairWorkUser,
   getRepairWorkTechnician,
   getRepairWorkAdmin,
+  getUpdateRepairWorkTime,
   updateShop,
   updateBookBank,
   uplodeUpdateImagesShop,
