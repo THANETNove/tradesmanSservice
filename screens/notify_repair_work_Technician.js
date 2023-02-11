@@ -59,10 +59,9 @@ class Notifications_repair_work extends Component {
     componentDidUpdate = async (prevProps, prevState) => {
 
         const { id, repair_work } = this.state;
-        const { jobDescription, login, statusUpdate } = this.props.posts;
+        const { jobDescription, login, statusUpdate, notificationsRepairWorkTec } = this.props.posts;
         if (statusUpdate === true) {
             const result = await repairWork.getRepairWorkTechnician();
-
             this.setState({
                 repair_work: result,
             })
@@ -76,7 +75,17 @@ class Notifications_repair_work extends Component {
                 type: 'ADD_STATUSUPDATE',
                 payload: false
             })
+        }
 
+        if (prevProps.notificationsRepairWorkTec !== notificationsRepairWorkTec) {
+            const result = await repairWork.getRepairWorkTechnician();
+            if (result != null) {
+                this.props.dispatch({
+                    type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
+                    payload: result.length
+                })
+            }
+            console.log("asdasda");
         }
     }
 

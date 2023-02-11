@@ -45,15 +45,20 @@ class AdminApp extends Component {
     }
     componentDidUpdate() {
         const { login, statusUpdate } = this.props.posts;
+        const { repair_work } = this.state;
         if (statusUpdate == true) {
-            console.log("222");
-            /*       this.getRepairWork()
-                  //ADD_STATUSUPDATE
-                  this.props.dispatch({
-                      type: 'ADD_STATUSUPDATE',
-                      payload: false
-                  }) */
+
+            this.getRepairWork()
+            //ADD_STATUSUPDATE
+            this.props.dispatch({
+                type: 'ADD_STATUSUPDATE',
+                payload: false
+            })
         }
+        if (!repair_work) {
+            this.getRepairWork()
+        }
+
     }
 
 
@@ -74,6 +79,7 @@ class AdminApp extends Component {
 
     home() {
         const { repair_work } = this.state;
+
         return (
             <>
                 <SafeAreaView style={styles.container}>

@@ -38,13 +38,24 @@ class notify_repair_work_Admin extends Component {
 
     componentDidUpdate = async (prevProps, prevState) => {
 
-        const { login, statusUpdate } = this.props.posts;
+        const { login, statusUpdate, notificationsRepairWorkTec } = this.props.posts;
         if (statusUpdate === true) {
             this.getRepairWork()
             //ADD_STATUSUPDATE
             this.props.dispatch({
                 type: 'ADD_STATUSUPDATE',
                 payload: false
+            })
+        }
+        /*   if (notificationsRepairWorkTec) {
+  
+          } */
+        const result = await repairWork.getRepairWorkTechnician();
+
+        if (result != null) {
+            this.props.dispatch({
+                type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
+                payload: result.length
             })
         }
     }

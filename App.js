@@ -33,11 +33,22 @@ const Tab = createBottomTabNavigator();
 function MyStack() {
 
   /*   const dispatch = useDispatch(azasd); */
+  const [repairWorkTec, setRepairWorkTec] = useState(null);
   const login = useSelector((state) => state.login);
   const notificationsReWork = useSelector((state) => state.notificationsRepairWork);
   const notificationsRepairWorkTec = useSelector((state) => state.notificationsRepairWorkTec);
+  useEffect(() => {
+    /*     const result = repairWork.getRepairWorkTechnician();
+        result.then((values) => {
+          setRepairWorkTec(values.length)
+    
+        }).catch((error) => {
+          console.log(error);
+        });
+     */
+  }, [notificationsRepairWorkTec])
 
-
+  console.log("555", notificationsRepairWorkTec);
   return (
     <NavigationContainer>
       <Tab.Navigator screenOptions={{ headerShown: false }}
@@ -106,27 +117,13 @@ function MyStack() {
 
 export default function App() {
 
-  const [data, setData] = useState(null);
 
-  function handleDeepLink(event) {
-    let data = Linking.parse(event.url);
-    setData(data);
-  }
 
   useEffect(() => {
-    Linking.addEventListener("url", handleDeepLink);
-    return () => {
-      Linking.removeEventListener("url");
-    }
 
+    console.log("555");
   }, [])
 
-
-  /*   useEffect(() => {
-      console.log("888");
-  
-    }, [login])
-    console.log("login"); */
 
 
 
