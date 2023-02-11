@@ -50,14 +50,22 @@ class jobDescriptionTechnician extends Component {
     receiveJob = async () => {
         const { id } = this.state;
         const { login } = this.props.posts;
-        let re = await repairWork.updatenRepairWorkIdTechnician(id, login.id)
+
+
+        const result1 = await repairWork.gettechnicianAddressid(login.id);
+        if (result1) {
+            var re = await repairWork.updatenRepairWorkIdTechnician(id, login.id, result1.name, result1.phone_number)
+        } else {
+            var re = await repairWork.updatenRepairWorkIdTechnician(id, login.id, null, null)
+        }
+
         if (re === "success") {
             Alert.alert("รับงานเรียบร้อย");
             this.props.dispatch({
                 type: 'ADD_STATUSUPDATE',
                 payload: true
             })
-            /*    await this.props.navigation.goBack(); */
+
             await this.props.navigation.navigate("Notify_repair_work_Technician")
         }
 

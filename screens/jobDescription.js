@@ -28,6 +28,8 @@ class JobDescription extends Component {
             address: null,
             statusSave: true,
             editStatus: false,
+            status: null,
+            statusidTechnician: null
         };
     }
 
@@ -39,6 +41,8 @@ class JobDescription extends Component {
 
             })
         }
+
+        console.log("jobDescription", jobDescription);
         this.setState({
             id: jobDescription.id,
             name: jobDescription.name,
@@ -46,6 +50,8 @@ class JobDescription extends Component {
             nameRepairWork: jobDescription.nameRepairWork,
             repair_work: jobDescription.repair_work,
             address: jobDescription.address,
+            status: jobDescription.statusAdmin,
+            statusidTechnician: jobDescription.idTechnician,
         })
         this.props.dispatch({
             type: 'DELETE_JOB',
@@ -127,7 +133,7 @@ class JobDescription extends Component {
 
 
     dataJob() {
-        const { name, phone, nameRepairWork, repair_work, address } = this.state;
+        const { name, phone, nameRepairWork, repair_work, address, status, statusidTechnician } = this.state;
 
         return (
             <SafeAreaView>
@@ -152,6 +158,16 @@ class JobDescription extends Component {
                         <Text style={styles.textRightTnput}>ที่อยู่</Text>
                         <Text style={styles.text}>{address}</Text>
                     </View>
+                    {
+                        status == "1" ?
+                            <View>
+                                <Text>มีช่างรับเเล้ว</Text>
+                                <Text>คลิก</Text>
+                            </View>
+                            :
+                            <Text style={{ color: "red", fontSize: 28, textAlign: "center", marginTop: 20 }}>ไม่ผ่านการอนุมัติ</Text>
+                    }
+
                 </ScrollView>
             </SafeAreaView>
         )

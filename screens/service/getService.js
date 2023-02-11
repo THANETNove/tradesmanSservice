@@ -1337,11 +1337,13 @@ const updateScoreUser = async (id, score) => {
   return bookBank;
 };
 
-const updatenRepairWorkIdTechnician = async (e, k) => {
+const updatenRepairWorkIdTechnician = async (e, k, i, j) => {
   const formdata = new FormData();
   formdata.append('isAdd', true);
   formdata.append('id', e);
   formdata.append('id_user', k);
+  formdata.append('nameTechnician', i);
+  formdata.append('telTechnician', j);
 
 
   const upuser = await axios.post(`${url}/updateRepairWorkIdTechnician.php`, formdata, {
