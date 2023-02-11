@@ -55,9 +55,7 @@ class AdminApp extends Component {
                 payload: false
             })
         }
-        if (!repair_work) {
-            this.getRepairWork()
-        }
+        this.getRepairWork()
 
     }
 
