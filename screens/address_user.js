@@ -86,7 +86,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
   useEffect(() => {
 
     if (id == null) {
-      console.log("id", id);
+
       getAddress_user(idPhone);
     }
     /* if (!location) {
@@ -161,7 +161,7 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
     const result = await technician_type.createAddress_user(data);
 
     if (result === "success") {
-      console.log("idPhone", idPhone);
+
       await getAddress_user(idPhone);
       Alert.alert("บันทึกสำเร็จ");
 
@@ -239,7 +239,6 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
 
     setSeveEdit(false)
     const result = await technician_type.updateAddress_user(data);
-    /*  console.log("999", result); */
     if (result === "success") {
       await getAddress_user(idPhone);
 

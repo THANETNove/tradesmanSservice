@@ -68,7 +68,6 @@ class Notify_repair_work_user extends Component {
 
   render() {
     const { repair_work } = this.state;
-    console.log("999");
     return (
       <SafeAreaView>
         <ScrollView style={styles.areaView}>

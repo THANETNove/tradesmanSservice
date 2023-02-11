@@ -39,7 +39,7 @@ class Profile_tradesman extends Component {
 
   getName = () => {
     const { login, address, addressUser } = this.props.posts;
-    console.log("address", address, addressUser);
+
     if (login && login.status_user == "ลูกค้าทั่วไป") {
       if (addressUser) {
         this.setState({
@@ -83,6 +83,7 @@ class Profile_tradesman extends Component {
     const { name } = this.state;
 
     if ((statusUpdate === true)) {
+
       this.getUserScore()
       this.getUserName()
       this.props.dispatch({

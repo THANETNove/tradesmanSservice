@@ -53,7 +53,7 @@ class JobDescription extends Component {
         })
         const result = repairWork.getRepairWorkUser(login.id);
         result.then((values) => {
-            console.log("values", values);
+
             if (values.length > 0) {
                 this.props.dispatch({
                     type: 'ADD_NOTIFICATIONSREPAIRWORK',

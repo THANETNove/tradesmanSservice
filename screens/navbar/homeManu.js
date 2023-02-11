@@ -90,7 +90,7 @@ class homeManu extends Component {
     }
 
     shareLink = async () => {
-        console.log("5555");
+
     }
 
     home() {

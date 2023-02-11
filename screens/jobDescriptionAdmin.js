@@ -69,7 +69,7 @@ class jobDescriptionAdmin extends Component {
             }
         }
         const result = await repairWork.updateRepairWorkUser(id, e, "null");
-        console.log("e", e);
+
         if (result === "success") {
             Alert.alert("บันทึกสำเร็จ");
             await this.props.navigation.goBack();

@@ -99,7 +99,7 @@ class AdminApp extends Component {
                                 </TouchableOpacity>
                                 <TouchableOpacity onPress={() => this.props.navigation.navigate("notify_repair_work_Admin")}>
                                     <AntDesign name="wordfile1" style={styles.icons3} />
-                                    <Text style={styles.text2}>{"อนุมัติงาน"}  {
+                                    <Text style={styles.text2_3}>{"อนุมัติงาน"}  {
                                         repair_work && repair_work != null ?
                                             <View style={styles.view3}><Text style={styles.text3}> {repair_work}</Text></View>
                                             : null
@@ -188,6 +188,12 @@ const styles = StyleSheet.create({
         fontSize: 20,
         marginTop: -35,
     },
+
+    text2_3: {
+        marginLeft: 55,
+        fontSize: 20,
+        marginTop: -40,
+    },
     text3: {
         color: "#FFFF",
         marginRight: 4
@@ -199,8 +205,8 @@ const styles = StyleSheet.create({
         position: "relative",
         color: "red",
         backgroundColor: "red",
-        width: 20,
-        height: 20,
+        width: 30,
+        height: 30,
         border: 5,
         borderRadius: 100,
     },

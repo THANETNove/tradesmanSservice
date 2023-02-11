@@ -47,6 +47,22 @@ class Notify_repair_work extends Component {
         })
     }
 
+    getRepairWork = async () => {
+        const result = await repairWork.getRepairWorkAdmin();
+        if (result != null) {
+            this.props.dispatch({
+                type: 'ADD_REPAIR_WORK_NUMBER',
+                payload: result.length
+            })
+        } else {
+            this.props.dispatch({
+                type: 'ADD_REPAIR_WORK_NUMBER',
+                payload: null
+            })
+        }
+    }
+
+
     serve = async () => {
 
         const { id, name, phone, nameRepairWork, repair_work, address } = this.state;
@@ -54,9 +70,16 @@ class Notify_repair_work extends Component {
         this.setState({
             statusSave: false
         })
+
+        this.props.dispatch({
+            type: 'ADD_STATUSUPDATE',
+            payload: "trus1"
+        })
         const result = await repairWork.createRepairWork(id, name, phone, nameRepairWork, repair_work, address);
         if (result === "success") {
-            await Alert.alert("บันทึกสำเร็จ");
+
+            Alert.alert("บันทึกสำเร็จ");//ADD_REPAIR_WORK_NUMBER
+            this.getRepairWork()
             await this.props.navigation.goBack();
         } else {
             Alert.alert("บันทึกไม่สำเร็จ");

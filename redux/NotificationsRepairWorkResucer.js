@@ -27,7 +27,7 @@ export const statusUpdate = (state = true, action) => {
         case 'ADD_STATUSUPDATE': //DELETE_NOTIFICATIONSREPAIRWORKTCE
             return action.payload
         case 'DELETE_STATUSUPDATE':
-            return action.payload
+            return true
         default:
             return state;
     }

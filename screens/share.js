@@ -18,7 +18,7 @@ const ShareExample = () => {
             //      (Platform.OS === 'ios') &&
             const message = (Platform.OS == 'ios') ? `https://apps.apple.com/th/app/technician-online/id1637943361` : `https://play.google.com/store/apps/details?id=com.ththanet.techicianOnline&hl=th`;
 
-            console.log("message", message);
+
             const result = await Share.share({
 
                 message: message,
@@ -48,7 +48,6 @@ const ShareExample = () => {
                     })
                 }
 
-                /*            console.log("score", score); */
             }
         } catch (error) {
             alert(error.message);

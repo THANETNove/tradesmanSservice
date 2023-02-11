@@ -57,7 +57,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
     if (result2) {
       result2.map((index) => {
         if (index.nameImage === "image1") {
-          console.log("img1", index.id);
+
           setIdImage1({
             id: index.id,
             name: index.url_shop
@@ -67,7 +67,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
           })
         }
         if (index.nameImage === "image2") {
-          console.log("img2", index.id);
+
           setIdImage2({
             id: index.id,
             name: index.url_shop
@@ -77,7 +77,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
           })
         }
         if (index.nameImage === "image3") {
-          console.log("img3", index.id);
+
           setIdImage3({
             id: index.id,
             name: index.url_shop
@@ -87,7 +87,7 @@ const Add_product = ({ navigation: { popToTop, navigate } }) => {
           })
         }
         if (index.nameImage === "image4") {
-          console.log("img4", index.id);
+
           setIdImage4({
             id: index.id,
             name: index.url_shop

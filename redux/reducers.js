@@ -22,6 +22,8 @@ import { idShopReducer } from './idShopReducer';
 import { jobDescriptionReducer } from './jobDescriptionReducer';
 import { NotificationsRepairWorkResucer, NotificationsRepairWorkResucerTec, statusUpdate, dataJob } from './NotificationsRepairWorkResucer';
 
+
+
 const persistConfig = {
   key: "root",
   storage: AsyncStorage
@@ -50,6 +52,7 @@ const rootReducer = combineReducers({
   notificationsRepairWorkTec: NotificationsRepairWorkResucerTec,
   statusUpdate: statusUpdate,
   dataJob: dataJob,
+
 
 });
 

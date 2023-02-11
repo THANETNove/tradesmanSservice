@@ -63,8 +63,10 @@ function MyStack() {
         {
           (login && login.status_user) === "admin" ?
             <Tab.Screen name="Admin" component={RouterAdmin}
+
               options={{
                 tabBarIcon: ({ size, color }) => (<MaterialIcons name="admin-panel-settings" color={color} size={size} />)
+
               }} />
             :
             null
