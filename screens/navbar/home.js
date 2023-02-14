@@ -73,16 +73,16 @@ class Home extends Component {
   }
 
   setLogin(e) {
-
-    if (this.props.posts.login !== null) {
-      this.props.navigation.navigate("Tradesman");
-      this.props.dispatch({
-        type: 'ADD_TECHNICAN',
-        payload: e
-      })
-    } else {
-      this.props.navigation.navigate("Login")
-    }
+    console.log("e", e);
+    /*  if (this.props.posts.login !== null) {
+       this.props.navigation.navigate("Tradesman");
+       this.props.dispatch({
+         type: 'ADD_TECHNICAN',
+         payload: e
+       })
+     } else {
+       this.props.navigation.navigate("Login")
+     } */
   }
 
   /* ลูกค้า */
@@ -103,7 +103,7 @@ class Home extends Component {
                   source={require('../../assets/images/AAA.png')}
                 />
               </View>
-              <Text style={styles.text}>รายละเอียดงาน 2222</Text>
+              <Text style={styles.text}>รายละเอียดงาน</Text>
             </View>
             <View style={styles.boxhead}>
               {technician && technician.map((index) => {
@@ -389,7 +389,7 @@ const styles = StyleSheet.create({
     paddingBottom: 50,
   },
   box3: {
-    width: 170,
+    width: 160,
     height: 100,
     marginTop: 16,
     marginLeft: 10,

@@ -10,6 +10,8 @@ import {
     TouchableOpacity,
     ScrollView,
     Alert,
+    Linking,
+    Pressable,
     Dimensions
 } from "react-native";
 import repairWork from "./service/getService";
@@ -96,7 +98,10 @@ class jobDescriptionAdmin extends Component {
                     </View>
                     <View style={styles.viewRightTnput}>
                         <Text style={styles.textRightTnput}>เบอร์โทร</Text>
-                        <Text style={styles.text}>{phone}</Text>
+                        <Text style={styles.textRightTnput}>เบอร์โทร</Text>
+                        <Pressable style={{ backgroundColor: "#99CCFF", paddingTop: 4, paddingBottom: 10, borderRadius: 16 }} onPress={() => Linking.openURL(`tel:${phone}`)}>
+                            <Text style={[styles.text]}>{phone}</Text>
+                        </Pressable>
                     </View>
                     <View style={styles.viewRightTnput}>
                         <Text style={styles.textRightTnput}>ประเภทงาน</Text>

@@ -55,31 +55,31 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
 
   // const [getLocation, setGetLocation] = useState(false);
 
-  const getLocation = async () => {
-    let { status } = await Location.requestPermissionsAsync();
-    if (status !== "granted") {
-      setErrorMsg("Permission to access location was denied");
-    }
-    Location.setGoogleApiKey(apiKey);
-    let { coords } = await Location.getCurrentPositionAsync();
-
-    setLocation({
-      latitude: coords.latitude,
-      longitude: coords.longitude,
-    });
-
-    if (coords) {
-      let { longitude, latitude } = coords;
-
-      let regionName = await Location.reverseGeocodeAsync({
-        longitude,
-        latitude,
+  /*   const getLocation = async () => {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+      }
+      Location.setGoogleApiKey(apiKey);
+      let { coords } = await Location.getCurrentPositionAsync();
+  
+      setLocation({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
       });
-      const name = regionName[0];
-      const address = JSON.stringify(name?.["subregion"]);
-      setAddress(address);
-    }
-  };
+  
+      if (coords) {
+        let { longitude, latitude } = coords;
+  
+        let regionName = await Location.reverseGeocodeAsync({
+          longitude,
+          latitude,
+        });
+        const name = regionName[0];
+        const address = JSON.stringify(name?.["subregion"]);
+        setAddress(address);
+      }
+    }; */
 
 
   //componentDidMount เปิดมาครั้งเเลกเเล้วทำงาน 1 ครั้ง
@@ -95,52 +95,52 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
 
   })
 
-  const map = () => {
-    return (
-      <>
-        {
-          location.longitude === null ? null
-            :
-            <MapView
-              provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
-              style={styles.map}
-              initialRegion={{
-                latitude: location.latitude,
-                longitude: location.longitude,
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421,
-              }}
-            >
-              <Marker
-                coordinate={{
+  /*   const map = () => {
+      return (
+        <>
+          {
+            location.longitude === null ? null
+              :
+              <MapView
+                provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
+                style={styles.map}
+                initialRegion={{
                   latitude: location.latitude,
                   longitude: location.longitude,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
                 }}
-                draggable={true}
-                onDragStart={(e) => {
-                  setLocation({
-                    latitude: e.nativeEvent.coordinate.latitude,
-                    longitude: e.nativeEvent.coordinate.longitude,
-                  });
-                }}
-                onDragEnd={(e) => {
-                  setLocation({
-                    latitude: e.nativeEvent.coordinate.latitude,
-                    longitude: e.nativeEvent.coordinate.longitude,
-                  });
-                }}
-                provider="google"
               >
-                <Callout>
-                  <Text>ตำเเหน่งของคุณ</Text>
-                </Callout>
-              </Marker>
-            </MapView>
-        }
-
-      </>
-    );
-  };
+                <Marker
+                  coordinate={{
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                  }}
+                  draggable={true}
+                  onDragStart={(e) => {
+                    setLocation({
+                      latitude: e.nativeEvent.coordinate.latitude,
+                      longitude: e.nativeEvent.coordinate.longitude,
+                    });
+                  }}
+                  onDragEnd={(e) => {
+                    setLocation({
+                      latitude: e.nativeEvent.coordinate.latitude,
+                      longitude: e.nativeEvent.coordinate.longitude,
+                    });
+                  }}
+                  provider="google"
+                >
+                  <Callout>
+                    <Text>ตำเเหน่งของคุณ</Text>
+                  </Callout>
+                </Marker>
+              </MapView>
+          }
+  
+        </>
+      );
+    }; */
 
   const serve = async () => {
 
@@ -380,21 +380,24 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
                 </View>
 
               </View>
-              <Text style={styles.text2}>{"GPS"}</Text>
+              {/*  <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
                 {map()}
-              </View>
+              </View> */}
               {
                 seveEdit === true ?
                   <>
-                    {
+                    {/*    {
                       location.latitude === null ?
                         <Text style={styles.text}>กรุณาเปิด GPS</Text>
                         :
                         <TouchableOpacity style={styles.button} onPress={() => serve()}>
                           <Text style={styles.text}>บันทึก</Text>
                         </TouchableOpacity>
-                    }
+                    } */}
+                    <TouchableOpacity style={styles.button} onPress={() => serve()}>
+                      <Text style={styles.text}>บันทึก</Text>
+                    </TouchableOpacity>
                   </>
 
                   : null
