@@ -19,8 +19,9 @@ class Home_tar extends Component {
 
 
   componentDidMount() {
-    const name = this.props.posts.technician;
-    this.technicianAndUser(name);
+
+
+    this.technicianAndUser(this.props.route.params.Tname);
   }
 
 

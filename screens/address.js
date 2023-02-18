@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import MapView, { Marker, Callout,PROVIDER_GOOGLE } from "react-native-maps";
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from "react-native-maps";
 import {
   SafeAreaView,
   StyleSheet,
@@ -36,7 +36,7 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
   const [id, setId] = useState(useSelector((state) => state.id));
   const [status, setStatus] = useState(useSelector((state) => state.login.status_user));
 
-  
+
 
   const dispatch = useDispatch();
 
@@ -44,81 +44,83 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
 
   // const [getLocation, setGetLocation] = useState(false);
 
-  const getLocation = async () => {
-    let { status } = await Location.requestPermissionsAsync();
-    if (status !== "granted") {
-      setErrorMsg("Permission to access location was denied");
-    }
-    Location.setGoogleApiKey(apiKey);
-    let { coords } = await Location.getCurrentPositionAsync();
-
-    /* setLocation({
-      latitude: coords.latitude,
-      longitude: coords.longitude,
-    }); */
-
-    if (coords) {
-      let { longitude, latitude } = coords;
-
-      let regionName = await Location.reverseGeocodeAsync({
-        longitude,
-        latitude,
-      });
-      const name = regionName[0];
-      const address = JSON.stringify(name?.["subregion"]);
-      setAddress(address);
-    }
-  };
-
- 
-
-  const map = () => {
-
-    return (
-      <>
-      {
-        location.longitude === null ? null 
-        :
-        <MapView
-        provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
-          style={styles.map}
-          initialRegion={{
-            latitude: location.latitude,
-            longitude: location.longitude,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
-          }}
-        >
-          <Marker
-            coordinate={{
-              latitude: location.latitude,
-              longitude: location.longitude,
-            }}
-            draggable={true}
-            onDragStart={(e) => {
-              setLocation({
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude,
-              });
-            }}
-            onDragEnd={(e) => {
-              setLocation({
-                latitude: e.nativeEvent.coordinate.latitude,
-                longitude: e.nativeEvent.coordinate.longitude,
-              });
-            }}
-            provider="google"
-          >
-            <Callout>
-              <Text>ตำเเหน่งของคุณ</Text>
-            </Callout>
-          </Marker>
-        </MapView>
+  /*   const getLocation = async () => {
+      let { status } = await Location.requestPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
       }
-        
-      </>
-    );
-  };
+      Location.setGoogleApiKey(apiKey);
+      let { coords } = await Location.getCurrentPositionAsync();
+  
+      setLocation({
+        latitude: coords.latitude,
+        longitude: coords.longitude,
+      });
+  
+      if (coords) {
+        let { longitude, latitude } = coords;
+  
+        let regionName = await Location.reverseGeocodeAsync({
+          longitude,
+          latitude,
+        });
+        const name = regionName[0];
+        const address = JSON.stringify(name?.["subregion"]);
+        setAddress(address);
+      }
+    }; */
+
+
+
+  /*   const map = () => {
+  
+      return (
+        <>
+          {
+            location.longitude === null ? null
+              :
+              <MapView
+                provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
+                style={styles.map}
+                initialRegion={{
+                  latitude: location.latitude,
+                  longitude: location.longitude,
+                  latitudeDelta: 0.0922,
+                  longitudeDelta: 0.0421,
+                }}
+              >
+                <Marker
+                  coordinate={{
+                    latitude: location.latitude,
+                    longitude: location.longitude,
+                  }}
+                  draggable={true}
+                  onDragStart={(e) => {
+                    setLocation({
+                      latitude: e.nativeEvent.coordinate.latitude,
+                      longitude: e.nativeEvent.coordinate.longitude,
+                    });
+                  }}
+                  onDragEnd={(e) => {
+                    setLocation({
+                      latitude: e.nativeEvent.coordinate.latitude,
+                      longitude: e.nativeEvent.coordinate.longitude,
+                    });
+                  }}
+                  provider="google"
+                >
+                  <Callout>
+                    <Text>ตำเเหน่งของคุณ</Text>
+                  </Callout>
+                </Marker>
+              </MapView>
+          }
+  
+        </>
+      );
+    }; */
+
+
   technicianAndUser = async (e) => {
     const result1 = await get_technician.gettechnicianAddressid(e);
     const loc = JSON.parse(result1.location);
@@ -128,118 +130,118 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
     });
     setTechnician(result1);
     urlImage(this.props.posts.urlImage);
-   
+
   }
   andUsers = async (e) => {
-   
+
     const result2 = await get_technician.getUserAddressid(e);
 
     const loc = JSON.parse(result2[0].location);
     setLocation({
-        latitude: loc.latitude,
-        longitude: loc.longitude,
-      });
-      
+      latitude: loc.latitude,
+      longitude: loc.longitude,
+    });
+
     setTechnician(result2[0]);
     urlImage(this.props.posts.urlImage);
-  
+
   }
- 
-  useEffect(() => {
-  
-    getLocation();
 
-    if (status === "ช่าง") {
-      this.andUsers(id);
-    }else{
-      this.technicianAndUser(id);
-    }
-   
-  },[location.latitude,location.longitude])
- 
-  return (
+  /*   useEffect(() => {
     
+      getLocation();
+  
+      if (status === "ช่าง") {
+        this.andUsers(id);
+      }else{
+        this.technicianAndUser(id);
+      }
+     
+    },[location.latitude,location.longitude]) */
+
+  return (
+
     <>
-     {
-      
-           technician !== null ?
-            <>
-              <ScrollView>
+      {
+
+        technician !== null ?
+          <>
+            <ScrollView>
+              <View>
+                <Image
+                  style={styles.image2}
+                  source={require("../assets/images/AA1.png")}
+                />
+              </View>
+              <View style={styles.box}>
                 <View>
-                  <Image
-                    style={styles.image2}
-                    source={require("../assets/images/AA1.png")}
-                  />
+                  <Text style={styles.text1}>รายละเอียดติดต่อ </Text>
                 </View>
-                <View style={styles.box}>
-                  <View>
-                    <Text style={styles.text1}>รายละเอียดติดต่อ </Text>
-                  </View>
 
-                  <View style={styles.box7}>
-                    <Text style={styles.text6}>{"ชื่อ"}</Text>
-                    <Text style={styles.text7}>{technician.name}</Text>
-                  </View>
-                  <View style={styles.box7}>
-                    <Text style={styles.text6}>{"เบอร์ติดต่อ"}</Text>
-                    <Text style={styles.text7}>{technician.phone_number}</Text>
-                  </View>
-                  <View style={styles.box7}>
-                    <Text style={styles.text6}>{"อีเมล"}</Text>
-                    <Text style={styles.text7}>{technician.email}</Text>
-                  </View>
-                  <View style={styles.box7}>
-                    <Text style={styles.text6}>{"บ้านเลขที่"}</Text>
-                    <Text style={styles.text7}>{technician.address}</Text>
-                  </View>
+                <View style={styles.box7}>
+                  <Text style={styles.text6}>{"ชื่อ"}</Text>
+                  <Text style={styles.text7}>{technician.name}</Text>
+                </View>
+                <View style={styles.box7}>
+                  <Text style={styles.text6}>{"เบอร์ติดต่อ"}</Text>
+                  <Text style={styles.text7}>{technician.phone_number}</Text>
+                </View>
+                <View style={styles.box7}>
+                  <Text style={styles.text6}>{"อีเมล"}</Text>
+                  <Text style={styles.text7}>{technician.email}</Text>
+                </View>
+                <View style={styles.box7}>
+                  <Text style={styles.text6}>{"บ้านเลขที่"}</Text>
+                  <Text style={styles.text7}>{technician.address}</Text>
+                </View>
 
-                  <View style={styles.box7}>
-                    <Text style={styles.text6}>{"ตำบล"}</Text>
-                    <Text style={styles.text7}>{technician.subdistrict}</Text>
-                  </View>
+                <View style={styles.box7}>
+                  <Text style={styles.text6}>{"ตำบล"}</Text>
+                  <Text style={styles.text7}>{technician.subdistrict}</Text>
+                </View>
 
-                  <View style={styles.box7}>
-                    <Text style={styles.text6}>{"อำเภอ"}</Text>
-                    <Text style={styles.text7}>{technician.district}</Text>
-                  </View>
+                <View style={styles.box7}>
+                  <Text style={styles.text6}>{"อำเภอ"}</Text>
+                  <Text style={styles.text7}>{technician.district}</Text>
+                </View>
 
-                  <View style={styles.box7}>
-                    <Text style={styles.text6}>{"จังหวัด"}</Text>
-                    <Text style={styles.text7}>{technician.province}</Text>
-                  </View>
+                <View style={styles.box7}>
+                  <Text style={styles.text6}>{"จังหวัด"}</Text>
+                  <Text style={styles.text7}>{technician.province}</Text>
+                </View>
 
-                  <View style={styles.box7}>
-                    <Text style={styles.text6}>{"รหัสไปรษณีย์"}</Text>
-                    <Text style={styles.text7}>{technician.zipcode}</Text>
-                  </View>
-                  {status === "ลูกค้าทั่วไป" ?
-                    <>
-                      <View style={styles.box7}>
-                        <Text style={styles.text6}>{"ประเภทงาน"}</Text>
-                        <Text style={styles.text7}>{technician.technician_1}</Text>
-                      </View>
-                      <View style={styles.box7}>
-                        <Text style={styles.text6}>{"ประเภทงาน"}</Text>
-                        <Text style={styles.text7}>{technician.technician_2}</Text>
-                      </View>
-                    </>
-                    :
-                    null
-
-                  }
-
-                  <View>
-                    <Text style={styles.text2}>{"GPS"}</Text>
-                    <View style={styles.box1}>
-                      {map()}
+                <View style={styles.box7}>
+                  <Text style={styles.text6}>{"รหัสไปรษณีย์"}</Text>
+                  <Text style={styles.text7}>{technician.zipcode}</Text>
+                </View>
+                {status === "ลูกค้าทั่วไป" ?
+                  <>
+                    <View style={styles.box7}>
+                      <Text style={styles.text6}>{"ประเภทงาน"}</Text>
+                      <Text style={styles.text7}>{technician.technician_1}</Text>
                     </View>
+                    <View style={styles.box7}>
+                      <Text style={styles.text6}>{"ประเภทงาน"}</Text>
+                      <Text style={styles.text7}>{technician.technician_2}</Text>
+                    </View>
+                  </>
+                  :
+                  null
+
+                }
+                {/* 
+                <View>
+                  <Text style={styles.text2}>{"GPS"}</Text>
+                  <View style={styles.box1}>
+                    {map()}
                   </View>
-                </View>
-              </ScrollView>
-            </>
-            :
-            null 
-        }
+                </View> */}
+              </View>
+            </ScrollView>
+          </>
+          :
+          null
+      }
     </>
   );
 };
@@ -277,7 +279,7 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginLeft: -5,
     marginTop: -5
-    
+
   },
   image1: {
     width: 128,
@@ -451,7 +453,7 @@ const styles = StyleSheet.create({
   text7: {
     fontSize: 18,
     marginTop: -20,
-    textAlign:'right',
+    textAlign: 'right',
     marginRight: 20,
   },
   input: {

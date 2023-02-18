@@ -73,16 +73,16 @@ class Home extends Component {
   }
 
   setLogin(e) {
-    console.log("e", e);
-    /*  if (this.props.posts.login !== null) {
-       this.props.navigation.navigate("Tradesman");
-       this.props.dispatch({
+
+    if (this.props.posts.login !== null) {
+      this.props.navigation.navigate("Tradesman", { Tname: e });
+      /*  this.props.dispatch({
          type: 'ADD_TECHNICAN',
          payload: e
-       })
-     } else {
-       this.props.navigation.navigate("Login")
-     } */
+       }) */
+    } else {
+      this.props.navigation.navigate("Login")
+    }
   }
 
   /* ลูกค้า */

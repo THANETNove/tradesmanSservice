@@ -620,10 +620,10 @@ const Address_user = ({ navigation: { popToTop, navigate } }) => {
                 </View>
 
               </View>
-              <Text style={styles.text2}>{"GPS"}</Text>
+              {/*   <Text style={styles.text2}>{"GPS"}</Text>
               <View style={styles.containerMap}>
                 {map()}
-              </View>
+              </View> */}
               {
                 seveEdit === true ?
                   <TouchableOpacity style={styles.button} onPress={() => update()}>
