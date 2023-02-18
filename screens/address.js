@@ -123,41 +123,27 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
 
   technicianAndUser = async (e) => {
     const result1 = await get_technician.gettechnicianAddressid(e);
-    /*   const loc = JSON.parse(result1.location);
-      setLocation({
-        latitude: loc.latitude,
-        longitude: loc.longitude,
-      }); */
     setTechnician(result1);
-    urlImage(this.props.posts.urlImage);
+    //urlImage(this.props.posts.urlImage);
 
   }
+
   andUsers = async (e) => {
-
     const result2 = await get_technician.getUserAddressid(e);
-
-    /*     const loc = JSON.parse(result2[0].location);
-        setLocation({
-          latitude: loc.latitude,
-          longitude: loc.longitude,
-        }); */
-
     setTechnician(result2[0]);
-    urlImage(this.props.posts.urlImage);
+    // urlImage(this.props.posts.urlImage);
 
   }
 
-  /*   useEffect(() => {
-    
-      getLocation();
-  
-      if (status === "ช่าง") {
-        this.andUsers(id);
-      }else{
-        this.technicianAndUser(id);
-      }
-     
-    },[location.latitude,location.longitude]) */
+  useEffect(() => {
+
+    if (status === "ช่าง") {
+      andUsers(id);
+    } else {
+      technicianAndUser(id);
+    }
+
+  }, [])
 
   return (
 
