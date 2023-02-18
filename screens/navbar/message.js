@@ -31,9 +31,17 @@ class Message extends Component {
 
   componentDidMount() {
     const { message, login } = this.props.posts;
-    if (login != null) {
-      this.set_State(this.state.starusLogin);
-    }
+
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      if (login != null) {
+        this.set_State(this.state.starusLogin);
+      }
+    });
+
+  }
+
+  componentWillUnmount() {
+    this._unsubscribe();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -108,13 +116,13 @@ class Message extends Component {
                       source={{ uri: `${urlImg}profile/${index.file_src}` }}
                     />
                   ) : (
-                    <Image style={styles.image} source={require('../../assets/images/AAA.png')}/>
+                    <Image style={styles.image} source={require('../../assets/images/AAA.png')} />
                   )}
                   <Text style={styles.text1}>
                     {
-                       index.name !== null ? 
-                       index.name
-                       : "name"
+                      index.name !== null ?
+                        index.name
+                        : "name"
                     }
                   </Text>
                   <Text style={styles.text3}>
@@ -160,14 +168,14 @@ class Message extends Component {
                       source={{ uri: `${urlImg}profile/${index.file_src}` }}
                     />
                   ) : (
-                    <Image style={styles.image} source={require('../../assets/images/AAA.png')}/>
+                    <Image style={styles.image} source={require('../../assets/images/AAA.png')} />
                   )}
 
-                    <Text style={styles.text1}>{
-                      index.name !== null ? 
+                  <Text style={styles.text1}>{
+                    index.name !== null ?
                       index.name
                       : "name"
-                    }</Text>
+                  }</Text>
                   <Text style={styles.text3}>Message</Text>
                   {id_teh.length !== 0 ? (
                     <Text style={styles.text4}>{id_teh.length}</Text>
@@ -181,8 +189,8 @@ class Message extends Component {
       </>
     );
   }
- 
- 
+
+
 
   render() {
     const { starusLogin, message, messageGrou, urlImg } = this.state;
@@ -197,7 +205,7 @@ class Message extends Component {
                   <TouchableOpacity onPress={() => this.set_State(this.props.posts.login)}>
                     <Fontisto name="spinner-refresh" style={styles.icons} />
                   </TouchableOpacity>
-               
+
                   {
                     this.user(message, messageGrou, urlImg)
                   }
@@ -209,13 +217,13 @@ class Message extends Component {
                     <TouchableOpacity onPress={() => this.set_State(this.props.posts.login)}>
                       <Fontisto name="spinner-refresh" style={styles.icons} />
                     </TouchableOpacity>
-            
-                    
+
+
                     {
                       this.technician(message, messageGrou, urlImg)
                     }
-                   {/*  <Notifications /> */}
-                   
+                    {/*  <Notifications /> */}
+
                   </>
 
                 )
