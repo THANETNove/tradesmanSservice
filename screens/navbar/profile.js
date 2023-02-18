@@ -58,24 +58,33 @@ class Profile_tradesman extends Component {
     }
   }
   componentDidMount() {
-    if (this.state.name === null) {
-      this.getName()
-    }
+
+    this._unsubscribe = this.props.navigation.addListener('focus', () => {
+      if (this.state.name === null) {
+        this.getName()
+      }
 
 
-    if (this.state.stausLogin === null) {
-      this.setState({
-        stausLogin: this.props.posts.login
-      });
-    }
+      if (this.state.stausLogin === null) {
+        this.setState({
+          stausLogin: this.props.posts.login
+        });
+      }
 
-    if (this.state.image === null) {
-      this.setState({
-        image: this.props.posts.imageProfile,
-      });
-    }
-    this.getUserScore()
+      if (this.state.image === null) {
+        this.setState({
+          image: this.props.posts.imageProfile,
+        });
+      }
+      this.getUserScore()
+    });
+
   }
+
+  componentWillUnmount() {
+    this._unsubscribe();
+  }
+
 
 
   componentDidUpdate = async (prevProps, prevState) => {
@@ -91,23 +100,6 @@ class Profile_tradesman extends Component {
         payload: false
       })
 
-
-      /*    if ((prevProps.address !== address) && (!login)) {
-           let id_login = this.props.posts.login.id;
-   
-           const result1 = await technician_type.getAddress_user(login.id);
-           console.log('result1', result1, login, id_login);
-           if (!result1) {
-             console.log();
-             this.setState({
-               name: result1[0]
-             });
-           } else {
-             this.setState({
-               name: null
-             });
-           }
-         } */
     }
 
     /*     console.log("this.props.posts.address", this.props.posts.address); */
@@ -455,13 +447,13 @@ class Profile_tradesman extends Component {
                 onPress={() => this.props.navigation.navigate("Servict_form")}>{"ข้อมูลการติดต่อ"}
               </Text>
             </View>
-            <View style={styles.box3}>
+            {/*   <View style={styles.box3}>
               <FontAwesome5 name="cc-visa" style={styles.icons4} />
               <Text
                 style={styles.text2}
                 onPress={() => this.props.navigation.navigate("Payment")}>{"ชำระเงิน"}
               </Text>
-            </View>
+            </View> */}
             <View style={styles.box3}>
               <Ionicons name="card" style={styles.icons5} />
               <Text

@@ -29,11 +29,14 @@ class notify_repair_work_Admin extends Component {
 
 
     componentDidMount = async () => {
-        this.getRepairWork()
-
-
+        this._unsubscribe = this.props.navigation.addListener('focus', () => {
+            this.getRepairWork()
+        });
     }
 
+    componentWillUnmount() {
+        this._unsubscribe();
+    }
 
 
     componentDidUpdate = async (prevProps, prevState) => {
@@ -47,17 +50,15 @@ class notify_repair_work_Admin extends Component {
                 payload: false
             })
         }
-        /*   if (notificationsRepairWorkTec) {
-  
-          } */
-        const result = await repairWork.getRepairWorkTechnician();
 
-        if (result != null) {
-            this.props.dispatch({
-                type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
-                payload: result.length
-            })
-        }
+        /*      const result = await repairWork.getRepairWorkTechnician();
+     
+             if (result != null) {
+                 this.props.dispatch({
+                     type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
+                     payload: result.length
+                 })
+             } */
     }
 
 

@@ -123,11 +123,11 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
 
   technicianAndUser = async (e) => {
     const result1 = await get_technician.gettechnicianAddressid(e);
-    const loc = JSON.parse(result1.location);
-    setLocation({
-      latitude: loc.latitude,
-      longitude: loc.longitude,
-    });
+    /*   const loc = JSON.parse(result1.location);
+      setLocation({
+        latitude: loc.latitude,
+        longitude: loc.longitude,
+      }); */
     setTechnician(result1);
     urlImage(this.props.posts.urlImage);
 
@@ -136,11 +136,11 @@ const Address = ({ navigation: { popToTop, navigate } }) => {
 
     const result2 = await get_technician.getUserAddressid(e);
 
-    const loc = JSON.parse(result2[0].location);
-    setLocation({
-      latitude: loc.latitude,
-      longitude: loc.longitude,
-    });
+    /*     const loc = JSON.parse(result2[0].location);
+        setLocation({
+          latitude: loc.latitude,
+          longitude: loc.longitude,
+        }); */
 
     setTechnician(result2[0]);
     urlImage(this.props.posts.urlImage);

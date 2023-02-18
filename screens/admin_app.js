@@ -30,19 +30,29 @@ class AdminApp extends Component {
 
     componentDidMount = async () => {
         const { login, } = this.props.posts;
-        if (login === null) {
-            this.props.navigation.navigate("Login")
-        } else {
-            this.getRepairWork()
+        this._unsubscribe = this.props.navigation.addListener('focus', () => {
+            if (login === null) {
+                this.props.navigation.navigate("Login")
+            } else {
+                this.getRepairWork()
 
 
-        }
+            }
+        });
+
+
 
         /*  this.setState({
              repair_work: jobDescription,
          }) */
         //getRepairWorkUser
     }
+
+    componentWillUnmount() {
+        this._unsubscribe();
+    }
+
+
     componentDidUpdate() {
         const { login, statusUpdate } = this.props.posts;
         const { repair_work } = this.state;
@@ -55,7 +65,7 @@ class AdminApp extends Component {
                 payload: false
             })
         }
-        this.getRepairWork()
+        //  this.getRepairWork()
 
     }
 
@@ -119,7 +129,7 @@ class AdminApp extends Component {
         )
     }
     render() {
-
+        console.log("asd");
         return (
             <>
                 {

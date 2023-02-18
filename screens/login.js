@@ -155,6 +155,7 @@ class Login extends Component {
 
 
       const result = login.getRepairWorkUser(getLogin[0].id);
+
       result.then((values) => {
         if (values.length > 0) {
           this.props.dispatch({
@@ -195,10 +196,6 @@ class Login extends Component {
         payload: true
       })
 
-      /*     this.props.dispatch({
-            type: 'ADD_URL',
-            payload: "http://192.168.1.5/project/api-database/images/"
-          }) */
 
       if (getLogin[0].status_user == "ช่าง") {
         await this.getAddress(getLogin[0].id);
@@ -211,7 +208,7 @@ class Login extends Component {
 
       await this.props.navigation.popToTop();
     } else {
-      await Alert.alert('User หรือ password ไม่ถูกต้องกรุณาลองใหม่');
+      Alert.alert('User หรือ password ไม่ถูกต้องกรุณาลองใหม่');
     }
   };
 

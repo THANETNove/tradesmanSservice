@@ -32,32 +32,33 @@ class Notifications_repair_work extends Component {
 
     componentDidMount = async () => {
         const { login, notificationsRepairWorkTec } = this.props.posts;
-        if (this.props.posts.login === null) {
-            this.props.navigation.navigate("Login")
-        } else {
 
-            const result = await repairWork.getRepairWorkTechnician();
-            /*   result.then((values) => { */
-            this.setState({
-                repair_work: result,
-            })
-            if (result != null) {
-                this.props.dispatch({
-                    type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
-                    payload: result.length
+        this._unsubscribe = this.props.navigation.addListener('focus', async () => {
+
+            if (this.props.posts.login === null) {
+                this.props.navigation.navigate("Login")
+            } else {
+
+                const result = await repairWork.getRepairWorkTechnician();
+                /*   result.then((values) => { */
+                this.setState({
+                    repair_work: result,
                 })
+                if (result != null) {
+                    this.props.dispatch({
+                        type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
+                        payload: result.length
+                    })
+                }
             }
-            /*      }) */
+        });
 
-
-        }
-
-
-        /*  this.setState({
-             repair_work: jobDescription,
-         }) */
-        //getRepairWorkUser
     }
+
+    componentWillUnmount() {
+        this._unsubscribe();
+    }
+
 
     componentDidUpdate = async (prevProps, prevState) => {
 
@@ -65,16 +66,16 @@ class Notifications_repair_work extends Component {
         const { jobDescription, login, statusUpdate, notificationsRepairWorkTec } = this.props.posts;
 
 
-        const result = await repairWork.getRepairWorkTechnician();
-        this.setState({
-            repair_work: result,
-        })
-        if (result != null) {
-            this.props.dispatch({
-                type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
-                payload: result.length
-            })
-        }
+        /*   const result = await repairWork.getRepairWorkTechnician();
+          this.setState({
+              repair_work: result,
+          })
+          if (result != null) {
+              this.props.dispatch({
+                  type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
+                  payload: result.length
+              })
+          } */
 
 
         if (prevProps.notificationsRepairWorkTec !== notificationsRepairWorkTec) {
@@ -108,6 +109,7 @@ class Notifications_repair_work extends Component {
     }
     render() {
         const { repair_work } = this.state;
+        console.log("55");
         return (
             <SafeAreaView>
                 <ScrollView style={styles.areaView}>

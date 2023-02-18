@@ -256,9 +256,9 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
     if (statusAddress == null) {
       getAddress(idPhone)
     }
-    if (location.latitude === null) {
-      getLocation();
-    }
+    /*    if (location.latitude === null) {
+         getLocation();
+       } */
     if (technicianType === null) {
       loadtTechnician();
     }
@@ -536,36 +536,7 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
               <Text style={styles.text7}>{statusAddress.technician_2}</Text>
             </View>
 
-            <View>
-              <Text style={styles.text2}>{"GPS"}</Text>
-              <View style={styles.box1}>
-                {statusAddress.location !== undefined ? (
-                  <>
-                    <MapView
-                      provider={PROVIDER_GOOGLE} // remove if not using Google Maps  api
-                      style={styles.map}
-                      initialRegion={{
-                        latitude: statusAddress.location.latitude,
-                        longitude: statusAddress.location.longitude,
-                        latitudeDelta: 0.0922,
-                        longitudeDelta: 0.0421,
-                      }}
-                    >
-                      <Marker
-                        coordinate={{
-                          latitude: statusAddress.location.latitude,
-                          longitude: statusAddress.location.longitude,
-                        }}
-                      >
-                        <Callout>
-                          <Text>ตำเเหน่งของคุณ</Text>
-                        </Callout>
-                      </Marker>
-                    </MapView>
-                  </>
-                ) : null}
-              </View>
-            </View>
+
           </View>
         </ScrollView>
       </>
@@ -736,10 +707,6 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
                 </View>
 
               </View>
-              <Text style={styles.text2}>{"GPS"}</Text>
-              <View style={styles.containerMap}>
-                {map()}
-              </View>
               {
                 seveEdit === true ?
                   <TouchableOpacity style={styles.button} onPress={() => update()}>
@@ -756,7 +723,6 @@ const Service_form = ({ navigation: { popToTop, navigate } }) => {
   };
 
   /*    console.log(useSelector((state) => ({ ...state }))); */
-  console.log("getTechnicianAddress",);
   return (
     <>
       {statusAddress === null
