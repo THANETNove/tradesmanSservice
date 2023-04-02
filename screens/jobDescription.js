@@ -240,7 +240,6 @@ class JobDescription extends Component {
                             onChangeText={(text) => this.handleChange("nameRepairWork", text)}
                             placeholder="กรุณาระบุ"
                             value={nameRepairWork}
-                            keyboardType="numeric"
                         />
                     </View>
                     <View style={styles.viewRightTnput}>

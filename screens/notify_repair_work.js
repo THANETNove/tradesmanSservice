@@ -114,7 +114,6 @@ class Notify_repair_work extends Component {
                             style={styles.input}
                             onChangeText={(text) => this.handleChange("nameRepairWork", text)}
                             placeholder="กรุณาระบุ"
-                            keyboardType="numeric"
                         />
                     </View>
                     <View style={styles.viewRightTnput}>
