@@ -38,16 +38,21 @@ class Notifications_repair_work extends Component {
             if (this.props.posts.login === null) {
                 this.props.navigation.navigate("Login")
             } else {
-
                 const result = await repairWork.getRepairWorkTechnician();
                 /*   result.then((values) => { */
                 this.setState({
                     repair_work: result,
                 })
+                console.log("result", result);
                 if (result != null) {
                     this.props.dispatch({
                         type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
                         payload: result.length
+                    })
+                } else {
+                    this.props.dispatch({
+                        type: 'ADD_NOTIFICATIONSREPAIRWORKTCE',
+                        payload: null
                     })
                 }
             }
@@ -58,6 +63,7 @@ class Notifications_repair_work extends Component {
     componentWillUnmount() {
         this._unsubscribe();
     }
+
 
 
     componentDidUpdate = async (prevProps, prevState) => {

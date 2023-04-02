@@ -55,6 +55,7 @@ class homeManu extends Component {
         this.setUrl()
         this.getAnnonce()
 
+        console.log("aaa");
     }
     /* componentWillMount() {
         this.setState({
